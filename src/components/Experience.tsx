@@ -6,6 +6,7 @@ interface Experience {
   title: string;
   organization: string;
   duration: string;
+  employmentType?: "Internship" | "Full Time";
   description: string;
   technologies?: string[];
 }
@@ -13,28 +14,13 @@ interface Experience {
 const experiences: Experience[] = [
   {
     type: "internship",
-    title: "Web Development Intern",
-    organization: "Tech Company Name",
-    duration: "June 2024 - August 2024",
-    description: "Developed and maintained responsive web applications. Collaborated with senior developers on feature implementation and bug fixes. Participated in code reviews and agile ceremonies.",
-    technologies: ["React", "Node.js", "MongoDB", "Git"],
-  },
-  {
-    type: "training",
-    title: "Full Stack Development Bootcamp",
-    organization: "Online Platform",
-    duration: "January 2024 - April 2024",
-    description: "Completed intensive training covering modern web technologies, database management, and deployment practices. Built 5+ projects as part of curriculum.",
-    technologies: ["JavaScript", "Python", "PostgreSQL", "AWS"],
-  },
-  {
-    type: "hackathon",
-    title: "Smart India Hackathon Finalist",
-    organization: "Ministry of Education",
-    duration: "December 2023",
-    description: "Led a team of 6 to develop an AI-powered solution for healthcare accessibility. Reached national finals among 50,000+ participants.",
-    technologies: ["Python", "TensorFlow", "Flask", "React"],
-  },
+    title: "Lead Software Developer",
+    organization: "HERMEiAS",
+    duration: "MAY 2025 - DECEMBER 2025",
+    employmentType: "Internship",
+    description: "I am responsible for developing scalable internal tools and web platforms that integrate with and support the company's flagship products, enabling efficient monitoring, management, and continuous improvement across teams.",
+    technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn-ui", "Supabase", "Vercel"],
+  }
 ];
 
 const typeIcons = {
@@ -73,24 +59,31 @@ const Experience = () => {
                           <Icon size={18} className="text-primary" />
                         </div>
                       </div>
-                      
+
                       <div className="bg-card/50 border border-border p-6 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                         <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                           <div>
                             <h3 className="font-serif text-xl text-foreground">
                               {exp.title}
                             </h3>
-                            <p className="text-sm text-primary">{exp.organization}</p>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <p className="text-sm text-primary">{exp.organization}</p>
+                              {exp.employmentType && (
+                                <span className="text-xs text-primary bg-primary/10 px-2 py-1 border border-primary/30 rounded">
+                                  {exp.employmentType}
+                                </span>
+                              )}
+                            </div>
                           </div>
                           <span className="text-xs text-muted-foreground bg-secondary/50 px-3 py-1 border border-border">
                             {exp.duration}
                           </span>
                         </div>
-                        
+
                         <p className="text-sm text-muted-foreground mb-4">
                           {exp.description}
                         </p>
-                        
+
                         {exp.technologies && (
                           <div className="flex flex-wrap gap-2">
                             {exp.technologies.map((tech) => (

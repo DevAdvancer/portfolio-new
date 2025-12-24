@@ -14,6 +14,7 @@ const skillCategories: SkillCategory[] = [
       { name: "JavaScript", level: "Advanced" },
       { name: "TypeScript", level: "Intermediate" },
       { name: "Java", level: "Intermediate" },
+      { name: "C", level: "Intermediate" },
       { name: "C++", level: "Beginner" },
     ],
   },
@@ -21,10 +22,10 @@ const skillCategories: SkillCategory[] = [
     title: "Web Technologies",
     skills: [
       { name: "React", level: "Advanced" },
-      { name: "Node.js", level: "Intermediate" },
+      { name: "Node.js", level: "Advanced" },
       { name: "HTML/CSS", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Advanced" },
       { name: "Next.js", level: "Advanced" },
+      { name: "Tailwind CSS", level: "Intermediate" },
     ],
   },
   {
@@ -41,16 +42,20 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Git & GitHub", level: "Advanced" },
       { name: "VS Code", level: "Advanced" },
+      { name: "Cursor", level: "Advanced" },
+      { name: "Kiro", level: "Intermediate" },
       { name: "Linux", level: "Advanced" },
+      { name: "CLI Tools", level: "Intermediate" },
       { name: "Docker", level: "Beginner" },
-      { name: "Figma", level: "Beginner" },
     ],
   },
   {
     title: "Domains",
     skills: [
+      { name: "Full Stack Development", level: "Advanced" },
       { name: "Data Structures & Algorithms", level: "Advanced" },
       { name: "REST APIs", level: "Advanced" },
+      { name: "Flutter Development", level: "Intermediate" },
       { name: "Cybersecurity Basics", level: "Intermediate" },
       { name: "DevOps Fundamentals", level: "Intermediate" },
     ],

@@ -7,6 +7,7 @@ interface EducationItem {
   institution: string;
   duration: string;
   cgpa?: string;
+  percentage?: string;
   highlights?: string[];
 }
 
@@ -27,7 +28,14 @@ const education: EducationItem[] = [
     specialization: "Science - PCM with Computer Science",
     institution: "Kendriya Vidyalaya Tarakeswar",
     duration: "2020 - 2022",
-    cgpa: "59%",
+    percentage: "59%",
+  },
+  {
+    degree: "Secondary (10th)",
+    specialization: "General",
+    institution: "Kendriya Vidyalaya Tarakeswar",
+    duration: "2018 - 2020",
+    percentage: "74%",
   },
 ];
 
@@ -54,7 +62,7 @@ const Education = () => {
                       <GraduationCap size={24} className="text-primary" />
                     </div>
                   </div>
-                  
+
                   <div className="flex-1">
                     <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
                       <div>
@@ -63,17 +71,21 @@ const Education = () => {
                         </h3>
                         <p className="text-sm text-primary">{edu.specialization}</p>
                       </div>
-                      {edu.cgpa && (
+                      {(edu.cgpa || edu.percentage) && (
                         <div className="text-right">
-                          <p className="text-lg font-medium text-accent">{edu.cgpa}</p>
-                          <p className="text-xs text-muted-foreground">CGPA</p>
+                          <p className="text-lg font-medium text-accent">
+                            {edu.cgpa || edu.percentage}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {edu.cgpa ? "CGPA" : "Percentage"}
+                          </p>
                         </div>
                       )}
                     </div>
-                    
+
                     <p className="text-sm text-foreground mb-1">{edu.institution}</p>
                     <p className="text-xs text-muted-foreground mb-4">{edu.duration}</p>
-                    
+
                     {edu.highlights && (
                       <ul className="space-y-1">
                         {edu.highlights.map((highlight, i) => (

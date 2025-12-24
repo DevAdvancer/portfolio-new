@@ -41,7 +41,7 @@ const Hero = () => {
           </p>
 
           <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl font-medium text-foreground mb-3 sm:mb-4 animate-fade-in-up">
-            Abhirup&apos;s Portfolio
+            Abhirup Kumar
           </h1>
 
           <div className="text-base sm:text-lg md:text-xl text-muted-foreground mb-3 sm:mb-4 animate-fade-in-up h-7 sm:h-8">

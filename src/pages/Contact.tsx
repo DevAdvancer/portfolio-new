@@ -14,7 +14,7 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:your.email@example.com?subject=${encodeURIComponent(formData.subject || `Portfolio Contact from ${formData.name}`)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.email)}`;
+    const mailtoLink = `mailto:theabhirupkumar@gmail.com?subject=${encodeURIComponent(formData.subject || `Portfolio Contact from ${formData.name}`)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.email)}`;
     window.location.href = mailtoLink;
   };
 
@@ -22,26 +22,26 @@ const ContactPage = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "your.email@example.com",
-      href: "mailto:your.email@example.com",
+      value: "theabhirupkumar@gmail.com",
+      href: "mailto:theabhirupkumar@gmail.com",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "linkedin.com/in/yourprofile",
-      href: "https://linkedin.com/in/yourprofile",
+      value: "linkedin.com/in/abhirupkumar",
+      href: "https://linkedin.com/in/abhirupkumar",
     },
     {
       icon: Github,
       label: "GitHub",
-      value: "github.com/yourusername",
-      href: "https://github.com/yourusername",
+      value: "github.com/devadvancer",
+      href: "https://github.com/devadvancer",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Your City, Country",
-      href: "#",
+      value: "Tarakeswar, Kolkata, India",
+      href: "https://maps.app.goo.gl/bJJFRYMnrTgvAhgt7",
     },
   ];
 
