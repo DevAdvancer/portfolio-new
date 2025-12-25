@@ -1,8 +1,10 @@
-import { Mail, Linkedin, Github, FileText, Send, MapPin } from "lucide-react";
+import { Mail, Linkedin, Github, FileText, Send, MapPin, Loader2 } from "lucide-react";
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useToast } from "@/hooks/use-toast";
+import SEO from "@/components/SEO";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -11,11 +13,54 @@ const ContactPage = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:theabhirupkumar@gmail.com?subject=${encodeURIComponent(formData.subject || `Portfolio Contact from ${formData.name}`)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.email)}`;
-    window.location.href = mailtoLink;
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "af310c1c-5aa3-4b25-8fad-79b6486c9abb",
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Portfolio Contact from ${formData.name}`,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(data.message || "Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Error sending message",
+        description: error instanceof Error ? error.message : "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -47,6 +92,12 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Contact - Abhirup Kumar | Get In Touch"
+        description="Get in touch with Abhirup Kumar - Software Engineer and Full Stack Developer. Available for freelance projects, job opportunities, and collaborations."
+        keywords="contact Abhirup Kumar, hire software developer, freelance web developer, React developer contact, full stack developer India"
+        url="https://www.abhriupkumar.in/contact"
+      />
       <Navigation />
       <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">
         <div className="container mx-auto px-4 sm:px-6">
@@ -107,7 +158,7 @@ const ContactPage = () => {
                         <p className="text-xs text-muted-foreground">PDF format, updated Dec 2024</p>
                       </div>
                       <a
-                        href="/resume.pdf"
+                        href="/Resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 sm:px-4 py-2 bg-primary text-primary-foreground text-xs sm:text-sm hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25 flex-shrink-0"
@@ -183,10 +234,20 @@ const ContactPage = () => {
                     </div>
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25"
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <Send size={16} />
-                      Send Message
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={16} />
+                          Send Message
+                        </>
+                      )}
                     </button>
                   </form>
                 </div>

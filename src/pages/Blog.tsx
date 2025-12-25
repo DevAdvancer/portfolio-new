@@ -3,10 +3,17 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { blogPosts } from "@/data/blogPosts";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 
 const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Blog - Abhirup Kumar | Thoughts & Writing on Design & Development"
+        description="Read articles and thoughts from Abhirup Kumar on software development, design, web development, React, TypeScript, and the creative process."
+        keywords="Abhirup Kumar blog, software development blog, web development articles, React tutorials, TypeScript blog, programming thoughts, design philosophy"
+        url="https://www.abhriupkumar.in/blog"
+      />
       <Navigation />
       <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">
         <div className="container mx-auto px-4 sm:px-6">

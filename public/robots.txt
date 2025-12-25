@@ -1,0 +1,25 @@
+# robots.txt for Abhirup Kumar's Portfolio
+# Domain: https://www.abhriupkumar.in
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.abhriupkumar.in/sitemap.xml
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /api/
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

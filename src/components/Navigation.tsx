@@ -73,7 +73,7 @@ const Navigation = () => {
                 </Link>
               ))}
               <a
-                href="/resume.pdf"
+                href="/Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-sm hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25"
@@ -143,7 +143,7 @@ const Navigation = () => {
               </nav>
 
               <a
-                href="/resume.pdf"
+                href="/Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-base font-medium hover:bg-primary/90 transition-all animate-fade-in-up"

@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { blogPosts } from "@/data/blogPosts";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,6 +18,13 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={`${post.title} - Abhirup Kumar's Blog`}
+        description={post.excerpt}
+        keywords={post.tags.join(", ")}
+        url={`https://www.abhriupkumar.in/blog/${post.id}`}
+        type="article"
+      />
       <Navigation />
       <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">
         <article className="container mx-auto px-4 sm:px-6">

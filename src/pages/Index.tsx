@@ -7,14 +7,16 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Footer from "@/components/Footer";
 import ParallaxSection from "@/components/ParallaxSection";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO />
       <Navigation />
       <main>
         <Hero />
-        <ParallaxSection 
+        <ParallaxSection
           speed={0.15}
           backgroundElement={
             <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
@@ -22,7 +24,7 @@ const Index = () => {
         >
           <About />
         </ParallaxSection>
-        <ParallaxSection 
+        <ParallaxSection
           speed={0.2}
           backgroundElement={
             <div className="absolute inset-0">
@@ -34,7 +36,7 @@ const Index = () => {
           <Skills />
         </ParallaxSection>
         <Projects />
-        <ParallaxSection 
+        <ParallaxSection
           speed={0.15}
           backgroundElement={
             <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
@@ -42,7 +44,7 @@ const Index = () => {
         >
           <Experience />
         </ParallaxSection>
-        <ParallaxSection 
+        <ParallaxSection
           speed={0.1}
           backgroundElement={
             <div className="absolute inset-0">

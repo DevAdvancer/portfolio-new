@@ -2,6 +2,7 @@ import { Award, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 
 interface Achievement {
   title: string;
@@ -14,50 +15,67 @@ interface Achievement {
 
 const achievements: Achievement[] = [
   {
-    title: "AWS Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    date: "2024",
-    type: "certification",
-    link: "https://aws.amazon.com/certification/",
-    description: "Foundational understanding of AWS Cloud services, architecture, and pricing models.",
-  },
-  {
-    title: "Full Stack Web Development",
-    issuer: "Coursera - Meta",
-    date: "2024",
-    type: "certification",
-    link: "https://coursera.org",
-    description: "Professional certificate covering React, Django, databases, and version control.",
-  },
-  {
-    title: "Introduction to Cybersecurity",
+    title: "Cyber Security 101 Certificate",
     issuer: "TryHackMe",
+    date: "2025",
+    type: "certification",
+    link: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-NFGEN9MESM.pdf",
+    description: "Learned everything I need to embark on a career path in offensive or defensive cyber security.",
+  },
+  {
+    title: "Pre Security Certificate",
+    issuer: "TryHackMe",
+    date: "2025",
+    type: "certification",
+    link: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-NFGEN9MESM.pdf",
+    description: "Before hacking something, I first need to understand the basics. So, I learned it.",
+  },
+  {
+    title: "The Complete Full-Stack Web Development Bootcamp",
+    issuer: "Udemy",
+    date: "2024",
+    type: "certification",
+    link: "https://www.udemy.com/certificate/UC-48468b5e-4bfe-47d5-955e-c3863d2e7a04/",
+    description: "Became a Full-Stack Web Developer with HTML, CSS, Javascript, Node, React, PostgreSQL, Web3 and DApps",
+  },
+  {
+    title: "Software Engineer Certificate",
+    issuer: "HackerRank",
+    date: "2024",
+    type: "certification",
+    link: "https://www.hackerrank.com/certificates/5cc231bd46d5",
+    description: "It covers topics like Problem solving, SQL, and REST API.",
+  },
+  {
+    title: "Problem Solving (Basic) Certificate",
+    issuer: "HackerRank",
     date: "2023",
     type: "certification",
-    link: "https://tryhackme.com",
-    description: "Hands-on training in network security, web vulnerabilities, and ethical hacking.",
+    link: "https://www.hackerrank.com/certificates/16723ae1ecb5",
+    description: "It covers basic topics of Data Structures (such as Arrays, Strings) and Algorithms (such as Sorting and Searching).",
   },
   {
-    title: "Smart India Hackathon - National Finalist",
-    issuer: "Ministry of Education, India",
-    date: "2023",
-    type: "competition",
-    description: "Led team to national finals among 50,000+ participants with AI healthcare solution.",
-  },
-  {
-    title: "Dean's List - Academic Excellence",
-    issuer: "Your University",
-    date: "2022-2024",
+    title: "Top Leet Coder in University",
+    issuer: "Adamas University",
+    date: "2025",
     type: "award",
-    description: "Recognized for maintaining top academic performance across multiple semesters.",
+    description: "Recognized for maintaining top academic performance in LeetCode.",
   },
   {
-    title: "LeetCode 200+ Problems Solved",
+    title: "LeetCode 800+ Problems Solved",
     issuer: "LeetCode",
-    date: "2024",
+    date: "2025",
     type: "competition",
-    link: "https://leetcode.com/yourusername",
+    link: "https://leetcode.com/devadvabcer",
     description: "Consistent problem-solving practice covering arrays, trees, graphs, and dynamic programming.",
+  },
+  {
+    title: "HackfinityBattle",
+    issuer: "TryHackMe",
+    date: "2025",
+    type: "competition",
+    link: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-7Q0TSYYG6T.pdf",
+    description: "It was a gloabal Hackathon where I need to Capture the Flag accros multiple Rooms and Ranked 849",
   },
 ];
 
@@ -76,6 +94,12 @@ const typeLabels = {
 const AchievementsPage = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Achievements & Certifications - Abhirup Kumar"
+        description="View Abhirup Kumar's achievements, certifications, and awards including AWS Cloud Practitioner, Full Stack Development, Cybersecurity, Hackathon wins, and LeetCode achievements."
+        keywords="Abhirup Kumar achievements, certifications, AWS Cloud Practitioner, cybersecurity certificate, hackathon winner, LeetCode achievements, software engineer certifications"
+        url="https://www.abhriupkumar.in/achievements"
+      />
       <Navigation />
       <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">
         <div className="container mx-auto px-4 sm:px-6">
