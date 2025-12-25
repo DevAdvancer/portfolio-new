@@ -22,7 +22,7 @@ const BlogPost = () => {
         title={`${post.title} - Abhirup Kumar's Blog`}
         description={post.excerpt}
         keywords={post.tags.join(", ")}
-        url={`https://www.abhriupkumar.in/blog/${post.id}`}
+        url={`https://www.abhirupkumar.in/blog/${post.id}`}
         type="article"
       />
       <Navigation />

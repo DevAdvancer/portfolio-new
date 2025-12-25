@@ -14,12 +14,12 @@ const SEO = ({
   title = "Abhirup Kumar - Software Engineer & Full Stack Developer | Portfolio",
   description = "Portfolio of Abhirup Kumar - Software Engineer, Full Stack Developer, and Computer Science student at Adamas University. Specializing in React, TypeScript, Node.js, and building scalable web applications.",
   keywords = "Abhirup Kumar, Software Engineer, Full Stack Developer, React Developer, TypeScript, Web Developer, Portfolio, Computer Science, Adamas University, Kolkata, India",
-  image = "https://www.abhriupkumar.in/og-image.png",
+  image = "https://www.abhirupkumar.in/og-image.png",
   url,
   type = "website",
 }: SEOProps) => {
   const location = useLocation();
-  const currentUrl = url || `https://www.abhriupkumar.in${location.pathname}`;
+  const currentUrl = url || `https://www.abhirupkumar.in${location.pathname}`;
 
   useEffect(() => {
     // Update document title

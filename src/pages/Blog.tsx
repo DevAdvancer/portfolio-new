@@ -12,7 +12,7 @@ const Blog = () => {
         title="Blog - Abhirup Kumar | Thoughts & Writing on Design & Development"
         description="Read articles and thoughts from Abhirup Kumar on software development, design, web development, React, TypeScript, and the creative process."
         keywords="Abhirup Kumar blog, software development blog, web development articles, React tutorials, TypeScript blog, programming thoughts, design philosophy"
-        url="https://www.abhriupkumar.in/blog"
+        url="https://www.abhirupkumar.in/blog"
       />
       <Navigation />
       <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">

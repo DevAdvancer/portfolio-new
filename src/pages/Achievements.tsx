@@ -98,7 +98,7 @@ const AchievementsPage = () => {
         title="Achievements & Certifications - Abhirup Kumar"
         description="View Abhirup Kumar's achievements, certifications, and awards including AWS Cloud Practitioner, Full Stack Development, Cybersecurity, Hackathon wins, and LeetCode achievements."
         keywords="Abhirup Kumar achievements, certifications, AWS Cloud Practitioner, cybersecurity certificate, hackathon winner, LeetCode achievements, software engineer certifications"
-        url="https://www.abhriupkumar.in/achievements"
+        url="https://www.abhirupkumar.in/achievements"
       />
       <Navigation />
       <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">

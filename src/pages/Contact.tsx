@@ -96,7 +96,7 @@ const ContactPage = () => {
         title="Contact - Abhirup Kumar | Get In Touch"
         description="Get in touch with Abhirup Kumar - Software Engineer and Full Stack Developer. Available for freelance projects, job opportunities, and collaborations."
         keywords="contact Abhirup Kumar, hire software developer, freelance web developer, React developer contact, full stack developer India"
-        url="https://www.abhriupkumar.in/contact"
+        url="https://www.abhirupkumar.in/contact"
       />
       <Navigation />
       <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Domain: https://www.abhriupkumar.in (also accessible at https://abhriupkumar.in)
+  Domain: https://www.abhirupkumar.in (also accessible at https://abhirupkumar.in)
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,7 +9,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://www.abhriupkumar.in/</loc>
+    <loc>https://www.abhirupkumar.in/</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -17,7 +17,7 @@
 
   <!-- Blog -->
   <url>
-    <loc>https://www.abhriupkumar.in/blog</loc>
+    <loc>https://www.abhirupkumar.in/blog</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -25,7 +25,7 @@
 
   <!-- Achievements -->
   <url>
-    <loc>https://www.abhriupkumar.in/achievements</loc>
+    <loc>https://www.abhirupkumar.in/achievements</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -33,7 +33,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://www.abhriupkumar.in/contact</loc>
+    <loc>https://www.abhirupkumar.in/contact</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
