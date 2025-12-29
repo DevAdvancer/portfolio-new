@@ -9,7 +9,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>/</loc>
+    <loc>https://www.abhirupkumar.in/</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -17,7 +17,7 @@
 
   <!-- Blog -->
   <url>
-    <loc>/blog</loc>
+    <loc>https://www.abhirupkumar.in/blog</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -25,7 +25,7 @@
 
   <!-- Achievements -->
   <url>
-    <loc>/achievements</loc>
+    <loc>https://www.abhirupkumar.in/achievements</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -33,7 +33,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>/contact</loc>
+    <loc>https://www.abhirupkumar.in/contact</loc>
     <lastmod>2024-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
