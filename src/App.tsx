@@ -10,13 +10,13 @@ import Achievements from "./pages/Achievements";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
-import BackToTop from "./components/BackToTop";
+import Chatbot from "./components/Chatbot";
 
 const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+
   return (
     <PageTransition key={location.pathname}>
       <Routes location={location}>
@@ -34,7 +34,7 @@ const AnimatedRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <BackToTop />
+      <Chatbot />
       <Toaster />
       <Sonner />
       <BrowserRouter>
