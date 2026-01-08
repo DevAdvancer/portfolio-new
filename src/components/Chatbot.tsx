@@ -1,15 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
-
-// Lazy load the knowledge base
-let findBestMatch: any = null;
-const loadKnowledge = async () => {
-  if (!findBestMatch) {
-    const module = await import("../data/chatbotKnowledge");
-    findBestMatch = module.findBestMatch;
-  }
-  return findBestMatch;
-};
+import { findBestMatch } from "../data/chatbotKnowledge";
 
 interface Message {
   id: string;
@@ -72,9 +63,8 @@ const Chatbot = () => {
     // Simulate thinking delay for more natural feel
     await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 500));
 
-    // Lazy load knowledge base and get bot response
-    const matcher = await loadKnowledge();
-    const response = matcher(textToSend);
+    // Get bot response
+    const response = findBestMatch(textToSend);
 
     const botMessage: Message = {
       id: (Date.now() + 1).toString(),

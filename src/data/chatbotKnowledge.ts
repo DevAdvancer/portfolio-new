@@ -28,8 +28,8 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
 
   // About Me
   {
-    keywords: ["about", "who", "yourself", "tell me", "introduce"],
-    patterns: [/who\s+are\s+you/i, /tell\s+me\s+about/i, /introduce/i, /about\s+you/i],
+    keywords: ["about you", "who", "yourself", "introduce yourself"],
+    patterns: [/^who\s+are\s+you/i, /tell\s+me\s+about\s+(you|yourself)/i, /^introduce\s+(yourself)?$/i, /^about\s+you/i],
     response: {
       answer: "I'm a final-year Computer Science student at Adamas University. I'm passionate about building elegant solutions to complex problems. My interests include Web Development, System Design, and Cybersecurity. I focus on writing clean, maintainable code and solving challenges with a problem-solving mindset. Currently, I'm working as a Lead Software Developer at HERMEiAS and looking for full-time opportunities to grow professionally.",
       followUp: [
@@ -43,7 +43,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Skills
   {
     keywords: ["skills", "technologies", "tech stack", "programming languages", "what can you do", "expertise"],
-    patterns: [/what\s+(are\s+)?your\s+skills/i, /tech\s+stack/i, /technologies/i, /programming\s+languages/i],
+    patterns: [/your\s+skills/i, /what.*skills/i, /tech\s+stack/i, /your\s+technologies/i, /programming\s+languages/i, /tell.*about.*skills/i, /technical.*skills/i],
     response: {
       answer: "I have advanced skills in Python, JavaScript, React, Node.js, and MySQL. I also work with TypeScript, Java, C, Next.js, and Tailwind CSS. For databases, I use Supabase, MongoDB, and PostgreSQL. I'm comfortable with Git, Linux, VS Code, and Cursor. My expertise includes Full Stack Development, Data Structures and Algorithms, REST APIs, Flutter Development, and Cybersecurity basics.",
       followUp: [
@@ -57,7 +57,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Projects
   {
     keywords: ["projects", "portfolio", "work", "built", "created", "developed"],
-    patterns: [/what\s+(have\s+you\s+)?(projects|built|created|made)/i, /show\s+me\s+your\s+(work|projects)/i],
+    patterns: [/your\s+projects/i, /what.*projects/i, /what\s+(have\s+you\s+)?(built|created|made)/i, /show\s+me\s+your\s+(work|projects)/i, /tell.*about.*projects/i],
     response: {
       answer: "I've built several exciting projects. DLKA System is a distributed Linux kernel monitoring system using C and Python. Formethica is an AI-powered form builder with Google Gemini. Femway is a women's safety car booking platform. Nexterm is an AI terminal emulator built in Rust. I also created a University Notes Platform and CharmCrafter using React and Supabase. Each project shows my full-stack skills and problem-solving ability.",
       followUp: [
@@ -71,7 +71,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // DLKA Project
   {
     keywords: ["dlka", "kernel", "attestation", "distributed", "linux kernel"],
-    patterns: [/dlka/i, /kernel\s+attestation/i, /distributed\s+linux/i],
+    patterns: [/dlka/i, /kernel\s+attestation/i, /distributed\s+linux/i, /tell.*about.*dlka/i, /what.*dlka/i],
     response: {
       answer: "DLKA is one of my most complex projects. It verifies Linux kernel integrity in real-time using loadable kernel modules and Netlink communication. The system has real-time kernel monitoring, quorum-based consensus, cryptographic signing with SHA256, and HTTP API for reports. It also supports Secure Boot with MOK key enrollment. I developed the control node and attestation server using Python, C, Linux Kernel Modules, and Flask.",
       followUp: [
@@ -85,7 +85,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Formethica Project
   {
     keywords: ["formethica", "form builder", "ai form"],
-    patterns: [/formethica/i, /form\s+builder/i, /ai.*form/i],
+    patterns: [/formethica/i, /form\s+builder/i, /ai.*form/i, /tell.*about.*formethica/i, /what.*formethica/i],
     response: {
       answer: "Formethica is an intelligent form builder I created using Next.js 15 and TypeScript. It has AI-powered form creation with smart field suggestions using Google Gemini. The platform includes an interactive AI chatbot, user authentication with anonymous and authenticated modes, and advanced submission management with Excel and CSV export. It also has link shortening with click analytics and real-time form updates. I designed the complete database with RLS policies and built a glassmorphism UI. Check it out at ai.formethica.abhirupkumar.in",
       followUp: [
@@ -99,7 +99,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Femway Project
   {
     keywords: ["femway", "safety", "car booking", "women"],
-    patterns: [/femway/i, /women.*safety/i, /car\s+booking/i],
+    patterns: [/femway/i, /women.*safety/i, /car\s+booking/i, /tell.*about.*femway/i, /what.*femway/i],
     response: {
       answer: "Femway is a secure car booking platform designed for women's safety. It has role-based access for Passengers, Drivers, and Admins. The platform includes secure authentication with 24-hour session management, admin verification with secure codes, and driver verification with document management. Users can book and track rides in real-time. I built it with Next.js 15, TypeScript, and Supabase with strong security using Row Level Security on all tables. It has three separate dashboards and is live at femway.vercel.app",
       followUp: [
@@ -113,7 +113,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Nexterm Project
   {
     keywords: ["nexterm", "terminal", "rust", "ai terminal"],
-    patterns: [/nexterm/i, /ai.*terminal/i, /rust.*terminal/i],
+    patterns: [/nexterm/i, /ai.*terminal/i, /rust.*terminal/i, /tell.*about.*nexterm/i, /what.*nexterm/i],
     response: {
       answer: "Nexterm is an AI-powered terminal emulator I built entirely in Rust. It brings intelligent assistance to command-line work. The terminal has full emulation with PTY support, AI-powered natural language command translation, and dual AI provider support with Ollama and Google Gemini. It includes smart command history with fuzzy search, syntax highlighting, danger detection, and privacy-focused data sanitization. I designed the complete terminal architecture, integrated AI with multiple providers, and built the interface using ratatui. It's one of my favorite projects.",
       followUp: [
@@ -127,7 +127,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Experience
   {
     keywords: ["experience", "work", "job", "internship", "current role"],
-    patterns: [/experience/i, /where\s+do\s+you\s+work/i, /current\s+(job|role|position)/i, /internship/i],
+    patterns: [/your\s+experience/i, /work\s+experience/i, /where\s+do\s+you\s+work/i, /current\s+(job|role|position)/i, /tell.*about.*experience/i, /what.*experience/i],
     response: {
       answer: "I'm currently working as a Lead Software Developer at HERMEiAS (May 2025 - December 2025). In this role, I'm responsible for developing scalable internal tools and web platforms that integrate with the company's flagship products. I work with React, TypeScript, Vite, Tailwind CSS, shadcn-ui, Supabase, and deploy on Vercel. This internship allows me to build tools that enable efficient monitoring, management, and continuous improvement across teams.",
       followUp: [
@@ -141,7 +141,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Education
   {
     keywords: ["education", "degree", "university", "college", "study", "student"],
-    patterns: [/education/i, /where\s+did\s+you\s+study/i, /university/i, /college/i, /degree/i],
+    patterns: [/your\s+education/i, /where\s+did\s+you\s+study/i, /your\s+university/i, /what.*degree/i, /tell.*about.*education/i, /educational\s+background/i],
     response: {
       answer: "I'm pursuing my Bachelor of Technology in Computer Science & Engineering at Adamas University (2022-2026) with a CGPA of 8.72/10. My coursework includes Data Structures, Algorithms, DBMS, Operating Systems, and Computer Networks. I'm an active member of the Coding Club & Technical Society. Before this, I completed my 12th from Kendriya Vidyalaya Tarakeswar with PCM and Computer Science.",
       followUp: [
@@ -239,7 +239,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
   // Blog
   {
     keywords: ["blog", "articles", "writing", "posts"],
-    patterns: [/blog/i, /articles/i, /writing/i, /posts/i],
+    patterns: [/your\s+blog/i, /blog\s+posts/i, /articles/i, /writing/i, /tell.*about.*blog/i, /what.*blog/i],
     response: {
       answer: "I write about design, development, and creative processes on my blog. Some posts include The Art of Minimalism in Design which explores how less becomes more in user experience. Building with Intention discusses how thoughtful development creates better products. Finding Creativity in Constraints explains why limitations can be your greatest asset. Check out the Blog section to read more.",
       followUp: [

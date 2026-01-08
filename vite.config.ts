@@ -19,20 +19,21 @@ export default defineConfig(() => ({
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-              return 'react-vendor';
+            // Keep React, React-DOM, and React-Router together
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor';
             }
-            if (id.includes('lucide-react') || id.includes('@radix-ui')) {
-              return 'ui-vendor';
+            // Group all other node_modules
+            if (id.includes('@radix-ui') || id.includes('lucide-react') ||
+                id.includes('@tanstack') || id.includes('three') ||
+                id.includes('@react-three')) {
+              return 'vendor';
             }
             return 'vendor';
-          }
-          if (id.includes('chatbotKnowledge') || id.includes('Chatbot.tsx')) {
-            return 'chatbot';
           }
         },
       },
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1600,
   },
 }));
