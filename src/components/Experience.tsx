@@ -2,7 +2,7 @@ import { Briefcase, GraduationCap, Award, Code } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 interface Experience {
-  type: "internship" | "training" | "hackathon" | "research";
+  type: "internship" | "training" | "hackathon" | "research" | "full-time";
   title: string;
   organization: string;
   duration: string;
@@ -12,6 +12,15 @@ interface Experience {
 }
 
 const experiences: Experience[] = [
+  {
+    type: "full-time",
+    title: "Software Developer",
+    organization: "Vizva Consultancy Services",
+    duration: "JAN 2026 - PRESENT",
+    employmentType: "Full Time",
+    description: "I am responsible for developing scalable internal tools and web platforms that integrate with and support the company's flagship products, enabling efficient monitoring, management, and continuous improvement across teams.",
+    technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn-ui", "Supabase", "Vercel", "Mongo-db", "NEXT.js", "Node.js", "Express.js", "Scripting", "CI/CD pipeline", "Git"],
+  },
   {
     type: "internship",
     title: "Lead Software Developer",
@@ -28,6 +37,7 @@ const typeIcons = {
   training: GraduationCap,
   hackathon: Award,
   research: Code,
+  "full-time": Briefcase,
 };
 
 const Experience = () => {

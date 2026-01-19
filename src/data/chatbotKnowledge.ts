@@ -31,7 +31,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["about you", "who", "yourself", "introduce yourself"],
     patterns: [/^who\s+are\s+you/i, /tell\s+me\s+about\s+(you|yourself)/i, /^introduce\s+(yourself)?$/i, /^about\s+you/i],
     response: {
-      answer: "I'm a final-year Computer Science student at Adamas University. I'm passionate about building elegant solutions to complex problems. My interests include Web Development, System Design, and Cybersecurity. I focus on writing clean, maintainable code and solving challenges with a problem-solving mindset. Currently, I'm working as a Lead Software Developer at HERMEiAS and looking for full-time opportunities to grow professionally.",
+      answer: "I'm a final-year Computer Science student at Adamas University. I'm passionate about building elegant solutions to complex problems. My interests include Web Development, System Design, and Cybersecurity. I focus on writing clean, maintainable code and solving challenges with a problem-solving mindset. Currently, I'm working as a Software Developer at Vizva Consultancy Services in a full-time role, developing scalable internal tools and web platforms.",
       followUp: [
         "What are your technical skills?",
         "Show me your projects",
@@ -126,10 +126,10 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
 
   // Experience
   {
-    keywords: ["experience", "work", "job", "internship", "current role"],
-    patterns: [/your\s+experience/i, /work\s+experience/i, /where\s+do\s+you\s+work/i, /current\s+(job|role|position)/i, /tell.*about.*experience/i, /what.*experience/i],
+    keywords: ["experience", "work", "job", "internship", "current role", "vizva", "full-time", "currently working", "where are you working"],
+    patterns: [/your\s+experience/i, /work\s+experience/i, /where\s+(do\s+you|are\s+you)\s+(work|working)/i, /where\s+(do\s+you\s+)?currently\s+work/i, /currently\s+working/i, /current\s+(job|role|position|work)/i, /tell.*about.*experience/i, /what.*experience/i, /vizva/i, /where.*work.*in/i],
     response: {
-      answer: "I'm currently working as a Lead Software Developer at HERMEiAS (May 2025 - December 2025). In this role, I'm responsible for developing scalable internal tools and web platforms that integrate with the company's flagship products. I work with React, TypeScript, Vite, Tailwind CSS, shadcn-ui, Supabase, and deploy on Vercel. This internship allows me to build tools that enable efficient monitoring, management, and continuous improvement across teams.",
+      answer: "I'm currently working as a Software Developer at Vizva Consultancy Services (January 2026 - Present) in a full-time role. I'm responsible for developing scalable internal tools and web platforms that integrate with and support the company's flagship products, enabling efficient monitoring, management, and continuous improvement across teams. I work with React, TypeScript, Vite, Tailwind CSS, shadcn-ui, Supabase, Vercel, MongoDB, Next.js, Node.js, Express.js, scripting, CI/CD pipelines, and Git. Previously, I worked as a Lead Software Developer at HERMEiAS (May 2025 - December 2025) where I developed similar internal tools and platforms.",
       followUp: [
         "What projects are you working on?",
         "Tell me about your education",
@@ -213,7 +213,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["available", "hiring", "job", "opportunity", "position", "looking for"],
     patterns: [/are\s+you\s+available/i, /looking\s+for/i, /hiring/i, /open\s+to/i],
     response: {
-      answer: "Yes, I'm actively looking for opportunities. I'm in my final year and currently working as a Lead Software Developer at HERMEiAS until December 2025. I'm open to full-time positions from January 2026 or interesting part-time work. I'm especially interested in roles with full-stack development, system design, or cybersecurity. Let's connect through my contact page.",
+      answer: "I'm currently working full-time as a Software Developer at Vizva Consultancy Services since January 2026. While I'm focused on my current role, I'm always open to discussing interesting opportunities in full-stack development, system design, or cybersecurity. Feel free to reach out through my contact page to connect.",
       followUp: [
         "What are your skills?",
         "Tell me about your experience",

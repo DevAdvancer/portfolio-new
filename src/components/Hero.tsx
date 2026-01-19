@@ -9,10 +9,11 @@ const Hero = () => {
   };
 
   const roles = [
-    "Software Engineer",
+    "Software Developer",
     "Full Stack Developer",
     "Problem Solver",
     "Tech Enthusiast",
+    "Software Engineer",
   ];
 
   return (
