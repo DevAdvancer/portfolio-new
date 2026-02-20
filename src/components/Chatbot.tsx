@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { chatWithGroq, isGroqAvailable } from "../lib/groq";
 import { findBestMatch } from "../data/chatbotKnowledge";
 
 interface Message {
@@ -15,13 +16,13 @@ const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
-      text: "Hi! I'm Abhirup's assistant. Ask me anything about his skills, projects, experience, or how to contact him!",
+      text: "Hey! I'm Abhirup's AI assistant. Ask me anything — his skills, projects, hobbies, personal life, hackathon stories, or even his favorite food. I'm an open book!",
       sender: "bot",
       timestamp: new Date(),
       followUp: [
         "Tell me about yourself",
-        "What projects have you built?",
-        "What are your skills?"
+        "What are your hobbies?",
+        "What kind of person are you?"
       ]
     }
   ]);
@@ -44,11 +45,20 @@ const Chatbot = () => {
     }
   }, [isOpen]);
 
+  // Build conversation history for Groq context
+  const getConversationHistory = () => {
+    return messages
+      .filter(m => m.id !== "welcome")
+      .map(m => ({
+        role: m.sender === "user" ? "user" as const : "assistant" as const,
+        content: m.text
+      }));
+  };
+
   const handleSendMessage = async (messageText?: string) => {
     const textToSend = messageText || inputValue.trim();
-    if (!textToSend) return;
+    if (!textToSend || isTyping) return;
 
-    // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
       text: textToSend,
@@ -60,22 +70,51 @@ const Chatbot = () => {
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate thinking delay for more natural feel
-    await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 500));
+    try {
+      if (isGroqAvailable()) {
+        // Use Groq LLM for natural conversation
+        const history = getConversationHistory();
+        const result = await chatWithGroq(textToSend, history);
 
-    // Get bot response
-    const response = findBestMatch(textToSend);
+        const botMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: result.answer,
+          sender: "bot",
+          timestamp: new Date(),
+          followUp: result.followUp
+        };
 
-    const botMessage: Message = {
-      id: (Date.now() + 1).toString(),
-      text: response.answer,
-      sender: "bot",
-      timestamp: new Date(),
-      followUp: response.followUp
-    };
+        setMessages(prev => [...prev, botMessage]);
+      } else {
+        // Fallback to local NLP matching
+        const response = findBestMatch(textToSend);
 
-    setMessages(prev => [...prev, botMessage]);
-    setIsTyping(false);
+        const botMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: response.answer,
+          sender: "bot",
+          timestamp: new Date(),
+          followUp: response.followUp
+        };
+
+        setMessages(prev => [...prev, botMessage]);
+      }
+    } catch {
+      // If Groq fails, fall back to local matching
+      const response = findBestMatch(textToSend);
+
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: response.answer,
+        sender: "bot",
+        timestamp: new Date(),
+        followUp: response.followUp
+      };
+
+      setMessages(prev => [...prev, botMessage]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const handleFollowUpClick = (question: string) => {
@@ -114,7 +153,7 @@ const Chatbot = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Abhirup's Assistant</h3>
-                <p className="text-xs text-muted-foreground">Always here to help</p>
+                <p className="text-xs text-muted-foreground">Powered by AI</p>
               </div>
             </div>
             <button
@@ -196,7 +235,7 @@ const Chatbot = () => {
               </button>
             </div>
             <p className="text-xs text-muted-foreground mt-2 text-center">
-              Powered by local knowledge base • No external APIs
+              Powered by AI • Responses may vary
             </p>
           </div>
         </div>
