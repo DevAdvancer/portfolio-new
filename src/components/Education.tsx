@@ -1,5 +1,7 @@
 import { GraduationCap } from "lucide-react";
+import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import { hoverLift, smoothTransition } from "@/lib/motion";
 
 interface EducationItem {
   degree: string;
@@ -56,7 +58,11 @@ const Education = () => {
           <div className="space-y-8">
             {education.map((edu, index) => (
               <ScrollReveal key={index} delay={index * 150}>
-                <div className="bg-card/50 border border-border p-8 flex gap-6 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+                <motion.div
+                  className="bg-card/50 border border-border p-8 flex gap-6 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5"
+                  whileHover={hoverLift}
+                  transition={smoothTransition}
+                >
                   <div className="flex-shrink-0 hidden sm:block">
                     <div className="w-12 h-12 bg-secondary/50 border border-primary/30 flex items-center justify-center">
                       <GraduationCap size={24} className="text-primary" />
@@ -96,7 +102,7 @@ const Education = () => {
                       </ul>
                     )}
                   </div>
-                </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>

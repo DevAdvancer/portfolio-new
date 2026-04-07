@@ -17,7 +17,7 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <SEO
         title={`${post.title} - Abhirup Kumar's Blog`}
         description={post.excerpt}

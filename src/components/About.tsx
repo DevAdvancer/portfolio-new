@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import { hoverLift, smoothTransition } from "@/lib/motion";
 
 const About = () => {
   return (
@@ -31,7 +33,11 @@ const About = () => {
             
             <div className="space-y-6">
               <ScrollReveal delay={200}>
-                <div className="p-6 bg-secondary/30 border border-border hover:border-primary/50 transition-colors">
+                <motion.div
+                  className="p-6 bg-secondary/30 border border-border hover:border-primary/50 transition-colors"
+                  whileHover={hoverLift}
+                  transition={smoothTransition}
+                >
                   <p className="text-sm uppercase tracking-widest text-primary mb-2">Focus Areas</p>
                   <ul className="space-y-2 text-sm text-foreground">
                     <li>• Full-Stack Development</li>
@@ -39,11 +45,15 @@ const About = () => {
                     <li>• System Design</li>
                     <li>• Security Fundamentals</li>
                   </ul>
-                </div>
+                </motion.div>
               </ScrollReveal>
               
               <ScrollReveal delay={300}>
-                <div className="p-6 bg-secondary/30 border border-border hover:border-primary/50 transition-colors">
+                <motion.div
+                  className="p-6 bg-secondary/30 border border-border hover:border-primary/50 transition-colors"
+                  whileHover={hoverLift}
+                  transition={smoothTransition}
+                >
                   <p className="text-sm uppercase tracking-widest text-primary mb-2">Strengths</p>
                   <ul className="space-y-2 text-sm text-foreground">
                     <li>• Analytical Thinking</li>
@@ -51,7 +61,7 @@ const About = () => {
                     <li>• Team Collaboration</li>
                     <li>• Attention to Detail</li>
                   </ul>
-                </div>
+                </motion.div>
               </ScrollReveal>
             </div>
           </div>

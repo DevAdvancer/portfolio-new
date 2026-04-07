@@ -11,6 +11,8 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
 import Chatbot from "./components/Chatbot";
+import GlobalBackground from "./components/GlobalBackground";
+import ClickSparkles from "./components/ClickSparkles";
 
 const queryClient = new QueryClient();
 
@@ -34,12 +36,16 @@ const AnimatedRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Chatbot />
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AnimatedRoutes />
-      </BrowserRouter>
+      <GlobalBackground />
+      <ClickSparkles />
+      <div className="relative z-10">
+        <Chatbot />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AnimatedRoutes />
+        </BrowserRouter>
+      </div>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -1,4 +1,3 @@
-import { Github, ExternalLink } from "lucide-react";
 import charmcrafter from "/charmcrafter.png";
 import universitynotes from "/universitynotes.png";
 import formethica from "/formethica.png";
@@ -15,6 +14,7 @@ export interface Project {
   role: string;
   githubUrl: string;
   liveUrl?: string;
+  reportUrl?: string;
   image: string;
 }
 
@@ -37,6 +37,7 @@ export const projects: Project[] = [
     role: "Control Node & Attestation Server developer. Designed kernel-space monitoring architecture, implemented Netlink protocol communication, built consensus engine, and created HTTP-based control plane with cryptographic verification.",
     githubUrl: "https://github.com/DevAdvancer/DLKA-System",
     liveUrl: null, // This is a kernel security system, not a web app
+    reportUrl: "/MINOR_PROJECT.pdf",
     image: dlka,
   },
   {

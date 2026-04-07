@@ -93,7 +93,7 @@ const typeLabels = {
 
 const AchievementsPage = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <SEO
         title="Achievements & Certifications - Abhirup Kumar"
         description="View Abhirup Kumar's achievements, certifications, and awards including AWS Cloud Practitioner, Full Stack Development, Cybersecurity, Hackathon wins, and LeetCode achievements."

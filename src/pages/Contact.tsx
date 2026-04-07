@@ -91,7 +91,7 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <SEO
         title="Contact - Abhirup Kumar | Get In Touch"
         description="Get in touch with Abhirup Kumar - Software Engineer and Full Stack Developer. Available for freelance projects, job opportunities, and collaborations."

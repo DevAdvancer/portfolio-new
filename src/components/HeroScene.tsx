@@ -3,6 +3,11 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
+const seededValue = (seed: number) => {
+  const x = Math.sin(seed * 999) * 10000;
+  return x - Math.floor(x);
+};
+
 const AnimatedSphere = ({ scale = 1.8 }: { scale?: number }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   
@@ -36,13 +41,17 @@ const FloatingParticles = ({ count = 50 }: { count?: number }) => {
   const particles = useMemo(() => {
     const temp = [];
     for (let i = 0; i < count; i++) {
+      const xSeed = seededValue(i + 1);
+      const ySeed = seededValue(i + 101);
+      const zSeed = seededValue(i + 201);
+      const scaleSeed = seededValue(i + 301);
       temp.push({
         position: [
-          (Math.random() - 0.5) * 8,
-          (Math.random() - 0.5) * 8,
-          (Math.random() - 0.5) * 8,
+          (xSeed - 0.5) * 8,
+          (ySeed - 0.5) * 8,
+          (zSeed - 0.5) * 8,
         ],
-        scale: Math.random() * 0.05 + 0.02,
+        scale: scaleSeed * 0.05 + 0.02,
       });
     }
     return temp;
@@ -94,6 +103,7 @@ const HeroScene = () => {
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <pointLight position={[-10, -10, -5]} intensity={0.5} color="#6366f1" />
+        <pointLight position={[0, 4, 2]} intensity={1.2} color="#38bdf8" />
         <AnimatedSphere scale={isMobile ? 1.2 : 1.8} />
         <FloatingParticles count={isMobile ? 25 : 50} />
       </Canvas>

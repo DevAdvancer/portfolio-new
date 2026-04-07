@@ -7,7 +7,7 @@ import SEO from "@/components/SEO";
 
 const Blog = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <SEO
         title="Blog - Abhirup Kumar | Thoughts & Writing on Design & Development"
         description="Read articles and thoughts from Abhirup Kumar on software development, design, web development, React, TypeScript, and the creative process."

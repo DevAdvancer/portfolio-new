@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { Github, ExternalLink, Search, X, Info } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Github, ExternalLink, Search, X, Info, FileText } from "lucide-react";
 import { projects } from "@/data/projects";
 import ScrollReveal from "./ScrollReveal";
 import {
@@ -7,6 +8,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { fadeUp, hoverLift, pressDown, smoothTransition } from "@/lib/motion";
 
 const Projects = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -75,29 +77,32 @@ const Projects = () => {
                   className="w-full pl-10 pr-10 py-2.5 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                 />
                 {searchQuery && (
-                  <button
+                  <motion.button
                     onClick={() => setSearchQuery("")}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    whileTap={pressDown}
                   >
                     <X size={16} />
-                  </button>
+                  </motion.button>
                 )}
               </div>
 
               {/* Tech Filter */}
               <div className="flex flex-wrap gap-2">
-                <button
+                <motion.button
                   onClick={() => setSelectedTech(null)}
                   className={`text-xs px-3 py-1.5 border transition-all duration-300 ${
                     selectedTech === null
                       ? "bg-primary text-primary-foreground border-primary"
                       : "bg-transparent border-border text-muted-foreground hover:border-primary hover:text-primary"
                   }`}
+                  whileHover={{ y: -2 }}
+                  whileTap={pressDown}
                 >
                   All
-                </button>
+                </motion.button>
                 {allTechStack.map((tech) => (
-                  <button
+                  <motion.button
                     key={tech}
                     onClick={() => setSelectedTech(tech === selectedTech ? null : tech)}
                     className={`text-xs px-3 py-1.5 border transition-all duration-300 ${
@@ -105,9 +110,11 @@ const Projects = () => {
                         ? "bg-primary text-primary-foreground border-primary"
                         : "bg-transparent border-border text-muted-foreground hover:border-primary hover:text-primary"
                     }`}
+                    whileHover={{ y: -2 }}
+                    whileTap={pressDown}
                   >
                     {tech}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
 
@@ -117,12 +124,13 @@ const Projects = () => {
                   <span>
                     Showing {filteredProjects.length} of {projects.length} projects
                   </span>
-                  <button
+                  <motion.button
                     onClick={clearFilters}
                     className="text-primary hover:underline"
+                    whileTap={pressDown}
                   >
                     Clear filters
-                  </button>
+                  </motion.button>
                 </div>
               )}
             </div>
@@ -131,38 +139,53 @@ const Projects = () => {
           {/* Projects Grid */}
           <div className="space-y-20">
             {filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
-                <div
+              <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project, index) => (
+                <motion.div
                   key={project.id}
-                  className="animate-fade-in"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                    animationFillMode: "both",
-                  }}
+                  layout
+                  variants={fadeUp(index * 0.05)}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  exit={{ opacity: 0, y: 24, transition: smoothTransition }}
                 >
                   <ScrollReveal delay={100}>
-                    <article
+                    <motion.article
                       className={`grid md:grid-cols-2 gap-8 items-center ${
                         index % 2 === 1 ? "md:flex-row-reverse" : ""
                       }`}
+                      whileHover={{ y: -4 }}
+                      transition={smoothTransition}
                     >
                       <div className={index % 2 === 1 ? "md:order-2" : ""}>
-                        <div className="aspect-video overflow-hidden bg-secondary/30 border border-border group">
-                          <img
+                        <motion.div
+                          className="aspect-video overflow-hidden bg-secondary/30 border border-border group"
+                          whileHover={{ scale: 1.015 }}
+                          transition={smoothTransition}
+                        >
+                          <motion.img
                             src={project.image}
                             alt={project.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            whileHover={{ scale: 1.07 }}
+                            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                           />
-                        </div>
+                        </motion.div>
                       </div>
 
                       <div className={index % 2 === 1 ? "md:order-1" : ""}>
                         <HoverCard openDelay={200} closeDelay={100}>
                           <HoverCardTrigger asChild>
-                            <h3 className="font-serif text-2xl text-foreground mb-3 cursor-pointer inline-flex items-center gap-2 hover:text-primary transition-colors">
+                            <motion.h3
+                              className="font-serif text-2xl text-foreground mb-3 cursor-pointer inline-flex items-center gap-2 hover:text-primary transition-colors"
+                              whileHover={{ x: 4 }}
+                            >
                               {project.title}
-                              <Info size={16} className="text-muted-foreground" />
-                            </h3>
+                              <motion.span whileHover={{ rotate: 18, scale: 1.12 }}>
+                                <Info size={16} className="text-muted-foreground" />
+                              </motion.span>
+                            </motion.h3>
                           </HoverCardTrigger>
                           <HoverCardContent 
                             className="w-80 bg-card border-border shadow-xl animate-scale-in"
@@ -197,25 +220,42 @@ const Projects = () => {
                                 <p className="text-xs text-muted-foreground">{project.role}</p>
                               </div>
                               <div className="pt-2 border-t border-border flex gap-3">
-                                <a
+                                <motion.a
                                   href={project.githubUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-xs text-foreground hover:text-primary transition-colors flex items-center gap-1"
+                                  whileHover={{ x: 3 }}
+                                  whileTap={pressDown}
                                 >
                                   <Github size={12} />
                                   GitHub
-                                </a>
+                                </motion.a>
                                 {project.liveUrl && (
-                                  <a
+                                  <motion.a
                                     href={project.liveUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-xs text-foreground hover:text-primary transition-colors flex items-center gap-1"
+                                    whileHover={{ x: 3 }}
+                                    whileTap={pressDown}
                                   >
                                     <ExternalLink size={12} />
                                     Live Demo
-                                  </a>
+                                  </motion.a>
+                                )}
+                                {project.reportUrl && (
+                                  <motion.a
+                                    href={project.reportUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs text-foreground hover:text-primary transition-colors flex items-center gap-1"
+                                    whileHover={{ x: 3 }}
+                                    whileTap={pressDown}
+                                  >
+                                    <FileText size={12} />
+                                    View Report
+                                  </motion.a>
                                 )}
                               </div>
                             </div>
@@ -231,7 +271,7 @@ const Projects = () => {
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {project.techStack.map((tech) => (
-                              <span
+                              <motion.button
                                 key={tech}
                                 onClick={() => setSelectedTech(tech)}
                                 className={`text-xs px-2 py-1 border cursor-pointer transition-all ${
@@ -239,9 +279,11 @@ const Projects = () => {
                                     ? "bg-primary text-primary-foreground border-primary"
                                     : "bg-secondary/50 border-border text-foreground hover:border-primary"
                                 }`}
+                                whileHover={{ y: -2 }}
+                                whileTap={pressDown}
                               >
                                 {tech}
-                              </span>
+                              </motion.button>
                             ))}
                           </div>
                         </div>
@@ -262,41 +304,60 @@ const Projects = () => {
                         </p>
 
                         <div className="flex gap-4">
-                          <a
+                          <motion.a
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors group"
+                            whileHover={hoverLift}
+                            whileTap={pressDown}
                           >
                             <Github size={16} className="group-hover:rotate-12 transition-transform" />
                             View Code
-                          </a>
+                          </motion.a>
                           {project.liveUrl && (
-                            <a
+                            <motion.a
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors group"
+                              whileHover={hoverLift}
+                              whileTap={pressDown}
                             >
                               <ExternalLink size={16} className="group-hover:rotate-12 transition-transform" />
                               Live Demo
-                            </a>
+                            </motion.a>
+                          )}
+                          {project.reportUrl && (
+                            <motion.a
+                              href={project.reportUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors group"
+                              whileHover={hoverLift}
+                              whileTap={pressDown}
+                            >
+                              <FileText size={16} className="group-hover:rotate-12 transition-transform" />
+                              View Report
+                            </motion.a>
                           )}
                         </div>
                       </div>
-                    </article>
+                    </motion.article>
                   </ScrollReveal>
-                </div>
-              ))
+                </motion.div>
+              ))}
+              </AnimatePresence>
             ) : (
               <div className="text-center py-12">
                 <p className="text-muted-foreground mb-4">No projects found matching your criteria.</p>
-                <button
+                <motion.button
                   onClick={clearFilters}
                   className="text-primary hover:underline"
+                  whileTap={pressDown}
                 >
                   Clear filters
-                </button>
+                </motion.button>
               </div>
             )}
           </div>

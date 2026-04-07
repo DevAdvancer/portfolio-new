@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface ScrollRevealProps {
@@ -17,33 +17,33 @@ const ScrollReveal = ({
   delay = 0,
   duration = 600,
 }: ScrollRevealProps) => {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const reduceMotion = useReducedMotion();
 
-  const directionStyles = {
-    up: "translate-y-12",
-    down: "-translate-y-12",
-    left: "translate-x-12",
-    right: "-translate-x-12",
-    fade: "translate-y-0",
+  const hiddenState = {
+    up: { opacity: 0, y: 48 },
+    down: { opacity: 0, y: -48 },
+    left: { opacity: 0, x: 48 },
+    right: { opacity: 0, x: -48 },
+    fade: { opacity: 0 },
   };
 
   return (
-    <div
-      ref={ref}
+    <motion.div
       className={cn(
-        "transition-all ease-out",
-        isVisible
-          ? "opacity-100 translate-x-0 translate-y-0"
-          : `opacity-0 ${directionStyles[direction]}`,
+        "will-change-transform",
         className
       )}
-      style={{
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms`,
+      initial={reduceMotion ? false : hiddenState[direction]}
+      whileInView={reduceMotion ? undefined : { opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{
+        duration: duration / 1000,
+        delay: delay / 1000,
+        ease: [0.22, 1, 0.36, 1],
       }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
 

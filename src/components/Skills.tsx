@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import { hoverLift, smoothTransition } from "@/lib/motion";
 
 interface SkillCategory {
   title: string;
@@ -38,15 +40,22 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "Tools & Platforms",
+    title: "Tools",
     skills: [
       { name: "Git & GitHub", level: "Advanced" },
       { name: "VS Code", level: "Advanced" },
       { name: "Cursor", level: "Advanced" },
       { name: "Kiro", level: "Intermediate" },
-      { name: "Linux", level: "Advanced" },
       { name: "CLI Tools", level: "Intermediate" },
+    ],
+  },
+  {
+    title: "Platforms",
+    skills: [
+      { name: "Linux", level: "Advanced" },
       { name: "Docker", level: "Beginner" },
+      { name: "Vercel", level: "Advanced" },
+      { name: "Supabase", level: "Advanced" },
     ],
   },
   {
@@ -132,7 +141,11 @@ const Skills = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (
               <ScrollReveal key={category.title} delay={index * 100}>
-                <div className="bg-card/50 border border-border p-6 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 h-full">
+                <motion.div
+                  className="bg-card/50 border border-border p-6 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 h-full"
+                  whileHover={hoverLift}
+                  transition={smoothTransition}
+                >
                   <h3 className="text-sm uppercase tracking-widest text-primary mb-4">
                     {category.title}
                   </h3>
@@ -141,7 +154,7 @@ const Skills = () => {
                       <SkillBar key={skill.name} name={skill.name} level={skill.level} />
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>
