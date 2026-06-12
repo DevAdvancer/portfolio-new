@@ -1,92 +1,60 @@
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from "framer-motion";
-import { useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
+/**
+ * A lightweight, mostly-static background:
+ *  - a soft top-down radial gradient (no per-frame recompute)
+ *  - a subtle grid that breathes slowly (CSS animation, not JS-driven)
+ *  - gentle, slow-drifting aurora blobs (CSS animation only)
+ *
+ * Earlier this component reactively tracked the pointer and applied a 3D
+ * perspective rotation to a large grid. That looked slick on a desktop but
+ * felt "sticky" on trackpads and lower-end devices because the entire
+ * viewport was re-painting on every pointer move. We dropped the pointer
+ * reactivity in favor of a calmer, purely CSS-animated background.
+ */
 const GlobalBackground = () => {
   const reduceMotion = useReducedMotion();
-  const pointerX = useMotionValue(0.5);
-  const pointerY = useMotionValue(0.4);
-
-  const smoothX = useSpring(pointerX, { stiffness: 90, damping: 22, mass: 0.45 });
-  const smoothY = useSpring(pointerY, { stiffness: 90, damping: 22, mass: 0.45 });
-
-  const gridTranslateX = useTransform(smoothX, [0, 1], [-28, 28]);
-  const gridTranslateY = useTransform(smoothY, [0, 1], [-22, 22]);
-  const gridRotateX = useTransform(smoothY, [0, 1], [8, -8]);
-  const gridRotateY = useTransform(smoothX, [0, 1], [-10, 10]);
-  const gridScale = useTransform(smoothY, [0, 1], [1.02, 1.08]);
-
-  const cursorX = useTransform(smoothX, [0, 1], ["10%", "90%"]);
-  const cursorY = useTransform(smoothY, [0, 1], ["12%", "88%"]);
-
-  const spotlight = useMotionTemplate`radial-gradient(circle at ${cursorX} ${cursorY}, hsl(var(--primary) / 0.16), transparent 18%), radial-gradient(circle at calc(${cursorX} + 10%) calc(${cursorY} - 8%), hsl(var(--accent) / 0.10), transparent 20%)`;
-  const glowTrail = useMotionTemplate`radial-gradient(circle at ${cursorX} ${cursorY}, hsl(var(--foreground) / 0.08), transparent 8%)`;
-
-  useEffect(() => {
-    if (reduceMotion) return;
-
-    const handlePointerMove = (event: PointerEvent) => {
-      pointerX.set(event.clientX / window.innerWidth);
-      pointerY.set(event.clientY / window.innerHeight);
-    };
-
-    const handlePointerLeave = () => {
-      pointerX.set(0.5);
-      pointerY.set(0.4);
-    };
-
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerleave", handlePointerLeave);
-
-    return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerleave", handlePointerLeave);
-    };
-  }, [pointerX, pointerY, reduceMotion]);
 
   return (
     <div
       className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-background"
       aria-hidden="true"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,hsl(var(--primary)/0.1),transparent_32%),linear-gradient(180deg,hsl(var(--background)),hsl(var(--background)))]" />
+      {/* Soft ambient gradient at the top */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,hsl(var(--primary)/0.08),transparent_38%)]" />
 
-      <motion.div
-        className="absolute inset-0 opacity-90"
-        style={reduceMotion ? undefined : { background: spotlight }}
+      {/* Drifting aurora blobs (CSS-driven, very slow) */}
+      <div
+        className={`absolute -top-32 -left-24 h-[480px] w-[480px] rounded-full bg-primary/15 blur-3xl ${
+          reduceMotion ? "" : "aurora-drift-slow"
+        }`}
+      />
+      <div
+        className={`absolute top-1/3 -right-32 h-[420px] w-[420px] rounded-full bg-accent/10 blur-3xl ${
+          reduceMotion ? "" : "aurora-drift-slower"
+        }`}
+      />
+      <div
+        className={`absolute bottom-0 left-1/3 h-[360px] w-[360px] rounded-full bg-chart-3/8 blur-3xl ${
+          reduceMotion ? "" : "aurora-drift"
+        }`}
       />
 
-      <motion.div
-        className="absolute inset-0 opacity-60 mix-blend-screen"
-        style={reduceMotion ? undefined : { background: glowTrail }}
+      {/* Faint grid — static, no perspective tricks */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
+                           linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+          backgroundSize: '72px 72px',
+          WebkitMaskImage:
+            "radial-gradient(circle at center, black, transparent 78%)",
+          maskImage:
+            "radial-gradient(circle at center, black, transparent 78%)",
+        }}
       />
 
-      <div className="absolute inset-0 [perspective:1200px]">
-        <motion.div
-          className="absolute left-[-12%] top-[-12%] h-[124%] w-[124%] origin-center"
-          style={
-            reduceMotion
-              ? undefined
-              : {
-                  x: gridTranslateX,
-                  y: gridTranslateY,
-                  rotateX: gridRotateX,
-                  rotateY: gridRotateY,
-                  scale: gridScale,
-                }
-          }
-        >
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--foreground)/0.06)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--foreground)/0.06)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.08),transparent_54%)]" />
-        </motion.div>
-      </div>
-
+      {/* Top and bottom fades to blend sections cleanly */}
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background via-background/75 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-background via-background/80 to-transparent" />
     </div>

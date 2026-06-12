@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +14,8 @@ import PageTransition from "./components/PageTransition";
 import Chatbot from "./components/Chatbot";
 import GlobalBackground from "./components/GlobalBackground";
 import ClickSparkles from "./components/ClickSparkles";
+import CustomCursor from "./components/CustomCursor";
+import CommandPalette from "./components/CommandPalette";
 
 const queryClient = new QueryClient();
 
@@ -33,21 +36,36 @@ const AnimatedRoutes = () => {
   );
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <GlobalBackground />
-      <ClickSparkles />
-      <div className="relative z-10">
-        <Chatbot />
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AnimatedRoutes />
-        </BrowserRouter>
-      </div>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [commandOpen, setCommandOpen] = useState(false);
+  const openCommand = useCallback(() => setCommandOpen(true), []);
+  const closeCommand = useCallback(() => setCommandOpen(false), []);
+
+  // Listen for the global "open command palette" event fired by Navigation
+  useEffect(() => {
+    const handler = () => setCommandOpen(true);
+    window.addEventListener("abhirup:open-command", handler);
+    return () => window.removeEventListener("abhirup:open-command", handler);
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <GlobalBackground />
+        <ClickSparkles />
+        <CustomCursor />
+        <div className="relative z-10">
+          <Chatbot />
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AnimatedRoutes />
+          </BrowserRouter>
+          <CommandPalette open={commandOpen} onClose={closeCommand} />
+        </div>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

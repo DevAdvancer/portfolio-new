@@ -10,7 +10,7 @@ const seededValue = (seed: number) => {
 
 const AnimatedSphere = ({ scale = 1.8 }: { scale?: number }) => {
   const meshRef = useRef<THREE.Mesh>(null);
-  
+
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.2;
@@ -35,7 +35,7 @@ const AnimatedSphere = ({ scale = 1.8 }: { scale?: number }) => {
   );
 };
 
-const FloatingParticles = ({ count = 50 }: { count?: number }) => {
+const FloatingParticles = ({ count = 30 }: { count?: number }) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
 
   const particles = useMemo(() => {
@@ -85,19 +85,25 @@ const FloatingParticles = ({ count = 50 }: { count?: number }) => {
 
 const HeroScene = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [dpr, setDpr] = useState<number>(1);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const checkViewport = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      // Cap the device pixel ratio to keep paint cost low on retina displays
+      setDpr(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.5));
+    };
+    checkViewport();
+    window.addEventListener("resize", checkViewport);
+    return () => window.removeEventListener("resize", checkViewport);
   }, []);
 
   return (
     <div className="absolute inset-0 opacity-60">
-      <Canvas 
+      <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }}
-        dpr={isMobile ? 1 : Math.min(window.devicePixelRatio, 2)}
+        dpr={dpr}
         performance={{ min: 0.5 }}
       >
         <ambientLight intensity={0.5} />
@@ -105,7 +111,7 @@ const HeroScene = () => {
         <pointLight position={[-10, -10, -5]} intensity={0.5} color="#6366f1" />
         <pointLight position={[0, 4, 2]} intensity={1.2} color="#38bdf8" />
         <AnimatedSphere scale={isMobile ? 1.2 : 1.8} />
-        <FloatingParticles count={isMobile ? 25 : 50} />
+        <FloatingParticles count={isMobile ? 18 : 30} />
       </Canvas>
     </div>
   );

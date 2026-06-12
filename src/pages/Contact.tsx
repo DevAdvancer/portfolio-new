@@ -108,7 +108,7 @@ const ContactPage = () => {
                   Get In Touch
                 </p>
                 <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground mb-3 sm:mb-4">
-                  Let's Connect
+                  Let's talk — Abhirup Kumar
                 </h1>
                 <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
                   I'm currently looking for opportunities. Whether you have a question or just want to say hi, feel free to reach out!

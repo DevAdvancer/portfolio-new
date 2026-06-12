@@ -60,7 +60,7 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
             <p className="text-xs text-muted-foreground">
-              © {currentYear} Abhriup Kumar. All rights reserved.
+              © {currentYear} Abhirup Kumar. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground">
               Built with passion & <span className="text-primary">purpose</span>

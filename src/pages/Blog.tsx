@@ -24,7 +24,7 @@ const Blog = () => {
                   Journal
                 </p>
                 <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground mb-4 sm:mb-6">
-                  Thoughts & Writing
+                  Thoughts & Writing by Abhirup Kumar
                 </h1>
                 <p className="text-sm sm:text-base text-muted-foreground">
                   Exploring design, development, and the creative process.
