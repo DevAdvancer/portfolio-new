@@ -81,7 +81,6 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <SkipLink />
-          <RouteProgress />
           <GlobalBackground />
           <ClickSparkles />
           <CustomCursor />
@@ -90,6 +89,7 @@ const App = () => {
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <RouteProgress />
               <AnimatedRoutes />
             </BrowserRouter>
             <CommandPalette open={commandOpen} onClose={closeCommand} />
