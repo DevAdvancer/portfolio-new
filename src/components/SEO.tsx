@@ -1,72 +1,72 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
-interface SEOProps {
-  title?: string;
-  description?: string;
-  keywords?: string;
+export interface SEOData {
+  title: string;
+  description: string;
+  keywords: string;
   image?: string;
-  url?: string;
-  type?: string;
+  type?: "website" | "profile" | "article";
+  publishedTime?: string;
+  author?: string;
 }
 
+const SITE_URL = "https://www.abhirupkumar.in";
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpeg`;
+const SITE_NAME = "Abhirup Kumar Portfolio";
+const TWITTER_HANDLE = "@abhirup";
+
 const SEO = ({
-  title = "Abhirup Kumar - Software Engineer & Full Stack Developer | Portfolio",
-  description = "Portfolio of Abhirup Kumar - Software Engineer, Full Stack Developer, and Computer Science student at Adamas University. Specializing in React, TypeScript, Node.js, and building scalable web applications.",
-  keywords = "Abhirup Kumar, Software Engineer, Full Stack Developer, React Developer, TypeScript, Web Developer, Portfolio, Computer Science, Adamas University, Kolkata, India",
-  image = "https://www.abhirupkumar.in/og-image.png",
+  title,
+  description,
+  keywords,
+  image = DEFAULT_IMAGE,
   url,
   type = "website",
-}: SEOProps) => {
-  const location = useLocation();
-  const currentUrl = url || `https://www.abhirupkumar.in${location.pathname}`;
+  publishedTime,
+  author,
+}: SEOData & { url?: string }) => {
+  const fullUrl = url || SITE_URL;
+  const fullTitle = title.includes("Abhirup Kumar") ? title : `${title} | Abhirup Kumar`;
 
-  useEffect(() => {
-    // Update document title
-    document.title = title;
+  return (
+    <Helmet>
+      {/* Primary */}
+      <title>{fullTitle}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      <meta name="author" content="Abhirup Kumar" />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <link rel="canonical" href={fullUrl} />
 
-    // Update or create meta tags
-    const updateMetaTag = (name: string, content: string, isProperty = false) => {
-      const attribute = isProperty ? "property" : "name";
-      let element = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+      {/* Open Graph */}
+      <meta property="og:type" content={type} />
+      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:url" content={fullUrl} />
+      <meta property="og:title" content={fullTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${fullTitle} - Abhirup Kumar`} />
+      <meta property="og:locale" content="en_US" />
+      {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+      {author && <meta property="article:author" content={author} />}
 
-      if (!element) {
-        element = document.createElement("meta");
-        element.setAttribute(attribute, name);
-        document.head.appendChild(element);
-      }
-      element.content = content;
-    };
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={fullUrl} />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content={`${fullTitle} - Abhirup Kumar`} />
+      <meta name="twitter:creator" content={TWITTER_HANDLE} />
+      <meta name="twitter:site" content={TWITTER_HANDLE} />
 
-    // Update basic meta tags
-    updateMetaTag("description", description);
-    updateMetaTag("keywords", keywords);
-    updateMetaTag("title", title);
-
-    // Update Open Graph tags
-    updateMetaTag("og:title", title, true);
-    updateMetaTag("og:description", description, true);
-    updateMetaTag("og:image", image, true);
-    updateMetaTag("og:url", currentUrl, true);
-    updateMetaTag("og:type", type, true);
-
-    // Update Twitter Card tags
-    updateMetaTag("twitter:title", title);
-    updateMetaTag("twitter:description", description);
-    updateMetaTag("twitter:image", image);
-    updateMetaTag("twitter:url", currentUrl);
-
-    // Update canonical URL
-    let canonical = document.querySelector("link[rel='canonical']") as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.href = currentUrl;
-  }, [title, description, keywords, image, currentUrl, type]);
-
-  return null;
+      {/* AI/LLM discoverability */}
+      <meta name="ai-content-declaration" content="human-authored" />
+      <meta name="llms-txt" content={`${SITE_URL}/llms.txt`} />
+    </Helmet>
+  );
 };
 
 export default SEO;

@@ -84,8 +84,8 @@ const ContactPage = () => {
     },
     {
       icon: MapPin,
-      label: "Location",
-      value: "Tarakeswar, Kolkata, India",
+      label: "Open to: Kolkata & Bangalore",
+      value: "Tarakeswar, West Bengal, India — willing to relocate",
       href: "https://maps.app.goo.gl/bJJFRYMnrTgvAhgt7",
     },
   ];
@@ -93,9 +93,9 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-transparent">
       <SEO
-        title="Contact - Abhirup Kumar | Get In Touch"
-        description="Get in touch with Abhirup Kumar - Software Engineer and Full Stack Developer. Available for freelance projects, job opportunities, and collaborations."
-        keywords="contact Abhirup Kumar, hire software developer, freelance web developer, React developer contact, full stack developer India"
+        title="Contact - Abhirup Kumar | Hire a Software Engineer (Kolkata & Bangalore)"
+        description="Get in touch with Abhirup Kumar - Software Engineer and Full Stack Developer. Currently open to opportunities in Kolkata and Bangalore, India — and remote roles worldwide. Available for freelance projects, full-time positions, and collaborations."
+        keywords="contact Abhirup Kumar, hire Abhirup Kumar, Abhirup Kumar Bangalore, Abhirup Kumar Kolkata, software engineer Bangalore, software engineer Kolkata, freelance web developer India, React developer contact, full stack developer hire, Abhirup Kumar email, Abhirup Kumar phone, open to work Bangalore, open to work Kolkata, relocate Bangalore, relocate Kolkata"
         url="https://www.abhirupkumar.in/contact"
       />
       <Navigation />
@@ -111,7 +111,7 @@ const ContactPage = () => {
                   Let's talk — Abhirup Kumar
                 </h1>
                 <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
-                  I'm currently looking for opportunities. Whether you have a question or just want to say hi, feel free to reach out!
+                  I'm currently open to opportunities in <span className="text-foreground font-medium">Kolkata</span> and <span className="text-foreground font-medium">Bangalore</span>, and remote roles worldwide. Whether you have a question, a job offer, or just want to say hi, feel free to reach out!
                 </p>
               </div>
             </ScrollReveal>

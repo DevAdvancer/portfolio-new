@@ -1,38 +1,67 @@
-import { useState, useEffect, useCallback } from "react";
+import { lazy, Suspense, useState, useEffect, useCallback } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Index from "./pages/Index";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Achievements from "./pages/Achievements";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
-import PageTransition from "./components/PageTransition";
-import Chatbot from "./components/Chatbot";
-import GlobalBackground from "./components/GlobalBackground";
-import ClickSparkles from "./components/ClickSparkles";
-import CustomCursor from "./components/CustomCursor";
-import CommandPalette from "./components/CommandPalette";
+import { HelmetProvider } from "react-helmet-async";
+import PageTransition from "@/components/PageTransition";
+import Chatbot from "@/components/Chatbot";
+import GlobalBackground from "@/components/GlobalBackground";
+import ClickSparkles from "@/components/ClickSparkles";
+import CustomCursor from "@/components/CustomCursor";
+import CommandPalette from "@/components/CommandPalette";
+import RouteProgress from "@/components/RouteProgress";
+import SkipLink from "@/components/SkipLink";
+import SEO from "@/components/SEO";
+import { SEO_CONFIG } from "@/data/seoConfig";
+
+// Lazy-load route components for code splitting
+const Index = lazy(() => import("./pages/Index"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const Achievements = lazy(() => import("./pages/Achievements"));
+const Contact = lazy(() => import("./pages/Contact"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+const PageLoader = () => (
+  <div
+    role="status"
+    aria-label="Loading page"
+    className="flex min-h-[60vh] items-center justify-center"
+  >
+    <div className="h-10 w-10 animate-spin rounded-full border-2 border-muted border-t-foreground" />
+  </div>
+);
+
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const seo = SEO_CONFIG[location.pathname] ?? SEO_CONFIG["/"];
 
   return (
-    <PageTransition key={location.pathname}>
-      <Routes location={location}>
-        <Route path="/" element={<Index />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogPost />} />
-        <Route path="/achievements" element={<Achievements />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </PageTransition>
+    <>
+      <SEO
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
+        type={seo.type}
+        url={`https://www.abhirupkumar.in${location.pathname}`}
+      />
+      <Suspense fallback={<PageLoader />}>
+        <PageTransition key={location.pathname}>
+          <Routes location={location}>
+            <Route path="/" element={<Index />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </PageTransition>
+      </Suspense>
+    </>
   );
 };
 
@@ -41,7 +70,6 @@ const App = () => {
   const openCommand = useCallback(() => setCommandOpen(true), []);
   const closeCommand = useCallback(() => setCommandOpen(false), []);
 
-  // Listen for the global "open command palette" event fired by Navigation
   useEffect(() => {
     const handler = () => setCommandOpen(true);
     window.addEventListener("abhirup:open-command", handler);
@@ -49,22 +77,26 @@ const App = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <GlobalBackground />
-        <ClickSparkles />
-        <CustomCursor />
-        <div className="relative z-10">
-          <Chatbot />
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <AnimatedRoutes />
-          </BrowserRouter>
-          <CommandPalette open={commandOpen} onClose={closeCommand} />
-        </div>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <SkipLink />
+          <RouteProgress />
+          <GlobalBackground />
+          <ClickSparkles />
+          <CustomCursor />
+          <div className="relative z-10">
+            <Chatbot />
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <AnimatedRoutes />
+            </BrowserRouter>
+            <CommandPalette open={commandOpen} onClose={closeCommand} />
+          </div>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 

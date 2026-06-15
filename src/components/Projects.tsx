@@ -178,7 +178,7 @@ const Projects = () => {
                         <HoverCard openDelay={200} closeDelay={100}>
                           <HoverCardTrigger asChild>
                             <motion.h3
-                              className="font-serif text-2xl text-foreground mb-3 cursor-pointer inline-flex items-center gap-2 hover:text-primary transition-colors"
+                              className="font-serif text-xl sm:text-2xl text-foreground mb-3 cursor-pointer inline-flex items-center gap-2 hover:text-primary transition-colors"
                               whileHover={{ x: 4 }}
                             >
                               {project.title}
@@ -303,7 +303,7 @@ const Projects = () => {
                           {project.role}
                         </p>
 
-                        <div className="flex gap-4">
+                        <div className="flex flex-wrap gap-3 sm:gap-4">
                           <motion.a
                             href={project.githubUrl}
                             target="_blank"

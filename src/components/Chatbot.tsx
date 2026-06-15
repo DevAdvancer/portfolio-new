@@ -133,15 +133,16 @@ const Chatbot = () => {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-primary/30"
-        aria-label="Open chat"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-primary/30 min-w-[48px] min-h-[48px]"
+        aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </button>
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[600px] max-h-[calc(100vh-8rem)] bg-background border border-border rounded-lg shadow-2xl flex flex-col animate-slide-in-bottom">
+        <div className="fixed z-50 bg-background border border-border shadow-2xl flex flex-col animate-slide-in-bottom
+          inset-0 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[380px] sm:max-w-[calc(100vw-3rem)] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-lg">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border bg-card/50">
             <div className="flex items-center gap-3">

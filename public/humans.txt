@@ -1,0 +1,12 @@
+/* TEAM */
+Developer: Abhirup Kumar
+Site: https://www.abhirupkumar.in
+GitHub: https://github.com/devadvancer
+LinkedIn: https://linkedin.com/in/abhirupkumar
+Location: Kolkata, West Bengal, India
+
+/* SITE */
+Last update: 2026-06-14
+Standards: HTML5, CSS3, ES2022
+Components: React 19, TypeScript, Vite, Tailwind CSS, shadcn/ui
+Software: VS Code, Git, GitHub

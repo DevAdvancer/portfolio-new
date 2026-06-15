@@ -15,25 +15,59 @@ export default defineConfig(() => ({
     },
   },
   build: {
+    target: "es2020",
+    cssCodeSplit: true,
+    minify: "esbuild",
     rollupOptions: {
       output: {
+        // Split vendor into logical chunks for better caching and parallel loading
         manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            // Keep React, React-DOM, and React-Router together
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor';
-            }
-            // Group all other node_modules
-            if (id.includes('@radix-ui') || id.includes('lucide-react') ||
-                id.includes('@tanstack') || id.includes('three') ||
-                id.includes('@react-three')) {
-              return 'vendor';
-            }
-            return 'vendor';
+          if (!id.includes("node_modules")) return undefined;
+
+          // React core - critical, loaded immediately
+          if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/") || id.includes("node_modules/scheduler/")) {
+            return "react-core";
           }
+          // Router - critical for SPA
+          if (id.includes("node_modules/react-router") || id.includes("node_modules/@remix-run/router")) {
+            return "router";
+          }
+          // Three.js - heavy, lazy load
+          if (id.includes("three") || id.includes("@react-three")) {
+            return "three-vendor";
+          }
+          // Motion/animation - lazy load
+          if (id.includes("framer-motion")) {
+            return "motion-vendor";
+          }
+          // Radix UI - lazy load
+          if (id.includes("@radix-ui")) {
+            return "radix-vendor";
+          }
+          // Icons - lazy load
+          if (id.includes("lucide-react")) {
+            return "icons-vendor";
+          }
+          // Markdown rendering - lazy load
+          if (id.includes("react-markdown") || id.includes("remark") || id.includes("unified") || id.includes("micromark") || id.includes("mdast")) {
+            return "markdown-vendor";
+          }
+          // Forms - lazy load
+          if (id.includes("react-hook-form") || id.includes("@hookform") || id.includes("zod")) {
+            return "forms-vendor";
+          }
+          // UI utilities
+          if (id.includes("class-variance-authority") || id.includes("clsx") || id.includes("tailwind-merge") || id.includes("cmdk") || id.includes("vaul") || id.includes("sonner") || id.includes("date-fns")) {
+            return "ui-vendor";
+          }
+          // Everything else
+          return "vendor";
         },
       },
     },
-    chunkSizeWarningLimit: 1600,
+    chunkSizeWarningLimit: 800,
+  },
+  esbuild: {
+    legalComments: "none",
   },
 }));

@@ -119,7 +119,7 @@ const Hero = () => {
               Open to opportunities
             </span>
             <span className="hidden sm:inline-flex items-center gap-1 ml-2 pl-2 border-l border-emerald-400/20 text-[10px] text-emerald-300/70">
-              <MapPin size={10} /> Kolkata, IN
+              <MapPin size={10} /> Kolkata · Bangalore, IN
             </span>
           </motion.div>
 
