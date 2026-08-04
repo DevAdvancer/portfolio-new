@@ -13,9 +13,9 @@ Abhirup Kumar is a Software Engineer and Full Stack Developer based in Kolkata, 
 - Location: Kolkata, West Bengal, India
 - Education: B.Tech Computer Science, Adamas University
 - Email: theabhirupkumar@gmail.com
-- Website: https://www.abhirupkumar.in
-- GitHub: https://github.com/devadvancer
-- LinkedIn: https://linkedin.com/in/abhirupkumar
+- Website: [Website](https://www.abhirupkumar.in)
+- GitHub: [GitHub](https://github.com/devadvancer)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/abhirupkumar)
 
 ## Skills
 
@@ -37,9 +37,9 @@ Abhirup Kumar is a Software Engineer and Full Stack Developer based in Kolkata, 
 ## Contact
 
 - Email: theabhirupkumar@gmail.com
-- Portfolio: https://www.abhirupkumar.in
-- LinkedIn: https://linkedin.com/in/abhirupkumar
-- GitHub: https://github.com/devadvancer
+- Portfolio: [Portfolio](https://www.abhirupkumar.in)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/abhirupkumar)
+- GitHub: [GitHub](https://github.com/devadvancer)
 
 ## How to Cite
 

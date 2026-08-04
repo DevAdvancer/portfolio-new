@@ -133,7 +133,7 @@ const Chatbot = () => {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-primary/30 min-w-[48px] min-h-[48px]"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[60] p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-primary/30 min-w-[48px] min-h-[48px]"
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
@@ -141,8 +141,8 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed z-50 bg-background border border-border shadow-2xl flex flex-col animate-slide-in-bottom
-          inset-0 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[380px] sm:max-w-[calc(100vw-3rem)] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-lg">
+        <div className="fixed z-[60] bg-background border border-border shadow-2xl flex flex-col animate-slide-in-bottom
+          top-24 bottom-24 left-4 right-4 sm:top-auto sm:bottom-24 sm:left-auto sm:right-6 sm:w-[380px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] rounded-lg">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border bg-card/50">
             <div className="flex items-center gap-3">
@@ -159,10 +159,10 @@ const Chatbot = () => {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 hover:bg-secondary rounded transition-colors"
+              className="p-2 -mr-1 hover:bg-secondary rounded-lg transition-colors"
               aria-label="Close chat"
             >
-              <X size={18} className="text-muted-foreground" />
+              <X size={20} className="text-muted-foreground" />
             </button>
           </div>
 

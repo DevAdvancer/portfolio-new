@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 /**
  * A lightweight, mostly-static background:
@@ -13,8 +13,6 @@ import { motion, useReducedMotion } from "framer-motion";
  * reactivity in favor of a calmer, purely CSS-animated background.
  */
 const GlobalBackground = () => {
-  const reduceMotion = useReducedMotion();
-
   return (
     <div
       className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-background"
@@ -23,21 +21,15 @@ const GlobalBackground = () => {
       {/* Soft ambient gradient at the top */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,hsl(var(--primary)/0.08),transparent_38%)]" />
 
-      {/* Drifting aurora blobs (CSS-driven, very slow) */}
+      {/* Static aurora blobs (Animations removed for performance) */}
       <div
-        className={`absolute -top-32 -left-24 h-[480px] w-[480px] rounded-full bg-primary/15 blur-3xl ${
-          reduceMotion ? "" : "aurora-drift-slow"
-        }`}
+        className="absolute -top-32 -left-24 h-[480px] w-[480px] rounded-full bg-primary/10 blur-2xl"
       />
       <div
-        className={`absolute top-1/3 -right-32 h-[420px] w-[420px] rounded-full bg-accent/10 blur-3xl ${
-          reduceMotion ? "" : "aurora-drift-slower"
-        }`}
+        className="absolute top-1/3 -right-32 h-[420px] w-[420px] rounded-full bg-accent/10 blur-2xl"
       />
       <div
-        className={`absolute bottom-0 left-1/3 h-[360px] w-[360px] rounded-full bg-chart-3/8 blur-3xl ${
-          reduceMotion ? "" : "aurora-drift"
-        }`}
+        className="absolute bottom-0 left-1/3 h-[360px] w-[360px] rounded-full bg-chart-3/10 blur-2xl"
       />
 
       {/* Faint grid — static, no perspective tricks */}

@@ -6,15 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
-import Chatbot from "@/components/Chatbot";
 import GlobalBackground from "@/components/GlobalBackground";
-import ClickSparkles from "@/components/ClickSparkles";
-import CustomCursor from "@/components/CustomCursor";
-import CommandPalette from "@/components/CommandPalette";
 import RouteProgress from "@/components/RouteProgress";
 import SkipLink from "@/components/SkipLink";
 import SEO from "@/components/SEO";
 import { SEO_CONFIG } from "@/data/seoConfig";
+
+const Chatbot = lazy(() => import("@/components/Chatbot"));
+const CommandPalette = lazy(() => import("@/components/CommandPalette"));
 
 // Lazy-load route components for code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -82,17 +81,19 @@ const App = () => {
         <TooltipProvider>
           <SkipLink />
           <GlobalBackground />
-          <ClickSparkles />
-          <CustomCursor />
           <div className="relative z-10">
-            <Chatbot />
+            <Suspense fallback={null}>
+              <Chatbot />
+            </Suspense>
             <Toaster />
             <Sonner />
             <BrowserRouter>
               <RouteProgress />
               <AnimatedRoutes />
             </BrowserRouter>
-            <CommandPalette open={commandOpen} onClose={closeCommand} />
+            <Suspense fallback={null}>
+              <CommandPalette open={commandOpen} onClose={closeCommand} />
+            </Suspense>
           </div>
         </TooltipProvider>
       </QueryClientProvider>

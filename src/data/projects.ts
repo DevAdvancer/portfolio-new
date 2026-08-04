@@ -1,9 +1,9 @@
-import charmcrafter from "/charmcrafter.png";
-import universitynotes from "/universitynotes.png";
-import formethica from "/formethica.png";
-import femway from "/femway.png";
-import studynotesviewer from "/studynoteviewer.png";
-import dlka from "/dlka.png";
+import charmcrafter from "/charmcrafter.webp";
+import universitynotes from "/universitynotes.webp";
+import formethica from "/formethica.webp";
+import femway from "/femway.webp";
+import studynotesviewer from "/studynoteviewer.webp";
+import dlka from "/dlka.webp";
 
 export interface Project {
   id: string;
