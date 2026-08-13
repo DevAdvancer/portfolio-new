@@ -19,7 +19,7 @@ const education: EducationItem[] = [
     specialization: "Computer Science & Engineering",
     institution: "Adamas University",
     duration: "2022 - 2026",
-    cgpa: "8.72 / 10",
+    cgpa: "8.68 / 10",
     highlights: [
       "Relevant Coursework: Data Structures, Algorithms, DBMS, OS, Computer Networks",
       "Member of Coding Club & Technical Society",

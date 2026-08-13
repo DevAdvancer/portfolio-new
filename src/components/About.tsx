@@ -12,55 +12,65 @@ const About = () => {
               About Me
             </p>
             <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-8">
-              Who I Am
+              The Journey
             </h2>
           </ScrollReveal>
           
           <div className="grid md:grid-cols-3 gap-8">
             <ScrollReveal className="md:col-span-2" delay={100}>
               <div className="space-y-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  I'm a final-year Computer Science student at <span className="text-primary font-medium">Adamas University</span>, passionate about building elegant solutions to complex problems. My journey in tech started with curiosity and has evolved into a deep commitment to continuous learning.
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  I'm a developer who genuinely cares about how things work under the hood. Growing up in a small town near Kolkata, I didn't have immediate access to a booming tech hub—so I made the internet my playground.
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  My core interests span <span className="text-primary font-medium">Web Development</span>, <span className="text-primary font-medium">System Design</span>, and <span className="text-primary font-medium">Cybersecurity</span>. I believe in writing clean, maintainable code and approaching challenges with a problem-solving mindset.
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  My journey started with pure curiosity: taking things apart to understand them, fixing them, and eventually learning how to build them from scratch. I don't just write code to pass tests; I build products that solve real problems. Whether it's engineering a <span className="text-primary font-medium">Linux kernel security system</span> or shipping a snappy <span className="text-primary font-medium">AI-powered web app</span>, I dive deep.
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Currently seeking opportunities to apply my skills in a professional environment where I can contribute meaningfully while continuing to grow as a developer.
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  Currently, I'm working as a Software Developer at Vizva Consultancy Services while finishing my CS degree at Adamas University. I believe that empathy for the user and clean, maintainable architecture go hand-in-hand.
                 </p>
               </div>
             </ScrollReveal>
             
             <div className="space-y-6">
               <ScrollReveal delay={200}>
-                <motion.div
-                  className="p-6 bg-secondary/30 border border-border hover:border-primary/50 transition-colors"
-                  whileHover={hoverLift}
-                  transition={smoothTransition}
-                >
-                  <p className="text-sm uppercase tracking-widest text-primary mb-2">Focus Areas</p>
-                  <ul className="space-y-2 text-sm text-foreground">
-                    <li>• Full-Stack Development</li>
-                    <li>• Problem Solving & DSA</li>
-                    <li>• System Design</li>
-                    <li>• Security Fundamentals</li>
-                  </ul>
-                </motion.div>
+                {/* Animated snake border wrapper */}
+                <div className="relative rounded-xl overflow-hidden p-[1px] group">
+                  <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,theme(colors.primary.DEFAULT)_50%,transparent_100%)] opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <motion.div
+                    className="relative p-6 bg-card rounded-xl h-full"
+                    whileHover={hoverLift}
+                    transition={smoothTransition}
+                  >
+                    <p className="text-sm uppercase tracking-widest text-primary mb-4 font-semibold">What I Do Best</p>
+                    <ul className="space-y-3 text-sm text-muted-foreground font-medium">
+                      <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Full-Stack Engineering
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Systems Architecture
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Cybersecurity & Infra
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Product Polish
+                      </li>
+                    </ul>
+                  </motion.div>
+                </div>
               </ScrollReveal>
               
               <ScrollReveal delay={300}>
                 <motion.div
-                  className="p-6 bg-secondary/30 border border-border hover:border-primary/50 transition-colors"
+                  className="p-6 bg-secondary/30 border border-border rounded-xl hover:border-primary/50 transition-colors"
                   whileHover={hoverLift}
                   transition={smoothTransition}
                 >
-                  <p className="text-sm uppercase tracking-widest text-primary mb-2">Strengths</p>
-                  <ul className="space-y-2 text-sm text-foreground">
-                    <li>• Analytical Thinking</li>
-                    <li>• Self-Motivated Learner</li>
-                    <li>• Team Collaboration</li>
-                    <li>• Attention to Detail</li>
-                  </ul>
+                  <p className="text-sm uppercase tracking-widest text-primary mb-3">Core Mindset</p>
+                  <p className="text-sm text-foreground italic leading-relaxed">
+                    "The best way to predict the future is to build it. I value pragmatism over hype, and shipping over over-engineering."
+                  </p>
                 </motion.div>
               </ScrollReveal>
             </div>

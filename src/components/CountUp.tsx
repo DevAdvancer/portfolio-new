@@ -27,6 +27,10 @@ const CountUp = ({
   const value = useMotionValue(0);
   const spring = useSpring(value, { duration: duration * 1000, bounce: 0 });
   const display = useTransform(spring, (latest) => {
+    const hasDecimals = end % 1 !== 0;
+    if (hasDecimals) {
+      return latest.toFixed(2);
+    }
     const rounded = Math.round(latest);
     if (formatThousands) {
       return rounded.toLocaleString("en-US");

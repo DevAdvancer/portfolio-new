@@ -143,5 +143,53 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/DevAdvancer/Nexterm",
     liveUrl: null, // CLI tool, no live URL
     image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=500&fit=crop", // Terminal/coding themed image
+  },
+  {
+    id: "8",
+    title: "Pulse CRM (Sales Dashboard)",
+    problem: "Developing a high-performance CRM tailored for sales teams with complex data structures, follow-ups, and metric tracking to improve conversion rates.",
+    techStack: ["Next.js", "React Query", "Appwrite", "Tailwind CSS", "TypeScript", "Zustand"],
+    features: [
+      "Real-time lead and sales pipeline management",
+      "Advanced metric calculation and tracking",
+      "Robust filtering and reporting tools",
+      "Custom follow-up collection and notifications",
+    ],
+    role: "Full Stack Engineer at Vizva Consultancy Services. Built the frontend architecture and integrated heavily with the Appwrite backend.",
+    githubUrl: "",
+    liveUrl: "Proprietary",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+  },
+  {
+    id: "9",
+    title: "Compliance Management System",
+    problem: "Building a comprehensive tracker to monitor and manage organizational compliance policies and tasks, ensuring regulatory requirements are met seamlessly.",
+    techStack: ["Next.js", "Supabase", "Tailwind CSS", "Recharts", "Radix UI", "Zod"],
+    features: [
+      "Role-based access and organizational mapping",
+      "Real-time compliance status dashboards",
+      "Automated PDF report generation",
+      "Interactive data visualizations with Recharts",
+    ],
+    role: "Full Stack Engineer at Vizva Consultancy Services. Designed the schema and implemented dynamic UI components with robust data validation.",
+    githubUrl: "",
+    liveUrl: "Proprietary",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+  },
+  {
+    id: "10",
+    title: "Sahaal Ride App",
+    problem: "Developing a highly scalable ride-booking system comprising dedicated applications for Users, Providers, and Kiosks, catering to diverse ride scenarios.",
+    techStack: ["React Native / Mobile UI", "Android (Kotlin)", "iOS (Swift)", "Backend APIs"],
+    features: [
+      "Multi-platform support for passengers and drivers",
+      "Kiosk mode integration for localized bookings",
+      "Real-time location tracking and driver matching",
+      "Seamless payment processing and invoice generation",
+    ],
+    role: "Mobile/Full Stack Engineer at Vizva Consultancy Services. Worked on integrating the mobile applications with robust backend APIs and ensuring smooth UI/UX.",
+    githubUrl: "",
+    liveUrl: "Proprietary",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop",
   }
 ];

@@ -278,7 +278,7 @@ Currently seeking opportunities to apply my skills in a professional environment
 
 **Institution:** Adamas University
 **Duration:** 2022 - 2026
-**CGPA:** 8.72 / 10
+**CGPA:** 8.68 / 10
 
 **Highlights:**
 - Relevant Coursework: Data Structures, Algorithms, DBMS, OS, Computer Networks
@@ -597,7 +597,7 @@ The portfolio includes an AI chatbot that can answer questions about Abhirup Kum
 "I'm currently working as a Software Developer at Vizva Consultancy Services (January 2026 - Present) in a full-time role. I'm responsible for developing scalable internal tools and web platforms that integrate with and support the company's flagship products, enabling efficient monitoring, management, and continuous improvement across teams. Previously, I worked as a Lead Software Developer at HERMEiAS (May 2025 - December 2025) where I developed similar internal tools and platforms."
 
 ## Education Response
-"I'm pursuing my Bachelor of Technology in Computer Science & Engineering at Adamas University (2022-2026) with a CGPA of 8.72/10. My coursework includes Data Structures, Algorithms, DBMS, Operating Systems, and Computer Networks. I'm an active member of the Coding Club & Technical Society. Before this, I completed my 12th from Kendriya Vidyalaya Tarakeswar with PCM and Computer Science."
+"I'm pursuing my Bachelor of Technology in Computer Science & Engineering at Adamas University (2022-2026) with a CGPA of 8.68/10. My coursework includes Data Structures, Algorithms, DBMS, Operating Systems, and Computer Networks. I'm an active member of the Coding Club & Technical Society. Before this, I completed my 12th from Kendriya Vidyalaya Tarakeswar with PCM and Computer Science."
 
 ## Contact Response
 "I'd love to connect with you! You can find my email on the contact page of this portfolio. You can also reach me on GitHub at github.com/DevAdvancer or check my LinkedIn from the contact section. I'm always open to discussing new opportunities, collaborations, or chatting about technology."

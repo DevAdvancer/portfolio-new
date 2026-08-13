@@ -30,7 +30,7 @@ const stats: Stat[] = [
     hint: "Languages, frameworks, infra",
   },
   {
-    value: 8.72,
+    value: 8.68,
     label: "CGPA",
     hint: "/ 10 — B.Tech CSE",
   },

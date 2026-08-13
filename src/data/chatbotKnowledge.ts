@@ -68,7 +68,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["about you", "who", "yourself", "introduce yourself", "tell me about you"],
     patterns: [/^who\s+are\s+you/i, /tell\s+me\s+about\s+(you|yourself|abhirup)/i, /^introduce\s+(yourself)?$/i, /^about\s+you/i, /who\s+is\s+abhirup/i],
     response: {
-      answer: "I'm Abhirup Kumar — a Software Developer, full-stack engineer, and cybersecurity enthusiast from Kolkata, India. I'm currently working full-time at Vizva Consultancy Services while having recently graduated with a B.Tech in Computer Science from Adamas University (CGPA: 8.72). I love building things that solve real problems, from kernel-level security systems to AI-powered web apps. Outside of code, I'm a curious person who enjoys exploring new tech, gaming, and having deep conversations over chai.",
+      answer: "I'm Abhirup Kumar — a Software Developer, full-stack engineer, and cybersecurity enthusiast from Kolkata, India. I'm currently working full-time at Vizva Consultancy Services while having recently graduated with a B.Tech in Computer Science from Adamas University (CGPA: 8.68). I love building things that solve real problems, from kernel-level security systems to AI-powered web apps. Outside of code, I'm a curious person who enjoys exploring new tech, gaming, and having deep conversations over chai.",
       followUp: [
         "What are your hobbies?",
         "What kind of person are you?",
@@ -776,7 +776,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["education", "degree", "university", "college", "study", "student", "adamas"],
     patterns: [/your\s+education/i, /where\s+did\s+you\s+study/i, /your\s+university/i, /what.*degree/i, /tell.*about.*education/i, /educational\s+background/i, /adamas/i, /which\s+college/i],
     response: {
-      answer: "I completed my Bachelor of Technology in Computer Science & Engineering at Adamas University (2022-2026) with a CGPA of 8.72/10. My coursework included Data Structures, Algorithms, DBMS, Operating Systems, and Computer Networks. I was an active member of the Coding Club & Technical Society. Before that, I did my 12th from Kendriya Vidyalaya Tarakeswar with PCM and Computer Science (59%), and 10th from the same school (74%).",
+      answer: "I completed my Bachelor of Technology in Computer Science & Engineering at Adamas University (2022-2026) with a CGPA of 8.68/10. My coursework included Data Structures, Algorithms, DBMS, Operating Systems, and Computer Networks. I was an active member of the Coding Club & Technical Society. Before that, I did my 12th from Kendriya Vidyalaya Tarakeswar with PCM and Computer Science (59%), and 10th from the same school (74%).",
       followUp: [
         "What are your technical skills?",
         "Tell me about your projects",
