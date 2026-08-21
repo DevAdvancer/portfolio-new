@@ -4,6 +4,7 @@ import formethica from "/formethica.webp";
 import femway from "/femway.webp";
 import studynotesviewer from "/studynoteviewer.webp";
 import dlka from "/dlka.webp";
+import nexterm from "/nexterm.svg";
 
 export interface Project {
   id: string;
@@ -142,6 +143,6 @@ export const projects: Project[] = [
     role: "Sole developer.  Designed terminal architecture, implemented AI integration with multiple providers, built TUI with ratatui, and created security features for data sanitization.",
     githubUrl: "https://github.com/DevAdvancer/Nexterm",
     liveUrl: null, // CLI tool, no live URL
-    image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=500&fit=crop", // Terminal/coding themed image
+    image: nexterm,
   }
 ];

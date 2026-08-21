@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import CountUp from "./CountUp";
 
 interface Stat {
@@ -53,12 +53,19 @@ const item = {
   },
 };
 
+// Reduced-motion variant: no blur (blur repaints) and no translate — just present.
+const itemReduced = {
+  hidden: { opacity: 1 },
+  visible: { opacity: 1 },
+};
+
 /**
  * A horizontal stats bar that lives at the bottom of the hero.
  * Recruiters see it in the first 3 seconds — it telegraphs the candidate's
  * numbers without making them read paragraphs of bio.
  */
 const RecruiterStatsBar = () => {
+  const prefersReducedMotion = useReducedMotion();
   return (
     <motion.div
       className="relative mt-12 sm:mt-16 mx-auto max-w-4xl"
@@ -73,7 +80,7 @@ const RecruiterStatsBar = () => {
         {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
-            variants={item}
+            variants={prefersReducedMotion ? itemReduced : item}
             className={`group relative px-4 sm:px-6 py-5 sm:py-6 text-left transition-colors hover:bg-secondary/30 ${
               index < stats.length - 1 ? "md:border-r border-border" : ""
             } ${index % 2 === 0 ? "border-r md:border-r" : ""} ${

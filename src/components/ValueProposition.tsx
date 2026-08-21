@@ -7,6 +7,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeader from "./SectionHeader";
 import { hoverLift, smoothTransition } from "@/lib/motion";
 
 interface Pillar {
@@ -84,24 +85,17 @@ const colorBg: Record<Pillar["color"], string> = {
 
 const ValueProposition = () => {
   return (
-    <section id="why" className="relative py-20 sm:py-28">
+    <section id="why" className="accent-blue relative py-20 sm:py-28">
       <div className="container mx-auto px-4 sm:px-6 relative">
         <div className="max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-primary" />
-              <p className="text-sm uppercase tracking-[0.3em] text-primary">
-                For recruiters
-              </p>
-            </div>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4 leading-tight">
-              What I bring to your team
-            </h2>
-            <p className="text-muted-foreground max-w-2xl text-base sm:text-lg mb-12 sm:mb-16">
-              Six things you get the moment I join — beyond just code. These are the habits, instincts, and
-              commitments I bring to every team I've been part of.
-            </p>
-          </ScrollReveal>
+          <SectionHeader
+            index={1}
+            kicker="For recruiters"
+            title="What I bring to your team"
+            intro="Six things you get the moment I join — beyond just code. These are the habits, instincts, and commitments I bring to every team I've been part of."
+            className="mb-12 sm:mb-16"
+            titleClassName="md:text-5xl"
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {pillars.map((pillar, index) => {
@@ -109,7 +103,7 @@ const ValueProposition = () => {
               return (
                 <ScrollReveal key={pillar.title} delay={index * 80}>
                   <article
-                    className="group relative h-full bg-card/60 backdrop-blur-sm border border-border p-6 sm:p-7 overflow-hidden shine-on-hover hover:border-primary/40 transition-all"
+                    className="group relative h-full bg-card/60 backdrop-blur-sm border border-border p-6 sm:p-7 overflow-hidden shine-on-hover hover:border-section/40 transition-all"
                     onMouseMove={(e) => {
                       const target = e.currentTarget;
                       const rect = target.getBoundingClientRect();
@@ -124,7 +118,7 @@ const ValueProposition = () => {
                       className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                       style={{
                         background:
-                          "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(var(--primary) / 0.10), transparent 40%)",
+                          "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(var(--section-accent) / 0.10), transparent 40%)",
                       }}
                     />
 

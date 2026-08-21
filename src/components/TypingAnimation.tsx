@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useReducedMotion } from "framer-motion";
 
 interface TypingAnimationProps {
   words: string[];
@@ -18,8 +19,13 @@ const TypingAnimation = ({
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // Respect reduced-motion: skip the type/delete loop entirely and let the
+    // static branch below show the first role.
+    if (prefersReducedMotion) return;
+
     const word = words[currentWordIndex];
 
     const timeout = setTimeout(() => {
@@ -40,7 +46,16 @@ const TypingAnimation = ({
     }, isDeleting ? deletingSpeed : typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
+  }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration, prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return (
+      <span className={className}>
+        {words[0]}
+        <span className="text-primary">|</span>
+      </span>
+    );
+  }
 
   return (
     <span className={className}>

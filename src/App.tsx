@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import GlobalBackground from "@/components/GlobalBackground";
+import CustomCursor from "@/components/CustomCursor";
 import RouteProgress from "@/components/RouteProgress";
 import SkipLink from "@/components/SkipLink";
 import SEO from "@/components/SEO";
@@ -81,6 +82,7 @@ const App = () => {
         <TooltipProvider>
           <SkipLink />
           <GlobalBackground />
+          <CustomCursor />
           <div className="relative z-10">
             <Suspense fallback={null}>
               <Chatbot />

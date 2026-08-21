@@ -5,7 +5,7 @@ const rowOne = [
 ];
 
 const rowTwo = [
-  "JavaScript", "Java", "Git", "Docker", "Vercel", "Linux", "VS Code", "Cursor", "REST APIs", "Framer Motion", "Three.js", "Zustand",
+  "JavaScript", "Java", "Git", "Docker", "Vercel", "Linux", "VS Code", "Cursor", "REST APIs", "Framer Motion", "Rust", "Zustand",
 ];
 
 /**

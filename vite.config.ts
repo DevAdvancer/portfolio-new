@@ -32,10 +32,6 @@ export default defineConfig(() => ({
           if (id.includes("node_modules/react-router") || id.includes("node_modules/@remix-run/router")) {
             return "router";
           }
-          // Three.js - heavy, lazy load
-          if (id.includes("three") || id.includes("@react-three")) {
-            return "three-vendor";
-          }
           // Motion/animation - lazy load
           if (id.includes("framer-motion")) {
             return "motion-vendor";

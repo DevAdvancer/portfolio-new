@@ -15,7 +15,7 @@ async function prerender() {
       },
     },
     ssr: {
-      noExternal: ["framer-motion", "three", "@react-three", "@react-three/fiber", "@react-three/drei"],
+      noExternal: ["framer-motion"],
     },
     server: {
       port: 4173,

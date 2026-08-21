@@ -29,10 +29,20 @@ const Index = () => {
         <ValueProposition />
         <TechTicker />
         <About />
+
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="section-divider max-w-4xl mx-auto" />
+        </div>
+
         <Skills />
         <Projects />
         <ManifestoBand />
         <Experience />
+
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="section-divider max-w-4xl mx-auto" />
+        </div>
+
         <Education />
       </main>
       <Footer />

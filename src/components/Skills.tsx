@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeader from "./SectionHeader";
 
 interface Skill {
   name: string;
@@ -109,23 +110,16 @@ const Skills = () => {
     : skillCategories;
 
   return (
-    <section id="skills" className="py-16 sm:py-24 relative">
+    <section id="skills" className="accent-teal py-16 sm:py-24 relative">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-primary" />
-              <p className="text-sm uppercase tracking-[0.3em] text-primary">
-                Technical Proficiency
-              </p>
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-              Skills & Tech Stack
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mb-8 sm:mb-10">
-              A focused map of the technologies I work with daily — grouped by purpose, with honest proficiency levels.
-            </p>
-          </ScrollReveal>
+          <SectionHeader
+            index={2}
+            kicker="Technical Proficiency"
+            title="Skills & Tech Stack"
+            intro="A focused map of the technologies I work with daily — grouped by purpose, with honest proficiency levels."
+            className="mb-8 sm:mb-10"
+          />
 
           {/* Category filter pills */}
           <ScrollReveal delay={100}>
@@ -134,8 +128,8 @@ const Skills = () => {
                 onClick={() => setActiveCategory(null)}
                 className={`text-xs px-4 py-2 border transition-colors ${
                   activeCategory === null
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+                    ? "bg-section text-background border-section"
+                    : "border-border text-muted-foreground hover:border-section hover:text-section"
                 }`}
                 whileTap={{ scale: 0.97 }}
               >
@@ -147,8 +141,8 @@ const Skills = () => {
                   onClick={() => setActiveCategory(cat.title === activeCategory ? null : cat.title)}
                   className={`text-xs px-4 py-2 border transition-colors ${
                     activeCategory === cat.title
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+                      ? "bg-section text-background border-section"
+                      : "border-border text-muted-foreground hover:border-section hover:text-section"
                   }`}
                   whileTap={{ scale: 0.97 }}
                 >
@@ -163,8 +157,8 @@ const Skills = () => {
             {visibleCategories.map((category, catIndex) => (
               <ScrollReveal key={category.title} delay={catIndex * 80}>
                 <div>
-                  <h3 className="text-sm uppercase tracking-[0.18em] text-primary mb-3 flex items-center gap-2">
-                    <span className="h-px w-4 bg-primary" />
+                  <h3 className="text-sm uppercase tracking-[0.18em] text-section mb-3 flex items-center gap-2">
+                    <span className="h-px w-4 bg-section" />
                     {category.title}
                     <span className="text-muted-foreground/60 ml-auto text-xs">
                       {category.skills.length}

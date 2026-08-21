@@ -37,8 +37,11 @@ To add a project or blog post, add an entry to the respective data file.
 
 ### Key Components
 
-- `src/components/HeroScene.tsx` — 3D animated scene using React Three Fiber (`@react-three/fiber` + `@react-three/drei`). Contains animated sphere with distort material and floating particles.
-- `src/components/Chatbot.tsx` — AI-like chatbot that runs entirely client-side using pattern matching from `chatbotKnowledge.ts` (no API calls).
+- `src/components/GlobalBackground.tsx` — Fixed, mostly-static ambient background (radial gradient, blurred aurora blobs, faint masked grid). Purely CSS; no per-frame JS. Rendered once at the app root behind all routes.
+- `src/components/CustomCursor.tsx` — Optional magnetic cursor dot. Rendered once at the app root. Self-gating: bails unless `(pointer: fine)` matches and `useReducedMotion()` is false. One passive `pointermove` + a single rAF loop driving `transform: translate3d` (compositor-only). Adds `has-custom-cursor` to `<html>` to trigger the native-cursor-hiding CSS hook.
+- `src/components/SectionHeader.tsx` — Reusable editorial section header (zero-padded numeral + tick + kicker + serif title + optional intro). Renders the numeral/tick/kicker in the section's accent via `text-section`/`bg-section`. Built on `ScrollReveal`. Use this for every content section instead of hand-rolling label/`h2`/intro.
+- `src/components/LiveTerminalPanel.tsx` — Glass "terminal" card in the hero's right column (macOS traffic-lights, `$` prompts, a live IST clock via a 1s interval gated by `useReducedMotion`, `live-ping` status dot).
+- `src/components/Chatbot.tsx` — Floating assistant. Uses pattern matching from `chatbotKnowledge.ts` with a remote LLM call and a client-side fallback.
 - `src/components/SEO.tsx` — Dynamically updates document meta tags (OG, Twitter cards, canonical URL). Domain: `abhirupkumar.in`.
 - `src/components/ScrollReveal.tsx` — Intersection Observer wrapper for scroll-triggered animations.
 
@@ -52,6 +55,14 @@ To add a project or blog post, add an entry to the respective data file.
 - Custom fonts: DM Sans (sans), Crimson Pro (serif), SF Mono (mono)
 - shadcn/ui components live in `src/components/ui/`
 - Blog content is rendered with `react-markdown` + `remark-gfm` and styled via Tailwind typography plugin
+
+#### Per-section accent system (multi-accent)
+
+Each content section owns a distinct accent so the page isn't monochrome-blue. A section wrapper sets one of the `.accent-*` helper classes (`accent-blue`/`accent-teal`/`accent-violet`/`accent-pink`/`accent-amber`), which set the `--section-accent` CSS var from the `--chart-*` palette. Descendants consume it via the Tailwind `section` color: `text-section` / `bg-section` / `border-section` (opacity modifiers like `border-section/40` work). The five palette hues are registered as `chart-1..5` Tailwind colors, so `bg-chart-3`, `text-chart-4`, etc. also resolve directly.
+
+Current mapping: Hero/Value = blue, Skills = teal, Projects = violet, Experience = pink, Education = amber, Manifesto = multi (gradient).
+
+Reusable surfaces/effects in `index.css` (accent-aware where noted): `.card-premium` (gradient hairline border on hover), `.section-divider` (gradient hairline between sections), `.section-glow`, `.noise-overlay`, `.aurora-blob`, `.live-ping`, `.char`/`.char.in` (hero name split-reveal). New JS/rAF animation must self-gate with `useReducedMotion()`; the global reduced-motion kill-switch in `AccessibilityProvider.tsx` only neutralizes CSS animations.
 
 ### TypeScript
 

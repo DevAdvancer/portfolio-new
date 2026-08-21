@@ -1,6 +1,7 @@
 import { GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeader from "./SectionHeader";
 import { hoverLift, smoothTransition } from "@/lib/motion";
 
 interface EducationItem {
@@ -43,29 +44,27 @@ const education: EducationItem[] = [
 
 const Education = () => {
   return (
-    <section id="education" className="py-16 sm:py-24">
+    <section id="education" className="accent-amber py-16 sm:py-24">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <p className="text-sm uppercase tracking-[0.3em] text-primary mb-4">
-              Academic Background
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-12">
-              Education
-            </h2>
-          </ScrollReveal>
+          <SectionHeader
+            index={5}
+            kicker="Academic Background"
+            title="Education"
+            className="mb-12"
+          />
 
           <div className="space-y-8">
             {education.map((edu, index) => (
               <ScrollReveal key={index} delay={index * 150}>
                 <motion.div
-                  className="bg-card/50 border border-border p-8 flex gap-6 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5"
+                  className="card-premium p-8 flex gap-6"
                   whileHover={hoverLift}
                   transition={smoothTransition}
                 >
                   <div className="flex-shrink-0 hidden sm:block">
-                    <div className="w-12 h-12 bg-secondary/50 border border-primary/30 flex items-center justify-center">
-                      <GraduationCap size={24} className="text-primary" />
+                    <div className="w-12 h-12 bg-secondary/50 border border-section/30 flex items-center justify-center">
+                      <GraduationCap size={24} className="text-section" />
                     </div>
                   </div>
 
@@ -75,11 +74,11 @@ const Education = () => {
                         <h3 className="font-serif text-xl text-foreground">
                           {edu.degree}
                         </h3>
-                        <p className="text-sm text-primary">{edu.specialization}</p>
+                        <p className="text-sm text-section">{edu.specialization}</p>
                       </div>
                       {(edu.cgpa || edu.percentage) && (
                         <div className="text-right">
-                          <p className="text-lg font-medium text-accent">
+                          <p className="text-lg font-medium text-section">
                             {edu.cgpa || edu.percentage}
                           </p>
                           <p className="text-xs text-muted-foreground">

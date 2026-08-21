@@ -1,6 +1,7 @@
 import { Briefcase, GraduationCap, Award, Code, TrendingUp, Building2, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import SectionHeader from "./SectionHeader";
 import { hoverLift, smoothTransition } from "@/lib/motion";
 
 interface Experience {
@@ -94,23 +95,16 @@ const formatMonthCount = (months: number) =>
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-16 sm:py-24 relative">
+    <section id="experience" className="accent-pink py-16 sm:py-24 relative">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-primary" />
-              <p className="text-sm uppercase tracking-[0.3em] text-primary">
-                Professional Journey
-              </p>
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-              Experience & Impact
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mb-12">
-              A timeline of the roles where I've shipped real work, led teams, and grown as an engineer.
-            </p>
-          </ScrollReveal>
+          <SectionHeader
+            index={4}
+            kicker="Professional Journey"
+            title="Experience & Impact"
+            intro="A timeline of the roles where I've shipped real work, led teams, and grown as an engineer."
+            className="mb-12"
+          />
 
           <div className="relative">
             {/* Static gradient timeline line — no per-frame scroll work, looks just as good */}
@@ -125,17 +119,17 @@ const Experience = () => {
                       {/* Icon with glow */}
                       <div className="hidden md:flex items-start justify-center relative">
                         <motion.div
-                          className="w-10 h-10 bg-card border-2 border-primary flex items-center justify-center shadow-lg shadow-primary/30 relative z-10"
+                          className="w-10 h-10 bg-card border-2 border-section flex items-center justify-center shadow-lg shadow-section/30 relative z-10"
                           whileHover={hoverLift}
                           transition={smoothTransition}
                         >
-                          <Icon size={18} className="text-primary" />
+                          <Icon size={18} className="text-section" />
                         </motion.div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary/20 blur-xl rounded-full" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-section/20 blur-xl rounded-full" />
                       </div>
 
                       <motion.article
-                        className="group relative bg-card/50 border border-border hover:border-primary/50 transition-all overflow-hidden"
+                        className="group relative bg-card/50 border border-border hover:border-section/50 transition-all overflow-hidden"
                         whileHover={hoverLift}
                         transition={smoothTransition}
                       >
@@ -165,7 +159,7 @@ const Experience = () => {
                                   </span>
                                 )}
                               </div>
-                              <p className="text-sm text-primary font-medium">
+                              <p className="text-sm text-section font-medium">
                                 {exp.organization}
                               </p>
                             </div>
@@ -202,7 +196,7 @@ const Experience = () => {
 
                           {exp.highlights && (
                             <div className="mb-4">
-                              <p className="text-xs uppercase tracking-widest text-primary mb-2 flex items-center gap-1.5">
+                              <p className="text-xs uppercase tracking-widest text-section mb-2 flex items-center gap-1.5">
                                 <TrendingUp size={12} />
                                 Key Contributions
                               </p>
@@ -212,7 +206,7 @@ const Experience = () => {
                                     key={highlight}
                                     className="text-sm text-muted-foreground flex items-start gap-2 leading-relaxed"
                                   >
-                                    <span className="mt-2 h-1 w-1 rounded-full bg-primary flex-shrink-0" />
+                                    <span className="mt-2 h-1 w-1 rounded-full bg-section flex-shrink-0" />
                                     <span>{highlight}</span>
                                   </li>
                                 ))}
@@ -222,8 +216,8 @@ const Experience = () => {
 
                           {/* Impact callout */}
                           {exp.impact && (
-                            <div className="mb-4 p-3 border-l-2 border-primary bg-primary/5">
-                              <p className="text-xs uppercase tracking-widest text-primary mb-1">
+                            <div className="mb-4 p-3 border-l-2 border-section bg-section/5">
+                              <p className="text-xs uppercase tracking-widest text-section mb-1">
                                 Impact
                               </p>
                               <p className="text-sm text-foreground">
