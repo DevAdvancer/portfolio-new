@@ -68,7 +68,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["about you", "who", "yourself", "introduce yourself", "tell me about you"],
     patterns: [/^who\s+are\s+you/i, /tell\s+me\s+about\s+(you|yourself|abhirup)/i, /^introduce\s+(yourself)?$/i, /^about\s+you/i, /who\s+is\s+abhirup/i],
     response: {
-      answer: "I'm Abhirup Kumar — a Software Developer, full-stack engineer, and cybersecurity enthusiast from Kolkata, India. I'm currently working full-time at Vizva Consultancy Services while having recently graduated with a B.Tech in Computer Science from Adamas University (CGPA: 8.68). I love building things that solve real problems, from kernel-level security systems to AI-powered web apps. Outside of code, I'm a curious person who enjoys exploring new tech, gaming, and having deep conversations over chai.",
+      answer: "I'm Abhirup Kumar — a Software Developer, full-stack engineer, and cybersecurity enthusiast from Kolkata, India. I'm currently working full-time at Vizva Consultancy Services while having recently graduated with a B.Tech in Computer Science from Adamas University (CGPA: 8.68). I love building things that solve real problems, from kernel-level security systems to AI-powered web apps. Outside of code, I'm a curious person who enjoys exploring new tech, gaming, and having deep conversations over coffee.",
       followUp: [
         "What are your hobbies?",
         "What kind of person are you?",
@@ -156,7 +156,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["hobbies", "hobby", "free time", "spare time", "pastime", "leisure", "fun", "outside work", "outside coding"],
     patterns: [/your\s+hobb(y|ies)/i, /what\s+do\s+you\s+do\s+(for\s+fun|in\s+your?\s+(free|spare)\s+time)/i, /outside\s+(of\s+)?(work|coding|programming)/i, /leisure/i, /pastime/i, /free\s+time/i],
     response: {
-      answer: "When I'm not coding, I enjoy gaming, watching tech videos and documentaries, exploring new tools and frameworks just for fun, and listening to music. I also love having deep conversations about tech, life, and ideas with friends over chai. I occasionally binge anime and sci-fi shows too. Honestly, tech is both my work and hobby — I genuinely enjoy tinkering with new projects even in my downtime!",
+      answer: "When I'm not coding, I enjoy gaming, watching tech videos and documentaries, exploring new tools and frameworks just for fun, and listening to music. I also love having deep conversations about tech, life, and ideas with friends over coffee. I occasionally binge anime and sci-fi shows too. Honestly, tech is both my work and hobby — I genuinely enjoy tinkering with new projects even in my downtime!",
       followUp: [
         "What games do you play?",
         "What music do you listen to?",
@@ -168,7 +168,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["game", "gaming", "gamer", "play", "video game", "favorite game"],
     patterns: [/do\s+you\s+(play|game|like)\s+games?/i, /fav(ou?rite)?\s+game/i, /gaming/i, /what\s+games?/i, /gamer/i, /video\s+games?/i],
     response: {
-      answer: "Yes, I'm a casual gamer! I enjoy story-driven games and sometimes competitive ones to unwind. Gaming taught me a lot about strategic thinking, patience, and problem-solving under pressure — skills that actually transfer to coding. It's a great way to switch off from work mode while still keeping my brain engaged.",
+      answer: "Yes! Abhirup is a gamer as well as a coder. Gaming and coffee are part of his personality, not just his work. He hasn’t shared specific game titles or ranks for this portfolio yet.",
       followUp: [
         "What are your other hobbies?",
         "How do you relax?",
@@ -204,7 +204,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["food", "eat", "favorite food", "cuisine", "cook", "cooking", "biryani", "street food"],
     patterns: [/fav(ou?rite)?\s+(food|cuisine|dish|meal)/i, /what\s+do\s+you\s+(eat|like\s+to\s+eat)/i, /do\s+you\s+cook/i, /food\s+(preference|lover)/i, /street\s+food/i, /biryani/i, /foodie/i],
     response: {
-      answer: "I'm a total foodie! Being from Kolkata, I love Bengali cuisine — fish curry, mishti doi, and rosogolla are classics. I'm also a huge biryani fan (Kolkata biryani with the potato is *chef's kiss*). Street food like phuchka (pani puri) and kathi rolls are my go-to comfort food. I can cook basic stuff for survival, but I'd much rather eat good food than make it. Chai is non-negotiable — it fuels my coding sessions!",
+      answer: "I'm a total foodie! Being from Kolkata, I love Bengali cuisine — fish curry, mishti doi, and rosogolla are classics. I'm also a huge biryani fan (Kolkata biryani with the potato is *chef's kiss*). Street food like phuchka (pani puri) and kathi rolls are my go-to comfort food. I can cook basic stuff for survival, but I'd much rather eat good food than make it. Coffee is my coding fuel.",
       followUp: [
         "Where are you from?",
         "What's your daily routine?",
@@ -216,7 +216,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["coffee", "tea", "chai", "drink", "beverage"],
     patterns: [/coffee\s+or\s+tea/i, /tea\s+or\s+coffee/i, /do\s+you\s+drink\s+(coffee|tea|chai)/i, /chai/i, /fav(ou?rite)?\s+(drink|beverage)/i],
     response: {
-      answer: "Chai, no contest! I'm a chai person through and through. A hot cup of masala chai is what gets me through late-night coding sessions. Coffee is fine occasionally, but chai is where my heart is. It's basically a Bengali programmer's fuel!",
+      answer: "Coffee, definitely. Abhirup describes himself as a coffee person through and through—a coder, gamer, and coffee lover. His favorite brew hasn’t been added yet, so I won’t make one up.",
       followUp: [
         "What's your favorite food?",
         "Are you a night owl?",
@@ -228,7 +228,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["morning person", "night owl", "night person", "early bird", "sleep", "routine", "daily routine", "schedule"],
     patterns: [/morning\s+(person|bird)/i, /night\s+(owl|person)/i, /early\s+bird/i, /daily\s+routine/i, /your\s+(routine|schedule)/i, /when\s+do\s+you\s+(wake|sleep|work|code)/i, /sleep\s+(schedule|routine|habit)/i],
     response: {
-      answer: "Definitely a night owl! My best coding happens late at night when everything is quiet. I usually work on personal projects and deep-focus tasks after 10 PM. Mornings are for meetings and lighter work. My typical day involves work during the day, learning or side projects in the evening, and creative problem-solving at night with chai in hand. I'm working on getting better at mornings though — it's a work in progress!",
+      answer: "Definitely a night owl! My best coding happens late at night when everything is quiet. I usually work on personal projects and deep-focus tasks after 10 PM. Mornings are for meetings and lighter work. My typical day involves work during the day, learning or side projects in the evening, and creative problem-solving at night with coffee in hand. I'm working on getting better at mornings though — it's a work in progress!",
       followUp: [
         "How do you manage your time?",
         "What are you working on?",
@@ -328,7 +328,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["fun fact", "interesting", "something interesting", "don't know about you", "surprising", "secret", "random fact"],
     patterns: [/fun\s+fact/i, /something\s+interesting/i, /tell\s+me\s+something\s+(I\s+)?don'?t\s+know/i, /surprise\s+me/i, /random\s+fact/i, /secret/i, /something\s+(cool|unique|random|surprising)/i],
     response: {
-      answer: "Fun fact: I've solved over 800 LeetCode problems — that's more problems than most people solve in their entire coding journey! Also, one of my projects (DLKA) literally works at the Linux kernel level, which means I've written code that runs at the deepest layer of the operating system. Oh, and I ranked 849 globally in TryHackMe's HackfinityBattle hackathon. When I'm not doing all that, you'll probably find me sipping chai at midnight while debugging some random issue.",
+      answer: "Fun fact: I've solved over 800 LeetCode problems — that's more problems than most people solve in their entire coding journey! Also, one of my projects (DLKA) literally works at the Linux kernel level, which means I've written code that runs at the deepest layer of the operating system. Oh, and I ranked 849 globally in TryHackMe's HackfinityBattle hackathon. When I'm not doing all that, you'll probably find me sipping coffee at midnight while debugging some random issue.",
       followUp: [
         "Tell me about DLKA",
         "What's your LeetCode journey?",
@@ -468,7 +468,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["stress", "pressure", "handle stress", "cope", "burnout", "overwhelmed", "anxious"],
     patterns: [/how\s+do\s+you\s+(handle|deal\s+with|cope\s+with|manage)\s+(stress|pressure)/i, /when\s+(you'?re?\s+)?(stressed|overwhelmed|anxious)/i, /burnout/i, /under\s+pressure/i, /stressful\s+situation/i],
     response: {
-      answer: "When I'm stressed, I step away from the screen. Seriously — sometimes the best debugging happens during a walk or over a cup of chai. I break big problems into smaller, manageable tasks so they feel less overwhelming. I also listen to music, play games, or just talk to friends. I've learned that pushing through exhaustion doesn't produce good code. I try to maintain a sustainable pace rather than burning out with intense bursts. If I'm stuck on a problem, I sleep on it — the solution often clicks the next morning.",
+      answer: "When I'm stressed, I step away from the screen. Seriously — sometimes the best debugging happens during a walk or over a cup of coffee. I break big problems into smaller, manageable tasks so they feel less overwhelming. I also listen to music, play games, or just talk to friends. I've learned that pushing through exhaustion doesn't produce good code. I try to maintain a sustainable pace rather than burning out with intense bursts. If I'm stuck on a problem, I sleep on it — the solution often clicks the next morning.",
       followUp: [
         "How do you manage your time?",
         "What are your hobbies?",
@@ -1288,7 +1288,7 @@ const fallbackResponses: ChatResponse[] = [
     ]
   },
   {
-    answer: "I don't have info on that, but there's a lot I CAN tell you! I know about Abhirup's tech stack, personal interests, hackathon stories, work experience, and even his chai addiction. What sounds interesting?",
+    answer: "I don't have info on that, but there's a lot I CAN tell you! I know about Abhirup's tech stack, personal interests, hackathon stories, work experience, and even his love of coffee. What sounds interesting?",
     followUp: [
       "Tell me about your hackathon experience",
       "What are your skills?",

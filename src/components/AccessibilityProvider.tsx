@@ -32,7 +32,7 @@ const AccessibilityProvider = ({ children }: { children: React.ReactNode }) => {
         white-space: nowrap;
         border: 0;
       }
-      .focus\:not-sr-only:focus {
+      .focus\\:not-sr-only:focus {
         position: fixed;
         width: auto;
         height: auto;
@@ -46,7 +46,7 @@ const AccessibilityProvider = ({ children }: { children: React.ReactNode }) => {
     document.head.appendChild(style);
 
     // Set focus color CSS var
-    document.documentElement.style.setProperty("--focus-color", "#3b82f6");
+    document.documentElement.style.setProperty("--focus-color", "#a3b88c");
 
     return () => {
       document.head.removeChild(style);

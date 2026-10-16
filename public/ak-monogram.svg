@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Abhirup Kumar — open-loop monogram</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#edbc58"/>
+  <g fill="none" stroke="#28241f" stroke-width="4.5" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M13 43V29c0-7 4-11 11-11h5v25M13 32h16"/>
+    <path d="M37 18v25m12-25L37 30l13 13"/>
+  </g>
+  <circle cx="50" cy="12" r="4" fill="#bc452e"/>
+</svg>

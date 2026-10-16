@@ -1,248 +1,89 @@
-import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
-import { chatWithGroq, isGroqAvailable } from "../lib/groq";
-import { findBestMatch } from "../data/chatbotKnowledge";
+import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from "react";
+import { MessageCircle, X, ArrowUp, Loader2, Minus } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
+import { chatWithGroq, isGroqAvailable } from "@/lib/groq";
+import { findBestMatch } from "@/data/chatbotKnowledge";
+import { getDiscoveryHint } from "@/lib/discoveryHints";
+import { useExploration } from "@/hooks/use-exploration";
 
 interface Message {
   id: string;
   text: string;
   sender: "user" | "bot";
-  timestamp: Date;
   followUp?: string[];
 }
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "welcome",
-      text: "Hey! I'm Abhirup's AI assistant. Ask me anything — his skills, projects, hobbies, personal life, hackathon stories, or even his favorite food. I'm an open book!",
-      sender: "bot",
-      timestamp: new Date(),
-      followUp: [
-        "Tell me about yourself",
-        "What are your hobbies?",
-        "What kind of person are you?"
-      ]
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([{
+    id: "welcome",
+    text: "Hey, I’m Abhirup’s AI assistant. Code, coffee, games, or projects? I can show you around—and offer a small hint if you get stuck exploring.",
+    sender: "bot",
+    followUp: ["What does Abhirup build?", "Coffee or tea?", "A small hint?"],
+  }]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [localReply, setLocalReply] = useState(!isGroqAvailable());
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  const outputRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const reducedMotion = useReducedMotion();
+  const { step } = useExploration();
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
-
-  // Build conversation history for Groq context
-  const getConversationHistory = () => {
-    return messages
-      .filter(m => m.id !== "welcome")
-      .map(m => ({
-        role: m.sender === "user" ? "user" as const : "assistant" as const,
-        content: m.text
-      }));
-  };
+    if (outputRef.current) outputRef.current.scrollTo({ top: outputRef.current.scrollHeight, behavior: reducedMotion ? "instant" : "smooth" });
+  }, [messages, isTyping, reducedMotion]);
+  useEffect(() => { if (isOpen) inputRef.current?.focus(); }, [isOpen]);
+  const close = () => { setIsOpen(false); triggerRef.current?.focus(); };
 
   const handleSendMessage = async (messageText?: string) => {
-    const textToSend = messageText || inputValue.trim();
+    const textToSend = (messageText || inputValue).trim();
     if (!textToSend || isTyping) return;
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      text: textToSend,
-      sender: "user",
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, userMessage]);
+    const history = messages.filter(message => message.id !== "welcome").map(message => ({
+      role: message.sender === "user" ? "user" as const : "assistant" as const,
+      content: message.text,
+    }));
+    setMessages(previous => [...previous, { id: crypto.randomUUID(), text: textToSend, sender: "user" }]);
     setInputValue("");
     setIsTyping(true);
-
     try {
-      if (isGroqAvailable()) {
-        // Use Groq LLM for natural conversation
-        const history = getConversationHistory();
-        const result = await chatWithGroq(textToSend, history);
-
-        const botMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          text: result.answer,
-          sender: "bot",
-          timestamp: new Date(),
-          followUp: result.followUp
-        };
-
-        setMessages(prev => [...prev, botMessage]);
+      const hint = getDiscoveryHint(textToSend, step);
+      let response;
+      if (hint) {
+        response = hint;
+      } else if (isGroqAvailable()) {
+        try { response = await chatWithGroq(textToSend, history); setLocalReply(false); }
+        catch { response = findBestMatch(textToSend); setLocalReply(true); }
       } else {
-        // Fallback to local NLP matching
-        const response = findBestMatch(textToSend);
-
-        const botMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          text: response.answer,
-          sender: "bot",
-          timestamp: new Date(),
-          followUp: response.followUp
-        };
-
-        setMessages(prev => [...prev, botMessage]);
+        response = findBestMatch(textToSend); setLocalReply(true);
       }
-    } catch {
-      // If Groq fails, fall back to local matching
-      const response = findBestMatch(textToSend);
-
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: response.answer,
-        sender: "bot",
-        timestamp: new Date(),
-        followUp: response.followUp
-      };
-
-      setMessages(prev => [...prev, botMessage]);
+      setMessages(previous => [...previous, { id: crypto.randomUUID(), text: response.answer, sender: "bot", followUp: response.followUp }]);
     } finally {
       setIsTyping(false);
+      inputRef.current?.focus();
     }
   };
-
-  const handleFollowUpClick = (question: string) => {
-    handleSendMessage(question);
+  const submit = (event: FormEvent) => { event.preventDefault(); void handleSendMessage(); };
+  const keyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Escape") { event.stopPropagation(); close(); }
   };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
-  };
-
-  return (
-    <>
-      {/* Chat Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[60] p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-primary/30 min-w-[48px] min-h-[48px]"
-        aria-label={isOpen ? "Close chat" : "Open chat"}
-      >
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
-      </button>
-
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="fixed z-[60] bg-background border border-border shadow-2xl flex flex-col animate-slide-in-bottom
-          top-24 bottom-24 left-4 right-4 sm:top-auto sm:bottom-24 sm:left-auto sm:right-6 sm:w-[380px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] rounded-lg">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-border bg-card/50">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-10 h-10 bg-primary/10 border border-primary/30 rounded-full flex items-center justify-center">
-                  <MessageCircle size={20} className="text-primary" />
-                </div>
-                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-background rounded-full"></div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-foreground">Abhirup's Assistant</h3>
-                <p className="text-xs text-muted-foreground">Powered by AI</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 -mr-1 hover:bg-secondary rounded-lg transition-colors"
-              aria-label="Close chat"
-            >
-              <X size={20} className="text-muted-foreground" />
-            </button>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.map((message) => (
-              <div key={message.id}>
-                <div
-                  className={`flex ${
-                    message.sender === "user" ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  <div
-                    className={`max-w-[80%] rounded-lg p-3 ${
-                      message.sender === "user"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-card border border-border text-foreground"
-                    }`}
-                  >
-                    <p className="text-sm whitespace-pre-line leading-relaxed">{message.text}</p>
-                  </div>
-                </div>
-
-                {/* Follow-up questions */}
-                {message.sender === "bot" && message.followUp && message.followUp.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {message.followUp.map((question, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => handleFollowUpClick(question)}
-                        className="text-xs px-3 py-1.5 bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground border border-border rounded-full transition-colors"
-                      >
-                        {question}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {isTyping && (
-              <div className="flex justify-start">
-                <div className="bg-card border border-border rounded-lg p-3 flex items-center gap-2">
-                  <Loader2 size={16} className="animate-spin text-primary" />
-                  <span className="text-sm text-muted-foreground">Thinking...</span>
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-
-          {/* Input */}
-          <div className="p-4 border-t border-border bg-card/30">
-            <div className="flex gap-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Ask me anything..."
-                className="flex-1 px-4 py-2 bg-background border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-              />
-              <button
-                onClick={() => handleSendMessage()}
-                disabled={!inputValue.trim() || isTyping}
-                className="p-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                aria-label="Send message"
-              >
-                <Send size={18} />
-              </button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
-              Powered by AI • Responses may vary
-            </p>
-          </div>
-        </div>
-      )}
-    </>
-  );
+  return <>
+    <button ref={triggerRef} type="button" className="assistant-launcher" onClick={() => isOpen ? close() : setIsOpen(true)} aria-label={isOpen ? "Minimize AI assistant" : "Open Abhirup’s AI assistant"} aria-expanded={isOpen} aria-controls="portfolio-assistant">
+      {isOpen ? <Minus size={17} /> : <MessageCircle size={17} />}<span>{isOpen ? "Back to exploring" : "Ask my AI"}</span><span className="status-dot" />
+    </button>
+    {isOpen && <section id="portfolio-assistant" className="assistant-panel" role="dialog" aria-modal="false" aria-label="Abhirup’s AI assistant" onKeyDown={keyDown}>
+      <header className="assistant-header"><div><h2>Abhirup Kumar</h2></div><button onClick={close} aria-label="Close AI assistant"><X size={18} /></button></header>
+      <div className="assistant-conversation" ref={outputRef} role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions" tabIndex={0}>
+        {messages.map((message, index) => <div key={message.id} className={`assistant-message ${message.sender === "user" ? "from-visitor" : "from-assistant"}`}>
+          <p className="message-author">{message.sender === "user" ? "YOU" : "AK / ASSISTANT"}</p>
+          <p className="message-copy">{message.text}</p>
+          {message.sender === "bot" && message.followUp?.length > 0 && index === messages.length - 1 && <div className="assistant-suggestions">{message.followUp.map(question => <button type="button" key={question} onClick={() => void handleSendMessage(question)} disabled={isTyping}>{question} ↗</button>)}</div>}
+        </div>)}
+        {isTyping && <p className="assistant-thinking" role="status"><Loader2 size={14} className="animate-spin" /> One moment…</p>}
+      </div>
+      <form className="assistant-composer" onSubmit={submit}><label className="sr-only" htmlFor="assistant-message">Message to Abhirup’s AI assistant</label><input id="assistant-message" ref={inputRef} value={inputValue} onChange={event => setInputValue(event.target.value)} maxLength={1000} placeholder="A question, a thought, a hint…" autoComplete="off" /><button type="submit" disabled={!inputValue.trim() || isTyping} aria-label="Send message"><ArrowUp size={18} /></button></form>
+      <p className="assistant-small-print">{localReply ? "Using saved portfolio knowledge." : "AI can get things wrong. Ask Abhirup for the details."}</p>
+    </section>}
+  </>;
 };
-
 export default Chatbot;

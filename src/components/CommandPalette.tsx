@@ -27,7 +27,9 @@ interface Action {
 }
 
 const scrollToId = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const target = document.getElementById(id);
+  if (target) target.scrollIntoView({ behavior: "smooth" });
+  else window.location.href = `/#${id}`;
 };
 
 const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
@@ -44,8 +46,8 @@ const CommandPaletteContent = ({ onClose }: { onClose: () => void }) => {
 
   const actions: Action[] = useMemo(
     () => [
-      { id: "home", label: "Home", icon: Hash, perform: () => { window.scrollTo({ top: 0, behavior: "smooth" }); onClose(); }, group: "Navigate" },
-      { id: "about", label: "Why me", icon: Sparkles, perform: () => { scrollToId("why"); onClose(); }, group: "Navigate" },
+      { id: "home", label: "Home", icon: Hash, perform: () => { if (window.location.pathname !== "/") window.location.href = "/"; else window.scrollTo({ top: 0, behavior: "smooth" }); onClose(); }, group: "Navigate" },
+      { id: "about", label: "About", icon: Sparkles, perform: () => { scrollToId("about"); onClose(); }, group: "Navigate" },
       { id: "skills", label: "Skills", icon: Hash, perform: () => { scrollToId("skills"); onClose(); }, group: "Navigate" },
       { id: "projects", label: "Projects", icon: Hash, perform: () => { scrollToId("projects"); onClose(); }, group: "Navigate" },
       { id: "experience", label: "Experience", icon: Hash, perform: () => { scrollToId("experience"); onClose(); }, group: "Navigate" },

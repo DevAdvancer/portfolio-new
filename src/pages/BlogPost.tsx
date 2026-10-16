@@ -26,7 +26,7 @@ const BlogPost = () => {
         type="article"
       />
       <Navigation />
-      <main className="pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <main id="main-content" tabIndex={-1} className="pt-12 sm:pt-20 pb-16 sm:pb-24">
         <article className="container mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mx-auto">
             <ScrollReveal>

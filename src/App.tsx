@@ -6,15 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
-import GlobalBackground from "@/components/GlobalBackground";
-import CustomCursor from "@/components/CustomCursor";
+import { ExplorationProvider } from "@/components/ExplorationProvider";
 import RouteProgress from "@/components/RouteProgress";
 import SkipLink from "@/components/SkipLink";
 import SEO from "@/components/SEO";
 import { SEO_CONFIG } from "@/data/seoConfig";
 
-const Chatbot = lazy(() => import("@/components/Chatbot"));
 const CommandPalette = lazy(() => import("@/components/CommandPalette"));
+const Chatbot = lazy(() => import("@/components/Chatbot"));
 
 // Lazy-load route components for code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -67,7 +66,6 @@ const AnimatedRoutes = () => {
 
 const App = () => {
   const [commandOpen, setCommandOpen] = useState(false);
-  const openCommand = useCallback(() => setCommandOpen(true), []);
   const closeCommand = useCallback(() => setCommandOpen(false), []);
 
   useEffect(() => {
@@ -81,12 +79,9 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <SkipLink />
-          <GlobalBackground />
-          <CustomCursor />
+          <ExplorationProvider>
           <div className="relative z-10">
-            <Suspense fallback={null}>
-              <Chatbot />
-            </Suspense>
+            <Suspense fallback={null}><Chatbot /></Suspense>
             <Toaster />
             <Sonner />
             <BrowserRouter>
@@ -97,6 +92,7 @@ const App = () => {
               <CommandPalette open={commandOpen} onClose={closeCommand} />
             </Suspense>
           </div>
+          </ExplorationProvider>
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>
