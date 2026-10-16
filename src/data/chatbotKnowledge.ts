@@ -1,3 +1,5 @@
+import { profile } from "@/data/profile";
+
 // Knowledge base for the portfolio chatbot
 export interface ChatResponse {
   answer: string;
@@ -68,7 +70,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["about you", "who", "yourself", "introduce yourself", "tell me about you"],
     patterns: [/^who\s+are\s+you/i, /tell\s+me\s+about\s+(you|yourself|abhirup)/i, /^introduce\s+(yourself)?$/i, /^about\s+you/i, /who\s+is\s+abhirup/i],
     response: {
-      answer: "I'm Abhirup Kumar — a Software Developer, full-stack engineer, and cybersecurity enthusiast from Kolkata, India. I'm currently working full-time at Vizva Consultancy Services while having recently graduated with a B.Tech in Computer Science from Adamas University (CGPA: 8.68). I love building things that solve real problems, from kernel-level security systems to AI-powered web apps. Outside of code, I'm a curious person who enjoys exploring new tech, gaming, and having deep conversations over coffee.",
+      answer: `I'm Abhirup Kumar — a Software Developer, full-stack engineer, and cybersecurity enthusiast based in ${profile.location}. I'm currently working full-time at Vizva Consultancy Services while having recently graduated with a B.Tech in Computer Science from Adamas University (CGPA: 8.68). I love building things that solve real problems, from kernel-level security systems to AI-powered web apps. Outside of code, I'm a curious person who enjoys exploring new tech, gaming, and having deep conversations over coffee.`,
       followUp: [
         "What are your hobbies?",
         "What kind of person are you?",
@@ -104,7 +106,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["where from", "hometown", "city", "location", "live", "based", "country", "state"],
     patterns: [/where\s+(are\s+you\s+from|do\s+you\s+live|are\s+you\s+based|is\s+your\s+hometown)/i, /which\s+(city|state|country)/i, /your\s+(location|hometown|city)/i],
     response: {
-      answer: "I'm from Tarakeswar, a small town near Kolkata in West Bengal, India. It's a peaceful place — great for focused work! I did my college at Adamas University in Kolkata, and I currently work remotely as a Software Developer. Kolkata has a special place in my heart — the culture, the food (especially the street food!), and the warmth of the people.",
+      answer: `I'm currently based in ${profile.location}. My hometown is Tarakeswar, near Kolkata in West Bengal. I graduated from Adamas University with a B.Tech in Computer Science & Engineering and work as a Software Developer.`,
       followUp: [
         "What's your favorite food?",
         "Tell me about your education",
@@ -808,7 +810,7 @@ export const chatbotKnowledge: KnowledgeEntry[] = [
     keywords: ["contact", "email", "reach", "connect", "get in touch", "hire"],
     patterns: [/how\s+(can|do)\s+i\s+(contact|reach|connect)/i, /get\s+in\s+touch/i, /email/i, /hire/i, /your\s+email/i, /contact\s+(info|information|details)/i],
     response: {
-      answer: "You can reach me at theabhirupkumar@gmail.com, call or text me at 8250772855, or use the contact form on this site. I'm also on LinkedIn at linkedin.com/in/abhirupkumar and GitHub at github.com/DevAdvancer. I'm based in Tarakeswar, Kolkata, India. Always open to opportunities, collaborations, or just a good chat!",
+      answer: `You can reach me at theabhirupkumar@gmail.com, call or text me at 8250772855, or use the contact form on this site. I'm also on LinkedIn at linkedin.com/in/abhirupkumar and GitHub at github.com/DevAdvancer. I'm based in ${profile.location}. Always open to opportunities, collaborations, or just a good chat!`,
       followUp: [
         "What's your LinkedIn?",
         "Tell me about your projects",

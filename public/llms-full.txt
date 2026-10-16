@@ -1,6 +1,6 @@
 # Abhirup Kumar: public portfolio reference
 
-Abhirup Kumar is a software developer from Tarakeswar, near Kolkata, India. He builds web applications, AI tools, and systems software with TypeScript, React, Next.js, Python, and Rust.
+Abhirup Kumar is a software developer based in Gurugram, Haryana, India, and a Computer Science & Engineering graduate of Adamas University. He builds web applications, AI tools, and systems software.
 
 Source: https://www.abhirupkumar.in/
 
@@ -8,8 +8,9 @@ Source: https://www.abhirupkumar.in/
 
 - Role: Software Developer
 - Work: Vizva Consultancy Services
-- Education: B.Tech, Computer Science, 2022–2026, Adamas University
-- Location: Tarakeswar, near Kolkata, West Bengal, India
+- Education: B.Tech, Computer Science & Engineering, 2022–2026 (graduated), Adamas University
+- Location: Gurugram, Haryana, India
+- Hometown: Tarakeswar, near Kolkata, West Bengal, India
 - Skills: TypeScript, React, Next.js, Node.js, Python, Supabase, Linux, Rust
 - Interests: Coding, Gaming, Coffee
 - Email: theabhirupkumar@gmail.com

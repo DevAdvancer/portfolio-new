@@ -24,8 +24,8 @@ export const canonicalUrl = (path = "/") => `${SITE_URL}${normalizePath(path)}`;
 
 export const SEO_CONFIG: Record<string, SEOData> = {
   "/": {
-    title: "Abhirup Kumar — Software Developer in Kolkata",
-    description: "Software developer, gamer, coffee person. Explore Abhirup Kumar’s web apps, AI tools, Linux systems projects, and work at Vizva Consultancy Services.",
+    title: `Abhirup Kumar — Software Developer in ${profile.city}`,
+    description: `Software developer in ${profile.city} and Adamas University graduate. Explore Abhirup Kumar’s web apps, AI tools, Linux systems projects, and experience.`,
     type: "profile",
   },
   "/projects": {
@@ -42,7 +42,7 @@ export const SEO_CONFIG: Record<string, SEOData> = {
   },
   "/contact": {
     title: "Contact Abhirup Kumar — Software Developer",
-    description: "Contact Abhirup Kumar about software development, collaborations, or opportunities in Kolkata, Bangalore, and remote teams. Email, LinkedIn, GitHub, and résumé.",
+    description: `Contact Abhirup Kumar, a software developer based in ${profile.location}, about software development and collaborations. Email, LinkedIn, GitHub, and résumé.`,
   },
 };
 for (const post of blogPosts) SEO_CONFIG[`/blog/${post.id}`] = {

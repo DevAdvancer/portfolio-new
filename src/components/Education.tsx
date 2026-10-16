@@ -19,7 +19,7 @@ const education: EducationItem[] = [
     degree: "Bachelor of Technology",
     specialization: "Computer Science & Engineering",
     institution: "Adamas University",
-    duration: "2022 - 2026",
+    duration: "2022 - 2026 (Graduated)",
     cgpa: "8.68 / 10",
     highlights: [
       "Relevant Coursework: Data Structures, Algorithms, DBMS, OS, Computer Networks",

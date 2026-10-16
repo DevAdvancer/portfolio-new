@@ -8,7 +8,9 @@ This document contains all the detailed data and content from Abhirup Kumar's po
 
 **Name:** Abhirup Kumar
 **Title:** Software Developer | Full-Stack Engineer | Cybersecurity Enthusiast
-**Location:** Tarakeswar, Kolkata, India
+**Location:** Gurugram, Haryana, India
+**Hometown:** Tarakeswar, near Kolkata, West Bengal, India
+**Education status:** Graduated
 **Email:** theabhirupkumar@gmail.com
 **LinkedIn:** https://linkedin.com/in/abhirupkumar
 **GitHub:** https://github.com/devadvancer
@@ -20,7 +22,7 @@ This document contains all the detailed data and content from Abhirup Kumar's po
 
 ## Hero Section
 
-**Headline:** I'm a final-year Computer Science student at Adamas University, passionate about building elegant solutions to complex problems.
+**Headline:** I'm a Computer Science & Engineering graduate of Adamas University, passionate about building elegant solutions to complex problems.
 
 **Tagline:** Software Developer | Full Stack Developer
 
@@ -29,7 +31,7 @@ This document contains all the detailed data and content from Abhirup Kumar's po
 ## About Section
 
 ### Introduction
-I'm a final-year Computer Science student at **Adamas University**, passionate about building elegant solutions to complex problems. My journey in tech started with curiosity and has evolved into a deep commitment to continuous learning.
+I'm a Computer Science & Engineering graduate of **Adamas University**, passionate about building elegant solutions to complex problems. My journey in tech started with curiosity and has evolved into a deep commitment to continuous learning.
 
 My core interests span **Web Development**, **System Design**, and **Cybersecurity**. I believe in writing clean, maintainable code and approaching challenges with a problem-solving mindset.
 
@@ -554,7 +556,7 @@ The answer might surprise you.
 | Email | theabhirupkumar@gmail.com | mailto:theabhirupkumar@gmail.com |
 | LinkedIn | linkedin.com/in/abhirupkumar | https://linkedin.com/in/abhirupkumar |
 | GitHub | github.com/devadvancer | https://github.com/devadvancer |
-| Location | Tarakeswar, Kolkata, India | https://maps.app.goo.gl/bJJFRYMnrTgvAhgt7 |
+| Location | Gurugram, Haryana, India | https://www.google.com/maps/search/?api=1&query=Gurugram%2C%20Haryana%2C%20India |
 
 ---
 
@@ -582,10 +584,10 @@ The answer might surprise you.
 The portfolio includes an AI chatbot that can answer questions about Abhirup Kumar. Here are all the Q&A topics:
 
 ## Greetings Response
-"Hello! I'm Abhirup Kumar, a passionate developer and final-year CS student. How can I help you today?"
+"Hello! I'm Abhirup Kumar, a passionate developer based in Gurugram and a CS graduate. How can I help you today?"
 
 ## About Me Response
-"I'm a final-year Computer Science student at Adamas University. I'm passionate about building elegant solutions to complex problems. My interests include Web Development, System Design, and Cybersecurity. I focus on writing clean, maintainable code and solving challenges with a problem-solving mindset. Currently, I'm working as a Software Developer at Vizva Consultancy Services in a full-time role, developing scalable internal tools and web platforms."
+"I'm a Computer Science & Engineering graduate of Adamas University. I'm passionate about building elegant solutions to complex problems. My interests include Web Development, System Design, and Cybersecurity. I focus on writing clean, maintainable code and solving challenges with a problem-solving mindset. Currently, I'm working as a Software Developer at Vizva Consultancy Services in a full-time role, developing scalable internal tools and web platforms."
 
 ## Skills Response
 "I have advanced skills in Python, JavaScript, React, Node.js, and MySQL. I also work with TypeScript, Java, C, Next.js, and Tailwind CSS. For databases, I use Supabase, MongoDB, and PostgreSQL. I'm comfortable with Git, Linux, VS Code, and Cursor. My expertise includes Full Stack Development, Data Structures and Algorithms, REST APIs, Flutter Development, and Cybersecurity basics."
@@ -597,7 +599,7 @@ The portfolio includes an AI chatbot that can answer questions about Abhirup Kum
 "I'm currently working as a Software Developer at Vizva Consultancy Services (January 2026 - Present) in a full-time role. I'm responsible for developing scalable internal tools and web platforms that integrate with and support the company's flagship products, enabling efficient monitoring, management, and continuous improvement across teams. Previously, I worked as a Lead Software Developer at HERMEiAS (May 2025 - December 2025) where I developed similar internal tools and platforms."
 
 ## Education Response
-"I'm pursuing my Bachelor of Technology in Computer Science & Engineering at Adamas University (2022-2026) with a CGPA of 8.68/10. My coursework includes Data Structures, Algorithms, DBMS, Operating Systems, and Computer Networks. I'm an active member of the Coding Club & Technical Society. Before this, I completed my 12th from Kendriya Vidyalaya Tarakeswar with PCM and Computer Science."
+"I completed my Bachelor of Technology in Computer Science & Engineering at Adamas University (2022-2026) with a CGPA of 8.68/10. My coursework includes Data Structures, Algorithms, DBMS, Operating Systems, and Computer Networks. I'm an active member of the Coding Club & Technical Society. Before this, I completed my 12th from Kendriya Vidyalaya Tarakeswar with PCM and Computer Science."
 
 ## Contact Response
 "I'd love to connect with you! You can find my email on the contact page of this portfolio. You can also reach me on GitHub at github.com/DevAdvancer or check my LinkedIn from the contact section. I'm always open to discussing new opportunities, collaborations, or chatting about technology."

@@ -1,5 +1,6 @@
 import { Mail, Linkedin, Github, FileText, Send, MapPin, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { profile } from "@/data/profile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -83,9 +84,9 @@ const ContactPage = () => {
     },
     {
       icon: MapPin,
-      label: "Open to: Kolkata & Bangalore",
-      value: "Tarakeswar, West Bengal, India — willing to relocate",
-      href: "https://maps.app.goo.gl/bJJFRYMnrTgvAhgt7",
+      label: `Based in ${profile.city}`,
+      value: profile.location,
+      href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(profile.location)}`,
     },
   ];
 
@@ -104,7 +105,7 @@ const ContactPage = () => {
                   Let's talk — Abhirup Kumar
                 </h1>
                 <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
-                  I'm currently open to opportunities in <span className="text-foreground font-medium">Kolkata</span> and <span className="text-foreground font-medium">Bangalore</span>, and remote roles worldwide. Whether you have a question, a job offer, or just want to say hi, feel free to reach out!
+                  I’m based in <span className="text-foreground font-medium">{profile.city}, Haryana</span>. Have a project, an opportunity, or just a hello? I’d love to hear from you.
                 </p>
               </div>
             </ScrollReveal>
@@ -148,7 +149,7 @@ const ContactPage = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-foreground mb-1">Download Resume</p>
-                        <p className="text-xs text-muted-foreground">PDF format, updated Dec 2024</p>
+                        <p className="text-xs text-muted-foreground">PDF format · current profile</p>
                       </div>
                       <a
                         href="/Resume.pdf"

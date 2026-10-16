@@ -43,6 +43,9 @@ test("all public pages ship unique metadata and real content before JavaScript",
     assert.equal(scripts.length, 1, `${route}: one consistent schema graph`);
     const graph = JSON.parse(scripts[0][1])["@graph"];
     assert.ok(graph.some(node => node["@type"] === "Person" && node.worksFor.name === "Vizva Consultancy Services"));
+    const person = graph.find(node => node["@type"] === "Person");
+    assert.equal(person.homeLocation.name, "Gurugram, Haryana, India");
+    assert.equal(person.alumniOf.name, "Adamas University");
     assert.ok(graph.some(node => node.url === config.canonicalUrl(route)));
     assert.equal(new Set(graph.map(node => node["@id"])).size, graph.length, `${route}: unique entity identifiers`);
   }
@@ -88,6 +91,8 @@ test("sitemap, AI references, public JSON, and RSS are fresh exports of public c
   assert.deepEqual(urls.sort(), config.indexablePaths.map(config.canonicalUrl).sort());
   assert.doesNotMatch(sitemap, /<lastmod>|<priority>|<changefreq>/);
   const profile = JSON.parse(await fromDist("profile.json"));
+  assert.equal(profile.location, "Gurugram, Haryana, India");
+  assert.equal(profile.educationStatus, "Graduated");
   assert.equal(profile.projects.length, 7);
   assert.equal(profile.achievements.items.length, 8);
   assert.equal(profile.articles.length, 3);

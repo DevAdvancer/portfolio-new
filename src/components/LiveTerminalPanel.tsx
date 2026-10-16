@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 
-/** Current time in Kolkata, formatted HH:MM:SS regardless of the viewer's timezone. */
+/** Current time in India, formatted HH:MM:SS regardless of the viewer's timezone. */
 const getISTTime = () =>
   new Date().toLocaleTimeString("en-GB", {
     timeZone: "Asia/Kolkata",
@@ -77,7 +77,7 @@ const LiveTerminalPanel = () => {
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="inline-flex h-2 w-2 rounded-full bg-chart-3" />
-                <span className="text-muted-foreground">Kolkata, IN</span>
+                <span className="text-muted-foreground">Gurugram, IN</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="inline-flex h-2 w-2 rounded-full bg-chart-5" />

@@ -3,7 +3,7 @@ Developer: Abhirup Kumar
 Site: https://www.abhirupkumar.in
 GitHub: https://github.com/devadvancer
 LinkedIn: https://linkedin.com/in/abhirupkumar
-Location: Kolkata, West Bengal, India
+Location: Gurugram, Haryana, India
 
 /* SITE */
 Last update: 2026-06-14

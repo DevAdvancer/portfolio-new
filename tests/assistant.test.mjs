@@ -60,6 +60,12 @@ test("game hints and broader conversation are not hijacked by the clue trail", a
 
 test("profile questions still use the actual project and achievement records", async () => {
   const api = await loadAssistant();
+  for (const question of ["Where are you based?", "Where do you live?", "Where are you now?", "Are you based in Kolkata?", "What is your current location?"]) {
+    assert.match(api.getLocalConversationReply(question).answer, /currently based in Gurugram, Haryana, India/);
+  }
+  for (const question of ["Are you still a student?", "Have you graduated?", "Tell me about your education"]) {
+    assert.match(api.getLocalConversationReply(question).answer, /graduated from Adamas University/i);
+  }
   assert.match(api.getLocalConversationReply("What have you built?").answer, /Formethica/);
   assert.match(api.getLocalConversationReply("What are your achievements?").answer, /800\+/);
 });
@@ -90,6 +96,8 @@ test("live requests preserve the model and pass voice, open-topic, and conversat
   assert.equal(payload.model, "llama-3.1-8b-instant");
   assert.match(payload.messages[0].content, /not a boundary on conversation/);
   assert.match(payload.messages[0].content, /Humor is seasoning/);
+  assert.match(payload.messages[0].content, /Current location:\*\* Gurugram, Haryana, India/);
+  assert.match(payload.messages[0].content, /He has graduated/);
   assert.equal(payload.messages[1].content, "Let’s talk games");
   assert.equal(payload.messages.at(-1).content, "What is an RPG?");
   assert.equal(reply.answer, "A useful answer.");
@@ -106,6 +114,8 @@ test("terminal live context permits general games without inventing personal pla
   assert.match(prompt, /not a limit on what visitors can ask/);
   assert.match(prompt, /never invent which games Abhirup has played/);
   assert.match(prompt, /last read: projects\.txt/);
+  assert.match(prompt, /Current location: Gurugram, Haryana, India/);
+  assert.match(prompt, /2022–2026 \(graduated\)/);
 });
 
 test("network failure falls back to a relevant answer with an honest source", async () => {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { profile } from "@/data/profile";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useExploration } from "@/hooks/use-exploration";
@@ -29,7 +30,7 @@ const Hero = () => {
   const [aside, setAside] = useState(false);
   const { discover, step } = useExploration();
   return <section id="hero" className="folio-hero folio-shell">
-    <div className="hero-eyebrow"><span>SOFTWARE DEVELOPER · GAMER · COFFEE PERSON</span><span>KOLKATA, INDIA ↗</span></div>
+    <div className="hero-eyebrow"><span>SOFTWARE DEVELOPER · GAMER · COFFEE PERSON</span><span>{profile.city.toUpperCase()}, INDIA ↗</span></div>
     <div className="hero-layout">
       <div className="hero-copy">
         <p className="hero-intro">Hello, internet. I’m</p>

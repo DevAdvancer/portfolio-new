@@ -74,7 +74,7 @@ const SecretTerminal = ({ open, onOpenChange, onReset, returnFocus }: { open: bo
 
     let output: string;
     switch (command) {
-      case "help": output = "help            A little guidance\nls              Look around\ncat <file>      Read a file\ncontext         What this room knows\nask <question>  Talk to Abhirup’s AI\nai <question>   An alias for ask\nwhoami          Your place in this story\ndate            The time in Kolkata\nclear           A clean slate, including AI history\nexit            Back to the portfolio\nreset           Restart the clue trail\n\n↑ / ↓ history · Tab autocomplete · Esc close"; break;
+      case "help": output = "help            A little guidance\nls              Look around\ncat <file>      Read a file\ncontext         What this room knows\nask <question>  Talk to Abhirup’s AI\nai <question>   An alias for ask\nwhoami          Your place in this story\ndate            The time in Gurugram (IST)\nclear           A clean slate, including AI history\nexit            Back to the portfolio\nreset           Restart the clue trail\n\n↑ / ↓ history · Tab autocomplete · Esc close"; break;
       case "ls": output = Object.keys(secretFiles).join("\n"); break;
       case "cat": {
         const filename = args.join(" ").replace(/^\.\//, "");
