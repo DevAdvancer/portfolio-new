@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from 
 import { MessageCircle, X, ArrowUp, Loader2, Minus } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { chatWithGroq, isGroqAvailable } from "@/lib/groq";
-import { findBestMatch } from "@/data/chatbotKnowledge";
+import { getLocalConversationReply } from "@/lib/assistantConversation";
 import { getDiscoveryHint } from "@/lib/discoveryHints";
 import { useExploration } from "@/hooks/use-exploration";
 
@@ -17,9 +17,9 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([{
     id: "welcome",
-    text: "Hey, I’m Abhirup’s AI assistant. Code, coffee, games, or projects? I can show you around—and offer a small hint if you get stuck exploring.",
+    text: "Hey bro :) Code, coffee, games, or something completely different? Ask away. And if you get stuck exploring this place, I’ve got a hint or two.",
     sender: "bot",
-    followUp: ["What does Abhirup build?", "Coffee or tea?", "A small hint?"],
+    followUp: ["What’s an RPG?", "What have you built?", "A small hint?"],
   }]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -53,9 +53,9 @@ const Chatbot = () => {
         response = hint;
       } else if (isGroqAvailable()) {
         try { response = await chatWithGroq(textToSend, history); setLocalReply(false); }
-        catch { response = findBestMatch(textToSend); setLocalReply(true); }
+        catch { response = getLocalConversationReply(textToSend); setLocalReply(true); }
       } else {
-        response = findBestMatch(textToSend); setLocalReply(true);
+        response = getLocalConversationReply(textToSend); setLocalReply(true);
       }
       setMessages(previous => [...previous, { id: crypto.randomUUID(), text: response.answer, sender: "bot", followUp: response.followUp }]);
     } finally {
@@ -82,7 +82,7 @@ const Chatbot = () => {
         {isTyping && <p className="assistant-thinking" role="status"><Loader2 size={14} className="animate-spin" /> One moment…</p>}
       </div>
       <form className="assistant-composer" onSubmit={submit}><label className="sr-only" htmlFor="assistant-message">Message to Abhirup’s AI assistant</label><input id="assistant-message" ref={inputRef} value={inputValue} onChange={event => setInputValue(event.target.value)} maxLength={1000} placeholder="A question, a thought, a hint…" autoComplete="off" /><button type="submit" disabled={!inputValue.trim() || isTyping} aria-label="Send message"><ArrowUp size={18} /></button></form>
-      <p className="assistant-small-print">{localReply ? "Using saved portfolio knowledge." : "AI can get things wrong. Ask Abhirup for the details."}</p>
+      <p className="assistant-small-print">{localReply ? "Saved chat mode. Open-ended replies need live AI." : "AI can get things wrong. Ask Abhirup for the details."}</p>
     </section>}
   </>;
 };

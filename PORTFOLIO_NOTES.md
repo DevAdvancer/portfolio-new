@@ -12,6 +12,10 @@ The existing Groq integration in `src/lib/groq.ts` and its `llama-3.1-8b-instant
 
 `src/lib/discoveryHints.ts` provides progress-aware clues before sending a general question to the model. Asking for a hint never advances the trail or opens the terminal. The assistant can be minimized while exploring, and its conversation scrolls independently of the portfolio.
 
+The chat and terminal now share a relaxed, first-person writing style based on Abhirup’s messages in this conversation: short, direct, lightly humorous, with occasional “bro,” “lol,” or “:)” rather than forced slang. The model can answer general questions about games, coding, coffee, and other topics instead of treating the portfolio as a topic boundary. Personal game favorites, ranks, coffee orders, and life stories are never filled in without supplied facts. The chat has no live browsing and must not claim current prices, releases, or scores were verified.
+
+`src/lib/assistantConversation.ts` separates personal questions from general questions in saved chat mode. It provides a small set of evergreen general answers and an honest unavailable message when a live answer is needed. General game hints and Linux terminal questions do not automatically trigger the portfolio clue trail. Optional follow-up suggestions are limited to two, and malformed metadata is stripped rather than shown to visitors.
+
 ## Discovery trail — spoilers
 
 1. The full stop after “Kumar” reveals a nudge toward the desk notes.
@@ -35,6 +39,7 @@ The terminal accepts `help`, `ls`, `cat`, `context`, `ask`, `ai`, `whoami`, `dat
 - `src/components/ExplorationProvider.tsx`: progress, clues, and the margin-note puzzle.
 - `src/components/SecretTerminal.tsx`: terminal interaction.
 - `src/lib/terminalAssistant.ts`: terminal AI context and saved-knowledge fallback.
+- `src/lib/assistantConversation.ts`: personal/general intent routing and saved conversational replies.
 - `src/data/achievements.ts`: existing achievement records shared across the home section, dedicated page, and terminal context.
 - `src/hooks/use-exploration.ts`: shared discovery context.
 - `src/components/Hero.tsx`: desk-note explorer, original SVG drawings, and the full-stop Easter egg.
@@ -42,5 +47,7 @@ The terminal accepts `help`, `ls`, `cat`, `context`, `ask`, `ai`, `whoami`, `dat
 ## Validation
 
 The production build passes. Focused ESLint checks pass for the changed source files. Full repository lint and TypeScript checks expose existing issues in the shared UI library (including calendar, chart, resizable panels, sidebar, and empty wrapper interfaces) and Tailwind configuration. Those unrelated dependency/API issues are outside this redesign.
+
+Run `npm run test:assistant` for focused conversation regressions. The tests use the installed Vite/esbuild toolchain, mock provider requests, and never contact Groq. They cover personal/general questions, hint routing, terminal file context, voice and model request instructions, failure fallback, cancellation, empty replies, and follow-up parsing. They do not establish the quality of live model generation; that needs a configured Groq key.
 
 Browser checks covered 320px, 390px, and 1440px widths; the desk-note controls; early and ordered clue clicks; incorrect and correct puzzle answers; terminal commands, history, autocomplete, reset, and close; progress-aware assistant hints; project expansion; journal/contact navigation; loaded brand assets and favicon; and reduced-motion styles. The colorful studio revision was checked again for narrow-screen overflow and the complete hint-to-terminal flow. Contact form submission and live Groq responses were not exercised.
