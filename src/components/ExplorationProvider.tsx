@@ -1,16 +1,29 @@
-import { useState, type ReactNode, type FormEvent } from "react";
+import { useSyncExternalStore, useState, type ReactNode, type FormEvent } from "react";
 import { X } from "lucide-react";
 import SecretTerminal from "@/components/SecretTerminal";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ExplorationContext } from "@/hooks/use-exploration";
 
 const STORAGE_KEY = "ak:between-the-lines:v1";
+let memoryProgress = 0;
+const progressListeners = new Set<() => void>();
 
 const readProgress = () => {
-  try { const value = Number(localStorage.getItem(STORAGE_KEY)); return Number.isInteger(value) && value >= 0 && value <= 3 ? value : 0; } catch { return 0; }
+  try { const value = Number(localStorage.getItem(STORAGE_KEY)); return Number.isInteger(value) && value >= 0 && value <= 3 ? value : 0; } catch { return memoryProgress; }
 };
+const subscribeProgress = (listener: () => void) => {
+  progressListeners.add(listener);
+  window.addEventListener("storage", listener);
+  return () => { progressListeners.delete(listener); window.removeEventListener("storage", listener); };
+};
+const setStep = (value: number) => {
+  memoryProgress = value;
+  try { localStorage.setItem(STORAGE_KEY, String(value)); } catch { /* In-memory discovery still works. */ }
+  progressListeners.forEach(listener => listener());
+};
+const serverProgress = () => 0;
 export const ExplorationProvider = ({ children }: { children: ReactNode }) => {
-  const [step, setStep] = useState(readProgress);
+  const step = useSyncExternalStore(subscribeProgress, readProgress, serverProgress);
   const [hint, setHint] = useState("");
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [returnFocus, setReturnFocus] = useState<HTMLElement | null>(null);
@@ -26,7 +39,6 @@ export const ExplorationProvider = ({ children }: { children: ReactNode }) => {
     }
     const next = Math.max(step, clue + 1);
     setStep(next);
-    try { localStorage.setItem(STORAGE_KEY, String(next)); } catch { /* Discovery works without storage too. */ }
     if (next === 3) { setReturnFocus(document.activeElement as HTMLElement); setTerminalOpen(true); setHint(""); }
     else setHint(next === 1 ? "01 / A signal found. Find its twin beside the story about me." : "02 / Two marks, one trail. The final footnote waits at the very bottom.");
   };
@@ -35,7 +47,6 @@ export const ExplorationProvider = ({ children }: { children: ReactNode }) => {
     event.preventDefault();
     if (!["space", "spacebar", "space bar", "the spacebar", "a space", "the space bar"].includes(answer.trim().toLowerCase())) { setIncorrect(true); return; }
     setStep(2);
-    try { localStorage.setItem(STORAGE_KEY, "2"); } catch { /* Optional persistence. */ }
     setNoteOpen(false);
     setHint("02 / A little space opens a door. The final footnote waits at the very bottom.");
   };

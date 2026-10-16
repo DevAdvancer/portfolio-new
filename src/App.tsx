@@ -1,16 +1,16 @@
-import { lazy, Suspense, useState, useEffect, useCallback } from "react";
+import { lazy, Suspense, useState, useEffect, useCallback, type ComponentType } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, StaticRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import { ExplorationProvider } from "@/components/ExplorationProvider";
 import RouteProgress from "@/components/RouteProgress";
 import SkipLink from "@/components/SkipLink";
 import SEO from "@/components/SEO";
-import { SEO_CONFIG } from "@/data/seoConfig";
+import StructuredData from "@/components/StructuredData";
 
 const CommandPalette = lazy(() => import("@/components/CommandPalette"));
 const Chatbot = lazy(() => import("@/components/Chatbot"));
@@ -21,7 +21,16 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Achievements = lazy(() => import("./pages/Achievements"));
 const Contact = lazy(() => import("./pages/Contact"));
+const ProjectIndex = lazy(() => import("./pages/ProjectIndex"));
+const ProjectPage = lazy(() => import("./pages/ProjectPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+export interface PageComponents {
+  Index: ComponentType; Blog: ComponentType; BlogPost: ComponentType;
+  ProjectIndex: ComponentType; ProjectPage: ComponentType;
+  Achievements: ComponentType; Contact: ComponentType; NotFound: ComponentType;
+  Chatbot: ComponentType; CommandPalette: ComponentType<{ open: boolean; onClose: () => void }>;
+}
+const defaultPages: PageComponents = { Index, Blog, BlogPost, ProjectIndex, ProjectPage, Achievements, Contact, NotFound, Chatbot, CommandPalette };
 
 const queryClient = new QueryClient();
 
@@ -35,25 +44,22 @@ const PageLoader = () => (
   </div>
 );
 
-const AnimatedRoutes = () => {
+const AnimatedRoutes = ({ pages }: { pages: PageComponents }) => {
   const location = useLocation();
-  const seo = SEO_CONFIG[location.pathname] ?? SEO_CONFIG["/"];
+  const { Index, Blog, BlogPost, ProjectIndex, ProjectPage, Achievements, Contact, NotFound } = pages;
 
   return (
     <>
-      <SEO
-        title={seo.title}
-        description={seo.description}
-        keywords={seo.keywords}
-        type={seo.type}
-        url={`https://www.abhirupkumar.in${location.pathname}`}
-      />
+      <SEO />
+      <StructuredData />
       <Suspense fallback={<PageLoader />}>
         <PageTransition key={location.pathname}>
           <Routes location={location}>
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/projects" element={<ProjectIndex />} />
+            <Route path="/projects/:slug" element={<ProjectPage />} />
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
@@ -64,7 +70,8 @@ const AnimatedRoutes = () => {
   );
 };
 
-const App = () => {
+const App = ({ url, pages = defaultPages }: { url?: string; pages?: PageComponents } = {}) => {
+  const { Chatbot, CommandPalette } = pages;
   const [commandOpen, setCommandOpen] = useState(false);
   const closeCommand = useCallback(() => setCommandOpen(false), []);
 
@@ -84,10 +91,8 @@ const App = () => {
             <Suspense fallback={null}><Chatbot /></Suspense>
             <Toaster />
             <Sonner />
-            <BrowserRouter>
-              <RouteProgress />
-              <AnimatedRoutes />
-            </BrowserRouter>
+            {url ? <StaticRouter location={url}><AnimatedRoutes pages={pages} /></StaticRouter> :
+              <BrowserRouter><RouteProgress /><AnimatedRoutes pages={pages} /></BrowserRouter>}
             <Suspense fallback={null}>
               <CommandPalette open={commandOpen} onClose={closeCommand} />
             </Suspense>

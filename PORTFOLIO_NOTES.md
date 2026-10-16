@@ -51,3 +51,11 @@ The production build passes. Focused ESLint checks pass for the changed source f
 Run `npm run test:assistant` for focused conversation regressions. The tests use the installed Vite/esbuild toolchain, mock provider requests, and never contact Groq. They cover personal/general questions, hint routing, terminal file context, voice and model request instructions, failure fallback, cancellation, empty replies, and follow-up parsing. They do not establish the quality of live model generation; that needs a configured Groq key.
 
 Browser checks covered 320px, 390px, and 1440px widths; the desk-note controls; early and ordered clue clicks; incorrect and correct puzzle answers; terminal commands, history, autocomplete, reset, and close; progress-aware assistant hints; project expansion; journal/contact navigation; loaded brand assets and favicon; and reduced-motion styles. The colorful studio revision was checked again for narrow-screen overflow and the complete hint-to-terminal flow. Contact form submission and live Groq responses were not exercised.
+
+## Search and AI discovery update
+
+- Production builds now prerender 15 indexable routes plus a noindex 404, using the same React pages that hydrate in the browser. Public content is present without JavaScript; no bot-specific alternate page is served.
+- Every project has a stable `/projects/<slug>` page with the existing problem, role, stack, features, code, and live/report links. Existing homepage project interactions remain.
+- One route metadata source and one JSON-LD graph replace conflicting head tags, unseen FAQ markup, the fictional freelance employer, and an unsupported X profile link. The existing portrait's real 960×1280 dimensions replace the incorrect 1200×630 claim.
+- The generated sitemap includes all articles and projects. RSS, plain text references, and a public JSON export derive from the existing public records. DLKA and Femway descriptions are corrected. Hidden clue answers and placeholder personal notes are excluded.
+- `npm run test:seo` checks raw documents, schema, links, status codes, redirects, and discovery assets. See README for Vercel deployment and indexing checks. These improvements establish technical eligibility; search rankings and AI citations are not guaranteed.

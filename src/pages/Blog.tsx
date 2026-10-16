@@ -3,17 +3,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { blogPosts } from "@/data/blogPosts";
 import ScrollReveal from "@/components/ScrollReveal";
-import SEO from "@/components/SEO";
 
 const Blog = () => {
   return (
     <div className="min-h-screen bg-transparent">
-      <SEO
-        title="Blog - Abhirup Kumar | Thoughts & Writing on Design & Development"
-        description="Read articles and thoughts from Abhirup Kumar on software development, design, web development, React, TypeScript, and the creative process."
-        keywords="Abhirup Kumar blog, software development blog, web development articles, React tutorials, TypeScript blog, programming thoughts, design philosophy"
-        url="https://www.abhirupkumar.in/blog"
-      />
       <Navigation />
       <main id="main-content" tabIndex={-1} className="pt-12 sm:pt-20 pb-16 sm:pb-24">
         <div className="container mx-auto px-4 sm:px-6">
@@ -41,13 +34,14 @@ const Blog = () => {
                   >
                     <article>
                       <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                        <span className="text-xs text-muted-foreground">
-                          {new Date(post.date).toLocaleDateString("en-US", {
+                        <time dateTime={post.date} className="text-xs text-muted-foreground">
+                          {new Date(`${post.date}T00:00:00Z`).toLocaleDateString("en-US", {
                             month: "long",
                             day: "numeric",
                             year: "numeric",
+                            timeZone: "UTC",
                           })}
-                        </span>
+                        </time>
                         <span className="w-1 h-1 rounded-full bg-primary" />
                         <span className="text-xs text-muted-foreground">{post.readTime}</span>
                       </div>

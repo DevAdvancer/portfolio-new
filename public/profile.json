@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "canonicalUrl": "https://www.abhirupkumar.in/",
+  "name": "Abhirup Kumar",
+  "role": "Software Developer",
+  "description": "Abhirup Kumar is a software developer from Tarakeswar, near Kolkata, India. He builds web applications, AI tools, and systems software with TypeScript, React, Next.js, Python, and Rust.",
+  "email": "theabhirupkumar@gmail.com",
+  "github": "https://github.com/DevAdvancer",
+  "linkedin": "https://linkedin.com/in/abhirupkumar",
+  "employer": "Vizva Consultancy Services",
+  "university": "Adamas University",
+  "education": "B.Tech, Computer Science, 2022–2026",
+  "location": "Tarakeswar, near Kolkata, West Bengal, India",
+  "skills": [
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "Supabase",
+    "Linux",
+    "Rust"
+  ],
+  "interests": [
+    "Coding",
+    "Gaming",
+    "Coffee"
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "title": "Distributed Linux Kernel Attestation System",
+      "problem": "Building a distributed system to verify Linux kernel integrity in real-time using loadable kernel modules, Netlink communication, and quorum-based consensus to detect unauthorized kernel modifications.",
+      "techStack": [
+        "Python",
+        "C",
+        "Linux Kernel Modules",
+        "Netlink Protocol",
+        "Flask",
+        "SHA256 Cryptography",
+        "OpenSSL"
+      ],
+      "features": [
+        "Real-time kernel integrity monitoring via LKM",
+        "Netlink-based kernel-userspace communication",
+        "Quorum-based consensus engine for distributed attestation",
+        "Cryptographic signing and verification of reports",
+        "HTTP API for attestation report collection",
+        "Trusted baseline management with operator prompts",
+        "Structured audit logging and security alerts",
+        "Secure Boot support with MOK key enrollment"
+      ],
+      "role": "Control Node & Attestation Server developer. Designed kernel-space monitoring architecture, implemented Netlink protocol communication, built consensus engine, and created HTTP-based control plane with cryptographic verification.",
+      "githubUrl": "https://github.com/DevAdvancer/DLKA-System",
+      "liveUrl": null,
+      "reportUrl": "/MINOR_PROJECT.pdf",
+      "source": "https://www.abhirupkumar.in/projects/distributed-linux-kernel-attestation"
+    },
+    {
+      "id": "2",
+      "title": "CharmCrafter",
+      "problem": "A modern web application built with React and TypeScript, featuring a responsive UI with shadcn-ui components and Supabase backend integration.",
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "shadcn-ui",
+        "Supabase",
+        "Vercel"
+      ],
+      "features": [
+        "Modern React architecture with TypeScript",
+        "Responsive UI with shadcn-ui components",
+        "Supabase backend integration",
+        "Tailwind CSS styling with custom configuration"
+      ],
+      "role": "Sole developer.  Built with Lovable platform, implemented TypeScript-based React application with modern tooling and design system.",
+      "githubUrl": "https://github.com/DevAdvancer/CharmCrafter",
+      "liveUrl": "https://chramcrafter.vercel.app/",
+      "source": "https://www.abhirupkumar.in/projects/charmcrafter"
+    },
+    {
+      "id": "3",
+      "title": "University Notes Platform",
+      "problem": "Building a comprehensive platform for managing and sharing university course notes with modern web technologies and database integration.",
+      "techStack": [
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "VITE",
+        "Tailwind CSS",
+        "Vercel"
+      ],
+      "features": [
+        "User authentication & authorization",
+        "Note organization and management",
+        "Database-driven content storage",
+        "Responsive modern interface"
+      ],
+      "role": "Sole developer. Designed database schema, built full-stack application with TypeScript, and deployed to production.",
+      "githubUrl": "https://github.com/DevAdvancer/University-Notes-New-Version",
+      "liveUrl": "https://universitynotes.abhirupkumar.in/",
+      "source": "https://www.abhirupkumar.in/projects/university-notes"
+    },
+    {
+      "id": "4",
+      "title": "Formethica - AI-Powered Form Builder",
+      "problem": "Building an intelligent form creation platform with AI-powered field suggestions, chatbot assistance, and advanced submission management with analytics and export capabilities.",
+      "techStack": [
+        "Next.js 15",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "Google Gemini AI",
+        "Tailwind CSS",
+        "Vercel"
+      ],
+      "features": [
+        "AI-powered form creation with smart field suggestions",
+        "Interactive AI chatbot for form building assistance",
+        "User authentication with anonymous & authenticated modes",
+        "Advanced submission management with Excel/CSV export",
+        "Link shortening with click analytics",
+        "Real-time form updates and response tracking"
+      ],
+      "role": "Sole developer.  Designed database schema with RLS policies, integrated Google Gemini AI for intelligent suggestions, built responsive glassmorphism UI, and implemented full-stack features.",
+      "githubUrl": "https://github.com/DevAdvancer/Formethica",
+      "liveUrl": "https://ai.formethica.abhirupkumar.in/",
+      "source": "https://www.abhirupkumar.in/projects/formethica"
+    },
+    {
+      "id": "5",
+      "title": "Femway - Women's Safety Car Booking Platform",
+      "problem": "Building a secure, role-based car booking platform specifically designed for women's safety and comfort, with admin verification, driver management, and passenger protection features.",
+      "techStack": [
+        "Next.js 15",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Vercel"
+      ],
+      "features": [
+        "Role-based access control (Passenger, Driver, Admin)",
+        "Secure authentication with 24-hour session management",
+        "Admin verification system with secure codes",
+        "Driver verification and document management",
+        "Real-time ride booking and tracking",
+        "Row Level Security (RLS) on all database tables"
+      ],
+      "role": "Sole developer. Designed secure database schema with RLS policies, implemented role-based authentication with admin code verification, built three distinct dashboards, and created responsive UI focused on safety.",
+      "githubUrl": "https://github.com/DevAdvancer/Femway",
+      "liveUrl": "https://femway.vercel.app",
+      "source": "https://www.abhirupkumar.in/projects/femway"
+    },
+    {
+      "id": "6",
+      "title": "Study Notes Viewer",
+      "problem": "Building a modern web application for managing and organizing study notes with embedded content support, progress tracking, and rich markdown rendering capabilities.",
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion",
+        "ReactMarkdown"
+      ],
+      "features": [
+        "Dynamic note display with grid layout",
+        "Progress filtering (completed, in-progress, not-started)",
+        "Embedded YouTube videos and Google Drive documents",
+        "Markdown support with code syntax highlighting",
+        "Responsive design with smooth animations",
+        "Intuitive note viewing and navigation"
+      ],
+      "role": "Sole developer. Designed component architecture, implemented markdown rendering with rehype plugins, integrated embedded content support, and created animated responsive UI.",
+      "githubUrl": "https://github.com/DevAdvancer/Study-notes-Viewer",
+      "liveUrl": "https://study-notes-viewer.vercel.app",
+      "source": "https://www.abhirupkumar.in/projects/study-notes-viewer"
+    },
+    {
+      "id": "7",
+      "title": "Nexterm",
+      "problem": "Building an AI-powered terminal emulator that brings intelligent assistance to command-line workflows with natural language processing, error explanations, and context-aware suggestions.",
+      "techStack": [
+        "Rust",
+        "Ratatui",
+        "Tokio",
+        "Portable-pty",
+        "Ollama",
+        "Google Gemini API"
+      ],
+      "features": [
+        "Full terminal emulation with PTY support",
+        "AI-powered natural language command translation",
+        "Dual AI provider support (Ollama & Google Gemini)",
+        "Smart command history with fuzzy search",
+        "Syntax highlighting & danger detection",
+        "Privacy-focused data sanitization"
+      ],
+      "role": "Sole developer.  Designed terminal architecture, implemented AI integration with multiple providers, built TUI with ratatui, and created security features for data sanitization.",
+      "githubUrl": "https://github.com/DevAdvancer/Nexterm",
+      "liveUrl": null,
+      "source": "https://www.abhirupkumar.in/projects/nexterm"
+    }
+  ],
+  "achievements": {
+    "source": "https://www.abhirupkumar.in/achievements",
+    "items": [
+      {
+        "title": "Cyber Security 101 Certificate",
+        "issuer": "TryHackMe",
+        "date": "2025",
+        "type": "certification",
+        "link": "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-NFGEN9MESM.pdf",
+        "description": "Learned everything I need to embark on a career path in offensive or defensive cyber security."
+      },
+      {
+        "title": "Pre Security Certificate",
+        "issuer": "TryHackMe",
+        "date": "2025",
+        "type": "certification",
+        "link": "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-NFGEN9MESM.pdf",
+        "description": "Before hacking something, I first need to understand the basics. So, I learned it."
+      },
+      {
+        "title": "The Complete Full-Stack Web Development Bootcamp",
+        "issuer": "Udemy",
+        "date": "2024",
+        "type": "certification",
+        "link": "https://www.udemy.com/certificate/UC-48468b5e-4bfe-47d5-955e-c3863d2e7a04/",
+        "description": "Became a Full-Stack Web Developer with HTML, CSS, Javascript, Node, React, PostgreSQL, Web3 and DApps"
+      },
+      {
+        "title": "Software Engineer Certificate",
+        "issuer": "HackerRank",
+        "date": "2024",
+        "type": "certification",
+        "link": "https://www.hackerrank.com/certificates/5cc231bd46d5",
+        "description": "It covers topics like Problem solving, SQL, and REST API."
+      },
+      {
+        "title": "Problem Solving (Basic) Certificate",
+        "issuer": "HackerRank",
+        "date": "2023",
+        "type": "certification",
+        "link": "https://www.hackerrank.com/certificates/16723ae1ecb5",
+        "description": "It covers basic topics of Data Structures (such as Arrays, Strings) and Algorithms (such as Sorting and Searching)."
+      },
+      {
+        "title": "Top Leet Coder in University",
+        "issuer": "Adamas University",
+        "date": "2025",
+        "type": "award",
+        "description": "Recognized for maintaining top academic performance in LeetCode."
+      },
+      {
+        "title": "LeetCode 800+ Problems Solved",
+        "issuer": "LeetCode",
+        "date": "2025",
+        "type": "competition",
+        "link": "https://leetcode.com/devadvabcer",
+        "description": "Consistent problem-solving practice covering arrays, trees, graphs, and dynamic programming."
+      },
+      {
+        "title": "HackfinityBattle",
+        "issuer": "TryHackMe",
+        "date": "2025",
+        "type": "competition",
+        "link": "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-7Q0TSYYG6T.pdf",
+        "description": "Global capture-the-flag competition across multiple rooms; ranked 849."
+      }
+    ]
+  },
+  "articles": [
+    {
+      "id": "the-art-of-minimalism",
+      "title": "The Art of Minimalism in Design",
+      "excerpt": "Exploring how less truly becomes more in the world of visual design and user experience.",
+      "date": "2024-12-15",
+      "readTime": "5 min read",
+      "tags": [
+        "Design",
+        "Philosophy"
+      ],
+      "author": "Abhirup Kumar",
+      "source": "https://www.abhirupkumar.in/blog/the-art-of-minimalism"
+    },
+    {
+      "id": "building-with-intention",
+      "title": "Building with Intention",
+      "excerpt": "How thoughtful development practices lead to better products and happier users.",
+      "date": "2024-12-10",
+      "readTime": "4 min read",
+      "tags": [
+        "Development",
+        "Process"
+      ],
+      "author": "Abhirup Kumar",
+      "source": "https://www.abhirupkumar.in/blog/building-with-intention"
+    },
+    {
+      "id": "finding-creativity",
+      "title": "Finding Creativity in Constraints",
+      "excerpt": "Why limitations can be your greatest asset in the creative process.",
+      "date": "2024-12-05",
+      "readTime": "6 min read",
+      "tags": [
+        "Creativity",
+        "Process"
+      ],
+      "author": "Abhirup Kumar",
+      "source": "https://www.abhirupkumar.in/blog/finding-creativity"
+    }
+  ]
+}

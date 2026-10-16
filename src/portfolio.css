@@ -384,3 +384,22 @@ button { touch-action: manipulation; }
   .all-work-button { font-size: 12px; gap: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+.workshop-link { width: fit-content; margin: 1.2rem auto 0; }
+.work-links { flex-wrap: wrap; }
+.project-page { padding-top: 2rem; padding-bottom: 5rem; }
+.project-breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; font-size: .8rem; color: hsl(var(--muted-foreground)); }
+.project-breadcrumb a { text-decoration: underline; text-underline-offset: .2rem; }
+.project-page-heading { max-width: 900px; margin: 3rem 0 3.5rem; }
+.project-page-heading h1 { font-family: "Crimson Pro", Georgia, serif; font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: 1.04; letter-spacing: -.035em; margin: 1.1rem 0 1.5rem; overflow-wrap: anywhere; }
+.project-page-heading > p:last-of-type { max-width: 740px; font-size: 1.08rem; line-height: 1.8; color: hsl(var(--muted-foreground)); }
+.project-page-links { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; margin-top: 2rem; }
+.project-page-image { width: 100%; height: auto; max-height: 650px; object-fit: contain; border: 1px solid hsl(var(--border)); background: hsl(var(--paper)); }
+.project-page-terminal { background: #171c1b; padding: clamp(1rem, 4vw, 4rem); }
+.project-page-body { max-width: 800px; margin: 4rem auto; display: grid; gap: 3rem; }
+.project-page-body h2 { font-family: "Crimson Pro", Georgia, serif; font-size: 2.4rem; line-height: 1.2; margin: .75rem 0 1rem; }
+.project-page-body p, .project-feature-list { line-height: 1.9; }
+.project-tech-list { display: flex; flex-wrap: wrap; gap: .7rem; }
+.project-tech-list li { padding: .4rem .8rem; border: 1px solid hsl(var(--border)); border-radius: 2rem; font-size: .85rem; }
+.project-feature-list { list-style: disc; padding-left: 1.25rem; }
+.project-feature-list li + li { margin-top: .5rem; }
+.project-next { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; border-top: 1px solid hsl(var(--border)); padding-top: 2rem; }

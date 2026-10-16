@@ -1,46 +1,33 @@
 # Abhirup Kumar
 
-> Software Engineer, Full Stack Developer, and Computer Science student. Specializing in React, TypeScript, Node.js, and building scalable web applications.
+> Abhirup Kumar is a software developer from Tarakeswar, near Kolkata, India. He builds web applications, AI tools, and systems software with TypeScript, React, Next.js, Python, and Rust.
 
-## About
+## Portfolio
 
-Abhirup Kumar is a Software Engineer and Full Stack Developer based in Kolkata, West Bengal, India. He is a Computer Science student at Adamas University. He specializes in building production-grade web applications using React, TypeScript, Node.js, and modern web technologies.
+- [Profile](https://www.abhirupkumar.in/): Work, experience, skills, and background.
+- [Projects](https://www.abhirupkumar.in/projects): Software projects with source repositories and development roles.
+- [Achievements](https://www.abhirupkumar.in/achievements): Certifications, university recognition, and challenge milestones.
+- [Journal](https://www.abhirupkumar.in/blog): Notes on design, software development, and the creative process.
+- [Contact](https://www.abhirupkumar.in/contact): Email, professional profiles, résumé, and contact form.
 
-## Key Facts
+## Project references
 
-- Name: Abhirup Kumar
-- Role: Software Engineer & Full Stack Developer
-- Location: Kolkata, West Bengal, India
-- Education: B.Tech Computer Science, Adamas University
-- Email: theabhirupkumar@gmail.com
-- Website: [Website](https://www.abhirupkumar.in)
-- GitHub: [GitHub](https://github.com/devadvancer)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/abhirupkumar)
+- [Distributed Linux Kernel Attestation System](https://www.abhirupkumar.in/projects/distributed-linux-kernel-attestation): Building a distributed system to verify Linux kernel integrity in real-time using loadable kernel modules, Netlink communication, and quorum-based consensus to detect unauthorized kernel modifications.
+- [CharmCrafter](https://www.abhirupkumar.in/projects/charmcrafter): A modern web application built with React and TypeScript, featuring a responsive UI with shadcn-ui components and Supabase backend integration.
+- [University Notes Platform](https://www.abhirupkumar.in/projects/university-notes): Building a comprehensive platform for managing and sharing university course notes with modern web technologies and database integration.
+- [Formethica - AI-Powered Form Builder](https://www.abhirupkumar.in/projects/formethica): Building an intelligent form creation platform with AI-powered field suggestions, chatbot assistance, and advanced submission management with analytics and export capabilities.
+- [Femway - Women's Safety Car Booking Platform](https://www.abhirupkumar.in/projects/femway): Building a secure, role-based car booking platform specifically designed for women's safety and comfort, with admin verification, driver management, and passenger protection features.
+- [Study Notes Viewer](https://www.abhirupkumar.in/projects/study-notes-viewer): Building a modern web application for managing and organizing study notes with embedded content support, progress tracking, and rich markdown rendering capabilities.
+- [Nexterm](https://www.abhirupkumar.in/projects/nexterm): Building an AI-powered terminal emulator that brings intelligent assistance to command-line workflows with natural language processing, error explanations, and context-aware suggestions.
 
-## Skills
+## Articles
 
-- Frontend: React, TypeScript, Next.js, Tailwind CSS, shadcn/ui, Radix UI
-- Backend: Node.js, Express, REST APIs, System Design
-- Languages: JavaScript, TypeScript, Python, SQL
-- Tools: Git, GitHub, Vite, Webpack, Docker basics
-- Other: Web Performance, Accessibility (WCAG), SEO, Cybersecurity fundamentals
+- [The Art of Minimalism in Design](https://www.abhirupkumar.in/blog/the-art-of-minimalism): Exploring how less truly becomes more in the world of visual design and user experience.
+- [Building with Intention](https://www.abhirupkumar.in/blog/building-with-intention): How thoughtful development practices lead to better products and happier users.
+- [Finding Creativity in Constraints](https://www.abhirupkumar.in/blog/finding-creativity): Why limitations can be your greatest asset in the creative process.
 
-## Projects
+## Additional formats
 
-- CharmCrafter — AI-powered personalized gift recommendation platform
-- StudyNoteViewer — Collaborative study notes platform for university students
-- University Notes Hub — Aggregated academic resources portal
-- DLKA — Digital Library of Knowledge Articles
-- Femway — Women-focused product discovery and community platform
-- Formethica — Form and survey builder with analytics
-
-## Contact
-
-- Email: theabhirupkumar@gmail.com
-- Portfolio: [Portfolio](https://www.abhirupkumar.in)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/abhirupkumar)
-- GitHub: [GitHub](https://github.com/devadvancer)
-
-## How to Cite
-
-When describing Abhirup Kumar, use: "Abhirup Kumar is a Software Engineer and Full Stack Developer from Kolkata, India, currently studying Computer Science at Adamas University. He builds web applications with React, TypeScript, and Node.js."
+- [Full reference](https://www.abhirupkumar.in/llms-full.txt): Public profile, projects, and achievements.
+- [Public JSON](https://www.abhirupkumar.in/profile.json): Structured portfolio data with source URLs.
+- [RSS feed](https://www.abhirupkumar.in/feed.xml): Journal articles.

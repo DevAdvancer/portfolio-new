@@ -2,7 +2,6 @@ import { Award, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import SEO from "@/components/SEO";
 
 import { achievements } from "@/data/achievements";
 const typeStyles = {
@@ -20,12 +19,6 @@ const typeLabels = {
 const AchievementsPage = () => {
   return (
     <div className="min-h-screen bg-transparent">
-      <SEO
-        title="Achievements & Certifications - Abhirup Kumar"
-        description="Explore Abhirup Kumar’s cybersecurity and software engineering certificates, university recognition, LeetCode milestone, and TryHackMe challenge results."
-        keywords="Abhirup Kumar achievements, TryHackMe, Udemy, HackerRank, cybersecurity certificates, LeetCode, software engineer certifications"
-        url="https://www.abhirupkumar.in/achievements"
-      />
       <Navigation />
       <main id="main-content" tabIndex={-1} className="pt-12 sm:pt-20 pb-16 sm:pb-24">
         <div className="container mx-auto px-4 sm:px-6">

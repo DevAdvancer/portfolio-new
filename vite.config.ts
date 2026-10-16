@@ -15,6 +15,7 @@ export default defineConfig(() => ({
     },
   },
   build: {
+    manifest: true,
     target: "es2020",
     cssCodeSplit: true,
     minify: "esbuild",

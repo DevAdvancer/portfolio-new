@@ -12,6 +12,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   return (
     <AnimatePresence mode="wait">
       <motion.div
+        className="page-transition"
         key={location.pathname}
         initial={reduceMotion ? false : { opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}

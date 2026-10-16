@@ -4,7 +4,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useToast } from "@/hooks/use-toast";
-import SEO from "@/components/SEO";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -92,12 +91,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-transparent">
-      <SEO
-        title="Contact - Abhirup Kumar | Hire a Software Engineer (Kolkata & Bangalore)"
-        description="Get in touch with Abhirup Kumar - Software Engineer and Full Stack Developer. Currently open to opportunities in Kolkata and Bangalore, India — and remote roles worldwide. Available for freelance projects, full-time positions, and collaborations."
-        keywords="contact Abhirup Kumar, hire Abhirup Kumar, Abhirup Kumar Bangalore, Abhirup Kumar Kolkata, software engineer Bangalore, software engineer Kolkata, freelance web developer India, React developer contact, full stack developer hire, Abhirup Kumar email, Abhirup Kumar phone, open to work Bangalore, open to work Kolkata, relocate Bangalore, relocate Kolkata"
-        url="https://www.abhirupkumar.in/contact"
-      />
       <Navigation />
       <main id="main-content" tabIndex={-1} className="pt-12 sm:pt-20 pb-16 sm:pb-24">
         <div className="container mx-auto px-4 sm:px-6">

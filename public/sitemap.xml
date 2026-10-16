@@ -1,42 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Domain: https://www.abhirupkumar.in (also accessible at https://abhirupkumar.in)
--->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Homepage -->
-  <url>
-    <loc>https://www.abhirupkumar.in/</loc>
-    <lastmod>2024-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Blog -->
-  <url>
-    <loc>https://www.abhirupkumar.in/blog</loc>
-    <lastmod>2024-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Achievements -->
-  <url>
-    <loc>https://www.abhirupkumar.in/achievements</loc>
-    <lastmod>2024-12-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Contact -->
-  <url>
-    <loc>https://www.abhirupkumar.in/contact</loc>
-    <lastmod>2024-12-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.abhirupkumar.in/</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects</loc></url>
+  <url><loc>https://www.abhirupkumar.in/blog</loc></url>
+  <url><loc>https://www.abhirupkumar.in/achievements</loc></url>
+  <url><loc>https://www.abhirupkumar.in/contact</loc></url>
+  <url><loc>https://www.abhirupkumar.in/blog/the-art-of-minimalism</loc></url>
+  <url><loc>https://www.abhirupkumar.in/blog/building-with-intention</loc></url>
+  <url><loc>https://www.abhirupkumar.in/blog/finding-creativity</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects/distributed-linux-kernel-attestation</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects/charmcrafter</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects/university-notes</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects/formethica</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects/femway</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects/study-notes-viewer</loc></url>
+  <url><loc>https://www.abhirupkumar.in/projects/nexterm</loc></url>
 </urlset>
