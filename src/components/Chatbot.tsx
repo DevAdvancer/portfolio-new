@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from "react";
 import { MessageCircle, X, ArrowUp, Loader2, Minus } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
-import { chatWithGroq, isGroqAvailable } from "@/lib/groq";
+import { chatWithGroq, getAIConnectionNotice } from "@/lib/groq";
 import { getLocalConversationReply } from "@/lib/assistantConversation";
 import { getDiscoveryHint } from "@/lib/discoveryHints";
 import { useExploration } from "@/hooks/use-exploration";
@@ -23,7 +23,7 @@ const Chatbot = () => {
   }]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [localReply, setLocalReply] = useState(!isGroqAvailable());
+  const [connectionNotice, setConnectionNotice] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const outputRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -51,11 +51,9 @@ const Chatbot = () => {
       let response;
       if (hint) {
         response = hint;
-      } else if (isGroqAvailable()) {
-        try { response = await chatWithGroq(textToSend, history); setLocalReply(false); }
-        catch { response = getLocalConversationReply(textToSend); setLocalReply(true); }
       } else {
-        response = getLocalConversationReply(textToSend); setLocalReply(true);
+        try { response = await chatWithGroq(textToSend, history); setConnectionNotice(null); }
+        catch (error) { response = getLocalConversationReply(textToSend); setConnectionNotice(getAIConnectionNotice(error)); }
       }
       setMessages(previous => [...previous, { id: crypto.randomUUID(), text: response.answer, sender: "bot", followUp: response.followUp }]);
     } finally {
@@ -82,7 +80,7 @@ const Chatbot = () => {
         {isTyping && <p className="assistant-thinking" role="status"><Loader2 size={14} className="animate-spin" /> One moment…</p>}
       </div>
       <form className="assistant-composer" onSubmit={submit}><label className="sr-only" htmlFor="assistant-message">Message to Abhirup’s AI assistant</label><input id="assistant-message" ref={inputRef} value={inputValue} onChange={event => setInputValue(event.target.value)} maxLength={1000} placeholder="A question, a thought, a hint…" autoComplete="off" /><button type="submit" disabled={!inputValue.trim() || isTyping} aria-label="Send message"><ArrowUp size={18} /></button></form>
-      <p className="assistant-small-print">{localReply ? "Saved chat mode. Open-ended replies need live AI." : "AI can get things wrong. Ask Abhirup for the details."}</p>
+      <p className="assistant-small-print" role="status">{connectionNotice || "AI can get things wrong. Ask Abhirup for the details."}</p>
     </section>}
   </>;
 };

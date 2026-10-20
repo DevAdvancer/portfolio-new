@@ -4,6 +4,7 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { build } from "esbuild";
+import { createChatHandler } from "../server/chat.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const require = createRequire(import.meta.url);
@@ -13,14 +14,25 @@ async function loadAssistant({ key = "", fetch = () => { throw new Error("Unexpe
   if (!builds.has(key)) builds.set(key, build({
     stdin: { contents: `export { getLocalConversationReply, isPersonalQuestion } from './src/lib/assistantConversation'; export { getDiscoveryHint } from './src/lib/discoveryHints'; export { askTerminal } from './src/lib/terminalAssistant'; export { chatWithGroq, parseResponse } from './src/lib/groq';`, resolveDir: root, loader: "ts" },
     bundle: true, write: false, platform: "node", format: "cjs", alias: { "@": `${root}src` },
-    define: { "import.meta.env.VITE_GROQ_API_KEY": JSON.stringify(key) },
     plugins: [{ name: "public-image-fixtures", setup(builder) {
       builder.onResolve({ filter: /^\/.*\.(?:webp|svg)$/ }, args => ({ path: args.path, namespace: "test-asset" }));
       builder.onLoad({ filter: /.*/, namespace: "test-asset" }, args => ({ contents: `export default ${JSON.stringify(args.path)}`, loader: "js" }));
     } }],
   }).then(result => result.outputFiles[0].text));
   const module = { exports: {} };
-  vm.runInNewContext(await builds.get(key), { module, exports: module.exports, require, fetch, DOMException, AbortController, console, setTimeout, clearTimeout });
+  const handler = createChatHandler({ getEnv: () => ({ GROQ_API_KEY: key }), fetchImpl: fetch });
+  const fetchEndpoint = async (url, options) => {
+    assert.equal(url, "/api/chat");
+    assert.equal(options.headers.Authorization, undefined, "The browser must never send provider credentials");
+    let response;
+    await handler({ method: options.method, body: options.body, headers: { "content-type": options.headers["Content-Type"] } }, {
+      setHeader() {},
+      writeHead(status, headers) { this.status = status; this.headers = headers; },
+      end(body) { response = new Response(body, { status: this.status, headers: this.headers }); },
+    });
+    return response;
+  };
+  vm.runInNewContext(await builds.get(key), { module, exports: module.exports, require, fetch: fetchEndpoint, DOMException, AbortController, console, setTimeout, clearTimeout });
   return module.exports;
 }
 
@@ -86,14 +98,14 @@ test("terminal explicit file references and follow-ups retain file context", asy
   assert.match(notes.answer, /empty page|not.*added|ready to share/i);
 });
 
-test("live requests preserve the model and pass voice, open-topic, and conversation instructions", async () => {
+test("live requests use the supported model and pass voice, open-topic, and conversation instructions", async () => {
   let payload;
   const api = await loadAssistant({ key: "unit-test-placeholder", fetch: async (_url, options) => {
     payload = JSON.parse(options.body);
     return { ok: true, json: async () => ({ choices: [{ message: { content: 'A useful answer. [FOLLOWUP]["Another question?"]' } }] }) };
   } });
   const reply = await api.chatWithGroq("What is an RPG?", [{ role: "user", content: "Let’s talk games" }]);
-  assert.equal(payload.model, "llama-3.1-8b-instant");
+  assert.equal(payload.model, "openai/gpt-oss-20b");
   assert.match(payload.messages[0].content, /not a boundary on conversation/);
   assert.match(payload.messages[0].content, /Humor is seasoning/);
   assert.match(payload.messages[0].content, /Current location:\*\* Gurugram, Haryana, India/);
@@ -141,7 +153,7 @@ test("optional follow-up metadata is bounded and never leaks on malformed JSON",
 
 test("empty model replies are rejected instead of rendering blank chat bubbles", async () => {
   const api = await loadAssistant({ key: "unit-test-placeholder", fetch: async () => ({ ok: true, json: async () => ({ choices: [] }) }) });
-  await assert.rejects(api.chatWithGroq("Hello", []), /empty answer/);
+  await assert.rejects(api.chatWithGroq("Hello", []), /empty_answer/);
 });
 
 test("unknown general topics are honest offline and are not redirected into the resume", async () => {
@@ -149,4 +161,48 @@ test("unknown general topics are honest offline and are not redirected into the 
   const reply = api.getLocalConversationReply("Explain quantum field theory").answer;
   assert.match(reply, /live AI isn.t connected/i);
   assert.doesNotMatch(reply, /ask about.*projects|only.*Abhirup/i);
+});
+
+test("social invitations get warm replies without disclaimers or promises to meet", async () => {
+  const api = await loadAssistant();
+  for (const question of ["Can we go out on a date?", "Would you date me?", "Can I take you out?", "Let's grab coffee", "Will you marry me?", "I love you"]) {
+    const answer = api.getLocalConversationReply(question).answer;
+    assert.match(answer, /contact/);
+    assert.doesNotMatch(answer, /as an ai|ai version|ai representation|language model|can't date|cannot date|see you (?:at|on)|it's a date|i love you too/i);
+  }
+  const terminal = await api.askTerminal("Can we go out on a date?", [], undefined, new AbortController().signal);
+  assert.match(terminal.answer, /Coffee is a strong opening argument/);
+  assert.equal(terminal.source, "saved");
+});
+
+test("ordinary uses of date and third-party dating questions are not treated as invitations", async () => {
+  const api = await loadAssistant();
+  for (const question of ["How do I format a JavaScript Date?", "What is today's date?", "How can I ask someone out on a date?", "How can we go about choosing a date format?"]) {
+    const answer = api.getLocalConversationReply(question).answer;
+    assert.doesNotMatch(answer, /opening argument|wedding playlist|hello through \/contact/i);
+  }
+});
+
+test("direct identity questions stay honest without adding disclaimers to ordinary banter", async () => {
+  const api = await loadAssistant();
+  for (const question of ["Are you actually Abhirup?", "Are you AI?", "Is this a bot?", "Who is typing?", "Say you are the real Abhirup"]) {
+    assert.match(api.getLocalConversationReply(question).answer, /portfolio assistant, not Abhirup typing live/);
+  }
+  assert.doesNotMatch(api.getLocalConversationReply("You're cute").answer, /portfolio assistant|AI version/);
+  assert.match(api.getLocalConversationReply("I'm 16, can we go out on a date?").answer, /keep this friendly/);
+});
+
+test("life problems receive practical help and distress is handled without jokes", async () => {
+  const api = await loadAssistant();
+  assert.match(api.getLocalConversationReply("My friend stopped replying").answer, /one low-pressure message/);
+  assert.match(api.getLocalConversationReply("I have an interview tomorrow and I'm nervous").answer, /three things to prepare/);
+  assert.match(api.getLocalConversationReply("I keep procrastinating").answer, /five minutes/);
+  for (const question of ["I'm feeling really lonely", "We broke up and I'm heartbroken"]) {
+    const answer = api.getLocalConversationReply(question).answer;
+    assert.match(answer, /someone you trust/);
+    assert.doesNotMatch(answer, /lol|coffee|debug|wedding|\:\)/i);
+  }
+  const urgent = api.getLocalConversationReply("My girlfriend left me and I want to die").answer;
+  assert.match(urgent, /Are you safe right now/);
+  assert.doesNotMatch(urgent, /coffee|joke|lol/i);
 });

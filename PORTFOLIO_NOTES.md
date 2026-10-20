@@ -8,13 +8,15 @@ The desk drawing changes between interfaces, systems, experiments, and play, wit
 
 ## Existing AI assistant
 
-The existing Groq integration in `src/lib/groq.ts` and its `llama-3.1-8b-instant` model are retained. The assistant still uses the original portfolio knowledge base and falls back to it when Groq is unavailable. The local preview has no configured Groq key, so live model responses could not be verified; its knowledge fallback and local hints were tested.
+The Groq integration in `src/lib/groq.ts` calls the same-origin `/api/chat` endpoint, served by Vite locally and `api/chat.mjs` on Vercel. `server/chat.mjs` reads the server-only `GROQ_API_KEY` and uses `GROQ_MODEL` (default `openai/gpt-oss-20b`). The former Llama model returned `404 model_not_found`; the replacement returned a live reply using the local key. The assistant uses saved portfolio knowledge with a connection notice when Groq is unavailable. See README.md for hosting environment setup.
 
 `src/lib/discoveryHints.ts` provides progress-aware clues before sending a general question to the model. Asking for a hint never advances the trail or opens the terminal. The assistant can be minimized while exploring, and its conversation scrolls independently of the portfolio.
 
 The chat and terminal now share a relaxed, first-person writing style based on Abhirup’s messages in this conversation: short, direct, lightly humorous, with occasional “bro,” “lol,” or “:)” rather than forced slang. The model can answer general questions about games, coding, coffee, and other topics instead of treating the portfolio as a topic boundary. Personal game favorites, ranks, coffee orders, and life stories are never filled in without supplied facts. The chat has no live browsing and must not claim current prices, releases, or scores were verified.
 
 `src/lib/assistantConversation.ts` separates personal questions from general questions in saved chat mode. It provides a small set of evergreen general answers and an honest unavailable message when a live answer is needed. General game hints and Linux terminal questions do not automatically trigger the portfolio clue trail. Optional follow-up suggestions are limited to two, and malformed metadata is stripped rather than shown to visitors.
+
+Both chat surfaces also welcome everyday-life questions, friendly flirting, dating invitations, awkward texts, work or study nerves, and practical problem-solving. The live prompt uses playful humor for light conversations and a compassionate tone for distress. `src/lib/socialConversation.ts` supplies common social replies when the provider is unavailable. Ordinary replies do not volunteer an AI disclaimer; direct identity questions still truthfully identify the portfolio assistant. It never commits Abhirup to a meeting or relationship, invents his feelings, or claims real-world actions. Invitations can point to `/contact` for a direct conversation.
 
 ## Discovery trail — spoilers
 

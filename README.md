@@ -13,6 +13,14 @@ npm install
 npm run dev
 ```
 
+### Live AI assistant
+
+Copy `.env.example` to `.env` and set `GROQ_API_KEY` to your Groq key. The key is read only by the server; do not use a `VITE_` prefix for secrets. `GROQ_MODEL` defaults to `openai/gpt-oss-20b`, verified against the account's available models. The previous `llama-3.1-8b-instant` model returned `404 model_not_found`.
+
+Both `npm run dev` and `npm run preview` serve `/api/chat` locally. Restart the development server after changing environment settings. The floating chat and hidden terminal call this endpoint, with saved answers and a connection notice when the provider is unavailable.
+
+For Vercel, add `GROQ_API_KEY` (and optionally `GROQ_MODEL`) under the project's environment variables for the intended environments, remove the old `VITE_GROQ_API_KEY` variable, and redeploy. A local `.env` file does not update Vercel. `api/chat.mjs` runs as a Node serverless function alongside the prerendered pages; uploading only `dist/` to a static host will not provide live AI. Rotate any key previously included in a public browser bundle.
+
 ### Available scripts
 
 - `npm run dev` – start the development server

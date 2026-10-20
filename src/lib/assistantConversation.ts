@@ -2,6 +2,7 @@ import { findBestMatch, type ChatResponse } from "@/data/chatbotKnowledge";
 import { projects } from "@/data/projects";
 import { achievements } from "@/data/achievements";
 import { profile } from "@/data/profile";
+import { getSocialConversationReply } from "@/lib/socialConversation";
 
 const isLocationQuestion = (text: string) => /\b(?:your|his|abhirup(?:[’']s)?)\s+(?:current\s+)?(?:location|hometown|city|base)\b|\b(?:are you|is abhirup)\s+(?:currently\s+)?(?:from|based|living|located)\b|\bwhere\s+(?:do you live|does abhirup live|(?:are you|is abhirup)\s+(?:now|currently))\b/i.test(text);
 const isEducationQuestion = (text: string) => /\b(?:your|his|abhirup(?:[’']s)?)\s+(?:education|degree|university|college|graduation)\b|\b(?:have you|has abhirup|did you|did abhirup)\s+(?:already\s+)?graduat|\b(?:are you|is abhirup)\s+(?:still\s+)?(?:a\s+)?(?:student|graduate|studying)\b|\bwhere did you study\b|^education[?!. ]*$/i.test(text);
@@ -14,6 +15,8 @@ export const isPersonalQuestion = (text: string): boolean => {
 
 export function getLocalConversationReply(question: string): ChatResponse {
   const text = question.trim();
+  const socialReply = getSocialConversationReply(text);
+  if (socialReply) return socialReply;
   if (/^(?:hi|hey|hello|yo|sup)(?:\s+(?:bro|dude))?[!. :)]*$/i.test(text)) return { answer: "Hey bro :) Code, coffee, games—or something completely different. What’s on your mind?", followUp: ["What’s an RPG?", "What have you built?"] };
   if (/^(?:thanks?|thank you|cheers)(?:\s+(?:bro|dude))?[!. :)]*$/i.test(text)) return { answer: "Anytime, bro. One less mystery on the internet :)" };
 

@@ -1,14 +1,24 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { createChatHandler } from "./server/chat.mjs";
 
 // https://vitejs.dev/config/
-export default defineConfig(() => ({
+export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
   },
-  plugins: [react()],
+  plugins: [react(), {
+    name: "portfolio-ai-server",
+    configureServer(server) {
+      const handler = createChatHandler({ getEnv: () => loadEnv(mode, process.cwd(), "") });
+      server.middlewares.use((request, response, next) => {
+        if (request.url?.split("?")[0] === "/api/chat") void handler(request, response);
+        else next();
+      });
+    },
+  }],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

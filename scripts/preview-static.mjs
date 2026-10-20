@@ -2,14 +2,18 @@ import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadEnv } from "vite";
+import { createChatHandler } from "../server/chat.mjs";
 
 const dist = fileURLToPath(new URL("../dist/", import.meta.url));
 const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".json": "application/json; charset=utf-8", ".txt": "text/plain; charset=utf-8", ".xml": "application/xml; charset=utf-8", ".svg": "image/svg+xml", ".webp": "image/webp", ".png": "image/png", ".jpeg": "image/jpeg", ".jpg": "image/jpeg", ".ico": "image/x-icon", ".pdf": "application/pdf" };
 
 // Preview the static deployment without an SPA fallback masking missing URLs.
 export function createStaticServer() {
+  const chat = createChatHandler({ getEnv: () => loadEnv("production", fileURLToPath(new URL("../", import.meta.url)), "") });
   return createServer(async (request, response) => {
     try {
+      if (request.url?.split("?")[0] === "/api/chat") { await chat(request, response); return; }
       if (!["GET", "HEAD"].includes(request.method)) { response.writeHead(405, { Allow: "GET, HEAD" }); response.end(); return; }
       const url = new URL(request.url, "http://localhost");
       const pathname = decodeURIComponent(url.pathname);
